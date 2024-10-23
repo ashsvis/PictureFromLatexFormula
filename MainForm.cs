@@ -122,25 +122,7 @@ namespace PictureFromLatexFormula
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            tsbCopyFormula.Enabled = tboxLatex.TextLength > 0;
-            tsbPasteFormulaFromClipboard.Enabled = Clipboard.ContainsText(TextDataFormat.UnicodeText);
             tsbSaveFormula.Enabled = tboxLatex.TextLength > 0;
-        }
-
-        private void tsbPasteFormulaFromClipboard_Click(object sender, EventArgs e)
-        {
-            if (Clipboard.ContainsText(TextDataFormat.UnicodeText))
-            {
-                tboxLatex.Text = Clipboard.GetText();
-            }
-        }
-
-        private void tsbCopyFormula_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(tboxLatex.SelectedText))
-            {
-                Clipboard.SetText(tboxLatex.SelectedText);
-            }
         }
 
         private void tsbClearFormula_Click(object sender, EventArgs e)

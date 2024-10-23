@@ -48,11 +48,6 @@
             tsbClearFormula = new ToolStripButton();
             tsbLoadFormula = new ToolStripButton();
             tsbSaveFormula = new ToolStripButton();
-            toolStripSeparator = new ToolStripSeparator();
-            tsbCopyFormula = new ToolStripButton();
-            tsbPasteFormulaFromClipboard = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            справкаToolStripButton = new ToolStripButton();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -207,7 +202,7 @@
             // toolStrip2
             // 
             toolStrip2.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator, tsbCopyFormula, tsbPasteFormulaFromClipboard, toolStripSeparator2, справкаToolStripButton });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
             toolStrip2.Size = new Size(729, 25);
@@ -244,47 +239,6 @@
             tsbSaveFormula.Size = new Size(23, 22);
             tsbSaveFormula.Text = "&Сохранить текст формулы в файл на диске...";
             tsbSaveFormula.Click += tsbSaveFormula_Click;
-            // 
-            // toolStripSeparator
-            // 
-            toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new Size(6, 25);
-            // 
-            // tsbCopyFormula
-            // 
-            tsbCopyFormula.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsbCopyFormula.Enabled = false;
-            tsbCopyFormula.Image = (Image)resources.GetObject("tsbCopyFormula.Image");
-            tsbCopyFormula.ImageTransparentColor = Color.Magenta;
-            tsbCopyFormula.Name = "tsbCopyFormula";
-            tsbCopyFormula.Size = new Size(23, 22);
-            tsbCopyFormula.Text = "&Копировать выделенный текст формулы в буфер обмена";
-            tsbCopyFormula.Click += tsbCopyFormula_Click;
-            // 
-            // tsbPasteFormulaFromClipboard
-            // 
-            tsbPasteFormulaFromClipboard.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            tsbPasteFormulaFromClipboard.Enabled = false;
-            tsbPasteFormulaFromClipboard.Image = (Image)resources.GetObject("tsbPasteFormulaFromClipboard.Image");
-            tsbPasteFormulaFromClipboard.ImageTransparentColor = Color.Magenta;
-            tsbPasteFormulaFromClipboard.Name = "tsbPasteFormulaFromClipboard";
-            tsbPasteFormulaFromClipboard.Size = new Size(23, 22);
-            tsbPasteFormulaFromClipboard.Text = "&Вставить текст формулы из буфера обмена";
-            tsbPasteFormulaFromClipboard.Click += tsbPasteFormulaFromClipboard_Click;
-            // 
-            // toolStripSeparator2
-            // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 25);
-            // 
-            // справкаToolStripButton
-            // 
-            справкаToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            справкаToolStripButton.Image = (Image)resources.GetObject("справкаToolStripButton.Image");
-            справкаToolStripButton.ImageTransparentColor = Color.Magenta;
-            справкаToolStripButton.Name = "справкаToolStripButton";
-            справкаToolStripButton.Size = new Size(23, 22);
-            справкаToolStripButton.Text = "С&правка";
             // 
             // saveFileDialog1
             // 
@@ -352,11 +306,6 @@
         private ToolStripButton tsbClearFormula;
         private ToolStripButton tsbLoadFormula;
         private ToolStripButton tsbSaveFormula;
-        private ToolStripSeparator toolStripSeparator;
-        private ToolStripButton tsbCopyFormula;
-        private ToolStripButton tsbPasteFormulaFromClipboard;
-        private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton справкаToolStripButton;
         private System.Windows.Forms.Timer timer1;
         private SaveFileDialog saveFileDialog2;
         private OpenFileDialog openFileDialog2;
