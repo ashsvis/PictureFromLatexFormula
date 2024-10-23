@@ -39,6 +39,8 @@
             toolStrip1 = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             tscbScale = new ToolStripComboBox();
+            tsbMoreFontSize = new ToolStripButton();
+            tsbLessFontSize = new ToolStripButton();
             toolStripLabel2 = new ToolStripLabel();
             tscbSystemFontName = new ToolStripComboBox();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -54,6 +56,7 @@
             btnAddFracFunction = new Button();
             btnAddTextFunction = new Button();
             btnAddSqrtFunction = new Button();
+            btnAddSqrt3Function = new Button();
             btnAddSubIndexFunction = new Button();
             btnAddSupIndexFunction = new Button();
             btnAddPlusMinusCharacter = new Button();
@@ -64,7 +67,6 @@
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
             toolTip1 = new ToolTip(components);
-            btnAddSqrt3Function = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -159,7 +161,7 @@
             // toolStrip1
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 187);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1003, 25);
@@ -178,6 +180,28 @@
             tscbScale.Name = "tscbScale";
             tscbScale.Size = new Size(75, 25);
             tscbScale.SelectedIndexChanged += nudScale_ValueChanged;
+            // 
+            // tsbMoreFontSize
+            // 
+            tsbMoreFontSize.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbMoreFontSize.Enabled = false;
+            tsbMoreFontSize.Image = Properties.Resources.Увеличить_размер_шрифта;
+            tsbMoreFontSize.ImageTransparentColor = Color.White;
+            tsbMoreFontSize.Name = "tsbMoreFontSize";
+            tsbMoreFontSize.Size = new Size(23, 22);
+            tsbMoreFontSize.Text = "toolStripButton1";
+            tsbMoreFontSize.Click += tsbMoreFontSize_Click;
+            // 
+            // tsbLessFontSize
+            // 
+            tsbLessFontSize.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbLessFontSize.Enabled = false;
+            tsbLessFontSize.Image = Properties.Resources.Уменьшить_размер_шрифта;
+            tsbLessFontSize.ImageTransparentColor = Color.White;
+            tsbLessFontSize.Name = "tsbLessFontSize";
+            tsbLessFontSize.Size = new Size(23, 22);
+            tsbLessFontSize.Text = "toolStripButton2";
+            tsbLessFontSize.Click += tsbLessFontSize_Click;
             // 
             // toolStripLabel2
             // 
@@ -331,6 +355,19 @@
             btnAddSqrtFunction.UseVisualStyleBackColor = true;
             btnAddSqrtFunction.Click += btnInsertFunction_Click;
             // 
+            // btnAddSqrt3Function
+            // 
+            btnAddSqrt3Function.AutoSize = true;
+            btnAddSqrt3Function.Location = new Point(179, 3);
+            btnAddSqrt3Function.Name = "btnAddSqrt3Function";
+            btnAddSqrt3Function.Size = new Size(64, 25);
+            btnAddSqrt3Function.TabIndex = 0;
+            btnAddSqrt3Function.Tag = "1";
+            btnAddSqrt3Function.Text = "\\sqrt[3]{}";
+            toolTip1.SetToolTip(btnAddSqrt3Function, "извлечение кубического корня");
+            btnAddSqrt3Function.UseVisualStyleBackColor = true;
+            btnAddSqrt3Function.Click += btnInsertFunction_Click;
+            // 
             // btnAddSubIndexFunction
             // 
             btnAddSubIndexFunction.AutoSize = true;
@@ -427,19 +464,6 @@
             tlpNotes.Size = new Size(96, 100);
             tlpNotes.TabIndex = 7;
             // 
-            // btnAddSqrt3Function
-            // 
-            btnAddSqrt3Function.AutoSize = true;
-            btnAddSqrt3Function.Location = new Point(179, 3);
-            btnAddSqrt3Function.Name = "btnAddSqrt3Function";
-            btnAddSqrt3Function.Size = new Size(64, 25);
-            btnAddSqrt3Function.TabIndex = 0;
-            btnAddSqrt3Function.Tag = "1";
-            btnAddSqrt3Function.Text = "\\sqrt[3]{}";
-            toolTip1.SetToolTip(btnAddSqrt3Function, "извлечение кубического корня");
-            btnAddSqrt3Function.UseVisualStyleBackColor = true;
-            btnAddSqrt3Function.Click += btnInsertFunction_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -505,5 +529,7 @@
         private Button btnAddPlusMinusCharacter;
         private ToolTip toolTip1;
         private Button btnAddSqrt3Function;
+        private ToolStripButton tsbMoreFontSize;
+        private ToolStripButton tsbLessFontSize;
     }
 }

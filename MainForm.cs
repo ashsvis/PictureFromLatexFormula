@@ -50,9 +50,14 @@ namespace PictureFromLatexFormula
         {
             var enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text) && pboxFormula.Image != null;
             tscbScale.Enabled = enabled;
+
             tscbSystemFontName.Enabled = enabled;
+            tsbMoreFontSize.Enabled = enabled && tscbScale.SelectedIndex < tscbScale.Items.Count - 1;
+            tsbLessFontSize.Enabled = enabled && tscbScale.SelectedIndex > 0;
+
             tsbCopyToClipboard.Enabled = enabled;
             tsbSave.Enabled = enabled;
+
         }
 
         private void nudScale_ValueChanged(object sender, EventArgs e)
@@ -205,6 +210,16 @@ namespace PictureFromLatexFormula
             if (int.TryParse($"{btn.Tag}", out int offset))
                 tboxLatex.SelectionStart -= offset;
             tboxLatex.Focus();
+        }
+
+        private void tsbMoreFontSize_Click(object sender, EventArgs e)
+        {
+            tscbScale.SelectedIndex++;
+        }
+
+        private void tsbLessFontSize_Click(object sender, EventArgs e)
+        {
+            tscbScale.SelectedIndex--;
         }
     }
 }

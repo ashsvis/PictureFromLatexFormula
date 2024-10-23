@@ -89,5 +89,25 @@ namespace PictureFromLatexFormula.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Увеличить_размер_шрифта {
+            get {
+                object obj = ResourceManager.GetObject("Увеличить размер шрифта", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Уменьшить_размер_шрифта {
+            get {
+                object obj = ResourceManager.GetObject("Уменьшить размер шрифта", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
