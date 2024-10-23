@@ -33,15 +33,19 @@
             labFormulaPicture = new Label();
             tboxLatex = new TextBox();
             panel1 = new Panel();
-            pictboxFormula = new PictureBox();
+            pboxFormula = new PictureBox();
             toolStrip1 = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             tscbScale = new ToolStripComboBox();
             toolStripLabel2 = new ToolStripLabel();
             tscbSystemFontName = new ToolStripComboBox();
+            toolStripSeparator1 = new ToolStripSeparator();
+            tsbCopyToClipboard = new ToolStripButton();
+            tsbSave = new ToolStripButton();
+            saveFileDialog1 = new SaveFileDialog();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictboxFormula).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -102,29 +106,29 @@
             // panel1
             // 
             panel1.AutoScroll = true;
-            panel1.BackColor = Color.WhiteSmoke;
+            panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.Fixed3D;
-            panel1.Controls.Add(pictboxFormula);
+            panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 153);
             panel1.Name = "panel1";
             panel1.Size = new Size(1113, 294);
             panel1.TabIndex = 2;
             // 
-            // pictboxFormula
+            // pboxFormula
             // 
-            pictboxFormula.BackColor = SystemColors.Window;
-            pictboxFormula.Location = new Point(0, 0);
-            pictboxFormula.Name = "pictboxFormula";
-            pictboxFormula.Size = new Size(1, 1);
-            pictboxFormula.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictboxFormula.TabIndex = 0;
-            pictboxFormula.TabStop = false;
+            pboxFormula.BackColor = Color.White;
+            pboxFormula.Location = new Point(0, 0);
+            pboxFormula.Name = "pboxFormula";
+            pboxFormula.Size = new Size(1, 1);
+            pboxFormula.SizeMode = PictureBoxSizeMode.AutoSize;
+            pboxFormula.TabIndex = 0;
+            pboxFormula.TabStop = false;
             // 
             // toolStrip1
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, toolStripLabel2, tscbSystemFontName });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 106);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1119, 25);
@@ -157,6 +161,39 @@
             tscbSystemFontName.Size = new Size(140, 25);
             tscbSystemFontName.SelectedIndexChanged += cboxSystemFontName_SelectionChangeCommitted;
             // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
+            // 
+            // tsbCopyToClipboard
+            // 
+            tsbCopyToClipboard.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbCopyToClipboard.Enabled = false;
+            tsbCopyToClipboard.Image = Properties.Resources.Копировать;
+            tsbCopyToClipboard.ImageTransparentColor = SystemColors.Window;
+            tsbCopyToClipboard.Name = "tsbCopyToClipboard";
+            tsbCopyToClipboard.Size = new Size(23, 22);
+            tsbCopyToClipboard.Text = "Копировать в буфер обмена";
+            tsbCopyToClipboard.Click += tsbCopyToClipboard_Click;
+            // 
+            // tsbSave
+            // 
+            tsbSave.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbSave.Enabled = false;
+            tsbSave.Image = Properties.Resources.Сохранить;
+            tsbSave.ImageTransparentColor = SystemColors.Window;
+            tsbSave.Name = "tsbSave";
+            tsbSave.Size = new Size(23, 22);
+            tsbSave.Text = "Сохранить в файл...";
+            tsbSave.Click += tsbSave_Click;
+            // 
+            // saveFileDialog1
+            // 
+            saveFileDialog1.DefaultExt = "png";
+            saveFileDialog1.FileName = "formula.png";
+            saveFileDialog1.Filter = "*.png|*.png";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -171,7 +208,7 @@
             tableLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictboxFormula).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pboxFormula).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ResumeLayout(false);
@@ -184,11 +221,15 @@
         private Label labFormulaPicture;
         private TextBox tboxLatex;
         private Panel panel1;
-        private PictureBox pictboxFormula;
+        private PictureBox pboxFormula;
         private ToolStrip toolStrip1;
         private ToolStripLabel toolStripLabel1;
         private ToolStripComboBox tscbScale;
         private ToolStripLabel toolStripLabel2;
         private ToolStripComboBox tscbSystemFontName;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton tsbCopyToClipboard;
+        private ToolStripButton tsbSave;
+        private SaveFileDialog saveFileDialog1;
     }
 }

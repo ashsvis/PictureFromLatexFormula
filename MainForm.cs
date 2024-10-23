@@ -32,8 +32,8 @@ namespace PictureFromLatexFormula
                 var pngBytes = formula.RenderToPng(20, 0.0, 0.0, name);
                 return true;
             }
-            catch 
-            { 
+            catch
+            {
                 return false;
             }
         }
@@ -41,8 +41,16 @@ namespace PictureFromLatexFormula
         private void tboxLatex_TextChanged(object sender, EventArgs e)
         {
             GeneratePicture();
-            tscbScale.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
-            tscbSystemFontName.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
+            UpdateControlsEnabled();
+        }
+
+        private void UpdateControlsEnabled()
+        {
+            var enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text) && pboxFormula.Image != null;
+            tscbScale.Enabled = enabled;
+            tscbSystemFontName.Enabled = enabled;
+            tsbCopyToClipboard.Enabled = enabled;
+            tsbSave.Enabled = enabled;
         }
 
         private void nudScale_ValueChanged(object sender, EventArgs e)
@@ -61,13 +69,15 @@ namespace PictureFromLatexFormula
             {
                 labFormulaPicture.ForeColor = SystemColors.ControlText;
                 labFormulaPicture.Text = "Картинка формулы:";
-                pictboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), tscbSystemFontName.Text);
+                pboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), tscbSystemFontName.Text);
+                UpdateControlsEnabled();
             }
             catch (Exception ex)
             {
-                pictboxFormula.Image = null;
+                pboxFormula.Image = null;
                 labFormulaPicture.ForeColor = Color.Red;
                 labFormulaPicture.Text = "Ошибка: " + ex.Message;
+                UpdateControlsEnabled();
             }
         }
 
@@ -76,7 +86,7 @@ namespace PictureFromLatexFormula
         /// </summary>
         /// <param name="latex">Формула</param>
         /// <returns>Возвращаем картинку</returns>
-        private Image GetImage(string latex, double scale, string systemFontName)
+        private static Image GetImage(string latex, double scale, string systemFontName)
         {
             var parser = WpfTeXFormulaParser.Instance;
             var formula = parser.Parse(latex);
@@ -84,6 +94,28 @@ namespace PictureFromLatexFormula
             using (var stream = new MemoryStream(pngBytes))
             {
                 return Image.FromStream(stream);
+            }
+        }
+
+        private void tsbCopyToClipboard_Click(object sender, EventArgs e)
+        {
+            var image = pboxFormula.Image;
+            using (var bmp = new Bitmap(image.Width, image.Height))
+            {
+                using (var g = Graphics.FromImage(bmp))
+                { 
+                    g.FillRectangle(Brushes.White, new Rectangle(0,0,image.Width,image.Height));
+                    g.DrawImageUnscaled(image, 0, 0);
+                }
+                Clipboard.SetImage(bmp);
+            }
+        }
+
+        private void tsbSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog(Owner) == DialogResult.OK) 
+            {
+                pboxFormula.Image.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Png);
             }
         }
     }
