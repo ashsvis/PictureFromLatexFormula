@@ -46,7 +46,7 @@
             tsbSave = new ToolStripButton();
             toolStrip2 = new ToolStrip();
             tsbClearFormula = new ToolStripButton();
-            открытьToolStripButton = new ToolStripButton();
+            tsbLoadFormula = new ToolStripButton();
             tsbSaveFormula = new ToolStripButton();
             toolStripSeparator = new ToolStripSeparator();
             tsbCopyFormula = new ToolStripButton();
@@ -55,6 +55,8 @@
             справкаToolStripButton = new ToolStripButton();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
+            saveFileDialog2 = new SaveFileDialog();
+            openFileDialog2 = new OpenFileDialog();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -205,7 +207,7 @@
             // toolStrip2
             // 
             toolStrip2.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, открытьToolStripButton, tsbSaveFormula, toolStripSeparator, tsbCopyFormula, tsbPasteFormulaFromClipboard, toolStripSeparator2, справкаToolStripButton });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator, tsbCopyFormula, tsbPasteFormulaFromClipboard, toolStripSeparator2, справкаToolStripButton });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
             toolStrip2.Size = new Size(729, 25);
@@ -222,14 +224,15 @@
             tsbClearFormula.Text = "&Очистить строку формул";
             tsbClearFormula.Click += tsbClearFormula_Click;
             // 
-            // открытьToolStripButton
+            // tsbLoadFormula
             // 
-            открытьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            открытьToolStripButton.Image = (Image)resources.GetObject("открытьToolStripButton.Image");
-            открытьToolStripButton.ImageTransparentColor = Color.Magenta;
-            открытьToolStripButton.Name = "открытьToolStripButton";
-            открытьToolStripButton.Size = new Size(23, 22);
-            открытьToolStripButton.Text = "&Загрузить формулу из файла на диске...";
+            tsbLoadFormula.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbLoadFormula.Image = (Image)resources.GetObject("tsbLoadFormula.Image");
+            tsbLoadFormula.ImageTransparentColor = Color.Magenta;
+            tsbLoadFormula.Name = "tsbLoadFormula";
+            tsbLoadFormula.Size = new Size(23, 22);
+            tsbLoadFormula.Text = "&Загрузить формулу из файла на диске...";
+            tsbLoadFormula.Click += tsbLoadFormula_Click;
             // 
             // tsbSaveFormula
             // 
@@ -240,6 +243,7 @@
             tsbSaveFormula.Name = "tsbSaveFormula";
             tsbSaveFormula.Size = new Size(23, 22);
             tsbSaveFormula.Text = "&Сохранить текст формулы в файл на диске...";
+            tsbSaveFormula.Click += tsbSaveFormula_Click;
             // 
             // toolStripSeparator
             // 
@@ -293,6 +297,17 @@
             timer1.Enabled = true;
             timer1.Tick += timer1_Tick;
             // 
+            // saveFileDialog2
+            // 
+            saveFileDialog2.DefaultExt = "ltx";
+            saveFileDialog2.FileName = "formula.ltx";
+            saveFileDialog2.Filter = "*.ltx|*.ltx";
+            // 
+            // openFileDialog2
+            // 
+            openFileDialog2.DefaultExt = "ltx";
+            openFileDialog2.Filter = "*.ltx|*.ltx";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -335,7 +350,7 @@
         private ToolStripButton сохранитьToolStripButton1;
         private ToolStrip toolStrip2;
         private ToolStripButton tsbClearFormula;
-        private ToolStripButton открытьToolStripButton;
+        private ToolStripButton tsbLoadFormula;
         private ToolStripButton tsbSaveFormula;
         private ToolStripSeparator toolStripSeparator;
         private ToolStripButton tsbCopyFormula;
@@ -343,5 +358,7 @@
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton справкаToolStripButton;
         private System.Windows.Forms.Timer timer1;
+        private SaveFileDialog saveFileDialog2;
+        private OpenFileDialog openFileDialog2;
     }
 }

@@ -153,5 +153,21 @@ namespace PictureFromLatexFormula
             tboxLatex.TextChanged += tboxLatex_TextChanged;
             UpdateControlsEnabled();
         }
+
+        private void tsbSaveFormula_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog2.FileName, tboxLatex.Text);
+            }
+        }
+
+        private void tsbLoadFormula_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog(this) == DialogResult.OK) 
+            { 
+                tboxLatex.Text = File.ReadAllText(openFileDialog2.FileName);
+            }
+        }
     }
 }
