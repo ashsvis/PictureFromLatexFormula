@@ -53,13 +53,19 @@
             toolStripSeparator2 = new ToolStripSeparator();
             tsbShowHideNotes = new ToolStripButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            label2 = new Label();
             btnAddFracFunction = new Button();
             btnAddTextFunction = new Button();
             btnAddSqrtFunction = new Button();
             btnAddSqrt3Function = new Button();
             btnAddSubIndexFunction = new Button();
             btnAddSupIndexFunction = new Button();
+            label3 = new Label();
             btnAddPlusMinusCharacter = new Button();
+            btnAddPiCharacter = new Button();
+            btnAddLambdaCharacter = new Button();
+            btnAddTauCharacter = new Button();
+            btnAddEtaCharacter = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -118,7 +124,7 @@
             // 
             labFormulaPicture.AutoSize = true;
             labFormulaPicture.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labFormulaPicture.Location = new Point(3, 168);
+            labFormulaPicture.Location = new Point(3, 199);
             labFormulaPicture.Name = "labFormulaPicture";
             labFormulaPicture.Size = new Size(149, 19);
             labFormulaPicture.TabIndex = 0;
@@ -143,9 +149,9 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 215);
+            panel1.Location = new Point(3, 246);
             panel1.Name = "panel1";
-            panel1.Size = new Size(997, 270);
+            panel1.Size = new Size(997, 239);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -162,7 +168,7 @@
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
-            toolStrip1.Location = new Point(0, 187);
+            toolStrip1.Location = new Point(0, 218);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1003, 25);
             toolStrip1.TabIndex = 4;
@@ -189,7 +195,7 @@
             tsbMoreFontSize.ImageTransparentColor = Color.White;
             tsbMoreFontSize.Name = "tsbMoreFontSize";
             tsbMoreFontSize.Size = new Size(23, 22);
-            tsbMoreFontSize.Text = "toolStripButton1";
+            tsbMoreFontSize.Text = "увеличить масштаб";
             tsbMoreFontSize.Click += tsbMoreFontSize_Click;
             // 
             // tsbLessFontSize
@@ -200,14 +206,14 @@
             tsbLessFontSize.ImageTransparentColor = Color.White;
             tsbLessFontSize.Name = "tsbLessFontSize";
             tsbLessFontSize.Size = new Size(23, 22);
-            tsbLessFontSize.Text = "toolStripButton2";
+            tsbLessFontSize.Text = "уменьшить масштаб";
             tsbLessFontSize.Click += tsbLessFontSize_Click;
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(155, 22);
-            toolStripLabel2.Text = "Шрифт для \\text{символы}";
+            toolStripLabel2.Size = new Size(113, 22);
+            toolStripLabel2.Text = "Шрифт для \\text{...}";
             // 
             // tscbSystemFontName
             // 
@@ -303,23 +309,39 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.Controls.Add(label2);
             flowLayoutPanel1.Controls.Add(btnAddFracFunction);
             flowLayoutPanel1.Controls.Add(btnAddTextFunction);
             flowLayoutPanel1.Controls.Add(btnAddSqrtFunction);
             flowLayoutPanel1.Controls.Add(btnAddSqrt3Function);
             flowLayoutPanel1.Controls.Add(btnAddSubIndexFunction);
             flowLayoutPanel1.Controls.Add(btnAddSupIndexFunction);
+            flowLayoutPanel1.Controls.Add(label3);
             flowLayoutPanel1.Controls.Add(btnAddPlusMinusCharacter);
+            flowLayoutPanel1.Controls.Add(btnAddPiCharacter);
+            flowLayoutPanel1.Controls.Add(btnAddLambdaCharacter);
+            flowLayoutPanel1.Controls.Add(btnAddTauCharacter);
+            flowLayoutPanel1.Controls.Add(btnAddEtaCharacter);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(3, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(997, 31);
+            flowLayoutPanel1.Size = new Size(997, 62);
             flowLayoutPanel1.TabIndex = 6;
+            toolTip1.SetToolTip(flowLayoutPanel1, "увеличить масштаб");
+            // 
+            // label2
+            // 
+            label2.Location = new Point(3, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 23);
+            label2.TabIndex = 1;
+            label2.Text = "Функции:";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnAddFracFunction
             // 
             btnAddFracFunction.AutoSize = true;
-            btnAddFracFunction.Location = new Point(3, 3);
+            btnAddFracFunction.Location = new Point(79, 3);
             btnAddFracFunction.Name = "btnAddFracFunction";
             btnAddFracFunction.Size = new Size(58, 25);
             btnAddFracFunction.TabIndex = 0;
@@ -332,7 +354,7 @@
             // btnAddTextFunction
             // 
             btnAddTextFunction.AutoSize = true;
-            btnAddTextFunction.Location = new Point(67, 3);
+            btnAddTextFunction.Location = new Point(143, 3);
             btnAddTextFunction.Name = "btnAddTextFunction";
             btnAddTextFunction.Size = new Size(50, 25);
             btnAddTextFunction.TabIndex = 0;
@@ -345,7 +367,7 @@
             // btnAddSqrtFunction
             // 
             btnAddSqrtFunction.AutoSize = true;
-            btnAddSqrtFunction.Location = new Point(123, 3);
+            btnAddSqrtFunction.Location = new Point(199, 3);
             btnAddSqrtFunction.Name = "btnAddSqrtFunction";
             btnAddSqrtFunction.Size = new Size(50, 25);
             btnAddSqrtFunction.TabIndex = 0;
@@ -358,7 +380,7 @@
             // btnAddSqrt3Function
             // 
             btnAddSqrt3Function.AutoSize = true;
-            btnAddSqrt3Function.Location = new Point(179, 3);
+            btnAddSqrt3Function.Location = new Point(255, 3);
             btnAddSqrt3Function.Name = "btnAddSqrt3Function";
             btnAddSqrt3Function.Size = new Size(64, 25);
             btnAddSqrt3Function.TabIndex = 0;
@@ -371,7 +393,7 @@
             // btnAddSubIndexFunction
             // 
             btnAddSubIndexFunction.AutoSize = true;
-            btnAddSubIndexFunction.Location = new Point(249, 3);
+            btnAddSubIndexFunction.Location = new Point(325, 3);
             btnAddSubIndexFunction.Name = "btnAddSubIndexFunction";
             btnAddSubIndexFunction.Size = new Size(30, 25);
             btnAddSubIndexFunction.TabIndex = 0;
@@ -384,7 +406,8 @@
             // btnAddSupIndexFunction
             // 
             btnAddSupIndexFunction.AutoSize = true;
-            btnAddSupIndexFunction.Location = new Point(285, 3);
+            flowLayoutPanel1.SetFlowBreak(btnAddSupIndexFunction, true);
+            btnAddSupIndexFunction.Location = new Point(361, 3);
             btnAddSupIndexFunction.Name = "btnAddSupIndexFunction";
             btnAddSupIndexFunction.Size = new Size(33, 25);
             btnAddSupIndexFunction.TabIndex = 0;
@@ -394,10 +417,19 @@
             btnAddSupIndexFunction.UseVisualStyleBackColor = true;
             btnAddSupIndexFunction.Click += btnInsertFunction_Click;
             // 
+            // label3
+            // 
+            label3.Location = new Point(3, 31);
+            label3.Name = "label3";
+            label3.Size = new Size(70, 23);
+            label3.TabIndex = 1;
+            label3.Text = "Символы:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // btnAddPlusMinusCharacter
             // 
             btnAddPlusMinusCharacter.AutoSize = true;
-            btnAddPlusMinusCharacter.Location = new Point(324, 3);
+            btnAddPlusMinusCharacter.Location = new Point(79, 34);
             btnAddPlusMinusCharacter.Name = "btnAddPlusMinusCharacter";
             btnAddPlusMinusCharacter.Size = new Size(40, 25);
             btnAddPlusMinusCharacter.TabIndex = 0;
@@ -406,6 +438,58 @@
             toolTip1.SetToolTip(btnAddPlusMinusCharacter, "символ ±");
             btnAddPlusMinusCharacter.UseVisualStyleBackColor = true;
             btnAddPlusMinusCharacter.Click += btnInsertFunction_Click;
+            // 
+            // btnAddPiCharacter
+            // 
+            btnAddPiCharacter.AutoSize = true;
+            btnAddPiCharacter.Location = new Point(125, 34);
+            btnAddPiCharacter.Name = "btnAddPiCharacter";
+            btnAddPiCharacter.Size = new Size(40, 25);
+            btnAddPiCharacter.TabIndex = 0;
+            btnAddPiCharacter.Tag = "0";
+            btnAddPiCharacter.Text = "\\pi";
+            toolTip1.SetToolTip(btnAddPiCharacter, "символ π");
+            btnAddPiCharacter.UseVisualStyleBackColor = true;
+            btnAddPiCharacter.Click += btnInsertFunction_Click;
+            // 
+            // btnAddLambdaCharacter
+            // 
+            btnAddLambdaCharacter.AutoSize = true;
+            btnAddLambdaCharacter.Location = new Point(171, 34);
+            btnAddLambdaCharacter.Name = "btnAddLambdaCharacter";
+            btnAddLambdaCharacter.Size = new Size(62, 25);
+            btnAddLambdaCharacter.TabIndex = 0;
+            btnAddLambdaCharacter.Tag = "0";
+            btnAddLambdaCharacter.Text = "\\lambda";
+            toolTip1.SetToolTip(btnAddLambdaCharacter, "символ λ");
+            btnAddLambdaCharacter.UseVisualStyleBackColor = true;
+            btnAddLambdaCharacter.Click += btnInsertFunction_Click;
+            // 
+            // btnAddTauCharacter
+            // 
+            btnAddTauCharacter.AutoSize = true;
+            btnAddTauCharacter.Location = new Point(239, 34);
+            btnAddTauCharacter.Name = "btnAddTauCharacter";
+            btnAddTauCharacter.Size = new Size(39, 25);
+            btnAddTauCharacter.TabIndex = 0;
+            btnAddTauCharacter.Tag = "0";
+            btnAddTauCharacter.Text = "\\tau";
+            toolTip1.SetToolTip(btnAddTauCharacter, "символ τ");
+            btnAddTauCharacter.UseVisualStyleBackColor = true;
+            btnAddTauCharacter.Click += btnInsertFunction_Click;
+            // 
+            // btnAddEtaCharacter
+            // 
+            btnAddEtaCharacter.AutoSize = true;
+            btnAddEtaCharacter.Location = new Point(284, 34);
+            btnAddEtaCharacter.Name = "btnAddEtaCharacter";
+            btnAddEtaCharacter.Size = new Size(39, 25);
+            btnAddEtaCharacter.TabIndex = 0;
+            btnAddEtaCharacter.Tag = "0";
+            btnAddEtaCharacter.Text = "\\eta";
+            toolTip1.SetToolTip(btnAddEtaCharacter, "символ η");
+            btnAddEtaCharacter.UseVisualStyleBackColor = true;
+            btnAddEtaCharacter.Click += btnInsertFunction_Click;
             // 
             // saveFileDialog1
             // 
@@ -531,5 +615,11 @@
         private Button btnAddSqrt3Function;
         private ToolStripButton tsbMoreFontSize;
         private ToolStripButton tsbLessFontSize;
+        private Button btnAddPiCharacter;
+        private Button btnAddLambdaCharacter;
+        private Button btnAddTauCharacter;
+        private Button btnAddEtaCharacter;
+        private Label label2;
+        private Label label3;
     }
 }
