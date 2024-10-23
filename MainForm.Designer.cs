@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             tableLayoutPanel1 = new TableLayoutPanel();
             label1 = new Label();
@@ -44,15 +45,16 @@
             tsbCopyToClipboard = new ToolStripButton();
             tsbSave = new ToolStripButton();
             toolStrip2 = new ToolStrip();
-            создатьToolStripButton = new ToolStripButton();
+            tsbClearFormula = new ToolStripButton();
             открытьToolStripButton = new ToolStripButton();
-            сохранитьToolStripButton = new ToolStripButton();
+            tsbSaveFormula = new ToolStripButton();
             toolStripSeparator = new ToolStripSeparator();
-            копироватьToolStripButton = new ToolStripButton();
-            вставитьToolStripButton = new ToolStripButton();
+            tsbCopyFormula = new ToolStripButton();
+            tsbPasteFormulaFromClipboard = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             справкаToolStripButton = new ToolStripButton();
             saveFileDialog1 = new SaveFileDialog();
+            timer1 = new System.Windows.Forms.Timer(components);
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -80,7 +82,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1119, 450);
+            tableLayoutPanel1.Size = new Size(729, 448);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -89,9 +91,9 @@
             label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(254, 19);
+            label1.Size = new Size(255, 19);
             label1.TabIndex = 0;
-            label1.Text = "Введите формулу в нотации LaTex:";
+            label1.Text = "Введите формулу в нотации LaTeX:";
             // 
             // labFormulaPicture
             // 
@@ -111,7 +113,7 @@
             tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(1113, 81);
+            tboxLatex.Size = new Size(723, 81);
             tboxLatex.TabIndex = 1;
             tboxLatex.TextChanged += tboxLatex_TextChanged;
             // 
@@ -124,7 +126,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 178);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1113, 269);
+            panel1.Size = new Size(723, 267);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -143,7 +145,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 150);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1119, 25);
+            toolStrip1.Size = new Size(729, 25);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -203,21 +205,22 @@
             // toolStrip2
             // 
             toolStrip2.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip2.Items.AddRange(new ToolStripItem[] { создатьToolStripButton, открытьToolStripButton, сохранитьToolStripButton, toolStripSeparator, копироватьToolStripButton, вставитьToolStripButton, toolStripSeparator2, справкаToolStripButton });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, открытьToolStripButton, tsbSaveFormula, toolStripSeparator, tsbCopyFormula, tsbPasteFormulaFromClipboard, toolStripSeparator2, справкаToolStripButton });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(1119, 25);
+            toolStrip2.Size = new Size(729, 25);
             toolStrip2.TabIndex = 5;
             toolStrip2.Text = "toolStrip2";
             // 
-            // создатьToolStripButton
+            // tsbClearFormula
             // 
-            создатьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            создатьToolStripButton.Image = (Image)resources.GetObject("создатьToolStripButton.Image");
-            создатьToolStripButton.ImageTransparentColor = Color.Magenta;
-            создатьToolStripButton.Name = "создатьToolStripButton";
-            создатьToolStripButton.Size = new Size(23, 22);
-            создатьToolStripButton.Text = "&Очистить строку формул";
+            tsbClearFormula.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbClearFormula.Image = (Image)resources.GetObject("tsbClearFormula.Image");
+            tsbClearFormula.ImageTransparentColor = Color.Magenta;
+            tsbClearFormula.Name = "tsbClearFormula";
+            tsbClearFormula.Size = new Size(23, 22);
+            tsbClearFormula.Text = "&Очистить строку формул";
+            tsbClearFormula.Click += tsbClearFormula_Click;
             // 
             // открытьToolStripButton
             // 
@@ -228,40 +231,42 @@
             открытьToolStripButton.Size = new Size(23, 22);
             открытьToolStripButton.Text = "&Загрузить формулу из файла на диске...";
             // 
-            // сохранитьToolStripButton
+            // tsbSaveFormula
             // 
-            сохранитьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            сохранитьToolStripButton.Enabled = false;
-            сохранитьToolStripButton.Image = (Image)resources.GetObject("сохранитьToolStripButton.Image");
-            сохранитьToolStripButton.ImageTransparentColor = Color.Magenta;
-            сохранитьToolStripButton.Name = "сохранитьToolStripButton";
-            сохранитьToolStripButton.Size = new Size(23, 22);
-            сохранитьToolStripButton.Text = "&Сохранить текст формулы в файл на диске...";
+            tsbSaveFormula.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbSaveFormula.Enabled = false;
+            tsbSaveFormula.Image = (Image)resources.GetObject("tsbSaveFormula.Image");
+            tsbSaveFormula.ImageTransparentColor = Color.Magenta;
+            tsbSaveFormula.Name = "tsbSaveFormula";
+            tsbSaveFormula.Size = new Size(23, 22);
+            tsbSaveFormula.Text = "&Сохранить текст формулы в файл на диске...";
             // 
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
             toolStripSeparator.Size = new Size(6, 25);
             // 
-            // копироватьToolStripButton
+            // tsbCopyFormula
             // 
-            копироватьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            копироватьToolStripButton.Enabled = false;
-            копироватьToolStripButton.Image = (Image)resources.GetObject("копироватьToolStripButton.Image");
-            копироватьToolStripButton.ImageTransparentColor = Color.Magenta;
-            копироватьToolStripButton.Name = "копироватьToolStripButton";
-            копироватьToolStripButton.Size = new Size(23, 22);
-            копироватьToolStripButton.Text = "&Копировать текст формулы в буфер обмена";
+            tsbCopyFormula.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbCopyFormula.Enabled = false;
+            tsbCopyFormula.Image = (Image)resources.GetObject("tsbCopyFormula.Image");
+            tsbCopyFormula.ImageTransparentColor = Color.Magenta;
+            tsbCopyFormula.Name = "tsbCopyFormula";
+            tsbCopyFormula.Size = new Size(23, 22);
+            tsbCopyFormula.Text = "&Копировать выделенный текст формулы в буфер обмена";
+            tsbCopyFormula.Click += tsbCopyFormula_Click;
             // 
-            // вставитьToolStripButton
+            // tsbPasteFormulaFromClipboard
             // 
-            вставитьToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            вставитьToolStripButton.Enabled = false;
-            вставитьToolStripButton.Image = (Image)resources.GetObject("вставитьToolStripButton.Image");
-            вставитьToolStripButton.ImageTransparentColor = Color.Magenta;
-            вставитьToolStripButton.Name = "вставитьToolStripButton";
-            вставитьToolStripButton.Size = new Size(23, 22);
-            вставитьToolStripButton.Text = "&Вставить текст формулы из буфера обмена";
+            tsbPasteFormulaFromClipboard.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbPasteFormulaFromClipboard.Enabled = false;
+            tsbPasteFormulaFromClipboard.Image = (Image)resources.GetObject("tsbPasteFormulaFromClipboard.Image");
+            tsbPasteFormulaFromClipboard.ImageTransparentColor = Color.Magenta;
+            tsbPasteFormulaFromClipboard.Name = "tsbPasteFormulaFromClipboard";
+            tsbPasteFormulaFromClipboard.Size = new Size(23, 22);
+            tsbPasteFormulaFromClipboard.Text = "&Вставить текст формулы из буфера обмена";
+            tsbPasteFormulaFromClipboard.Click += tsbPasteFormulaFromClipboard_Click;
             // 
             // toolStripSeparator2
             // 
@@ -283,11 +288,16 @@
             saveFileDialog1.FileName = "formula.png";
             saveFileDialog1.Filter = "*.png|*.png";
             // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1119, 450);
+            ClientSize = new Size(729, 448);
             Controls.Add(tableLayoutPanel1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -324,13 +334,14 @@
         private SaveFileDialog saveFileDialog1;
         private ToolStripButton сохранитьToolStripButton1;
         private ToolStrip toolStrip2;
-        private ToolStripButton создатьToolStripButton;
+        private ToolStripButton tsbClearFormula;
         private ToolStripButton открытьToolStripButton;
-        private ToolStripButton сохранитьToolStripButton;
+        private ToolStripButton tsbSaveFormula;
         private ToolStripSeparator toolStripSeparator;
-        private ToolStripButton копироватьToolStripButton;
-        private ToolStripButton вставитьToolStripButton;
+        private ToolStripButton tsbCopyFormula;
+        private ToolStripButton tsbPasteFormulaFromClipboard;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton справкаToolStripButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }

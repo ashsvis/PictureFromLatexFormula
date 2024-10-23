@@ -104,8 +104,8 @@ namespace PictureFromLatexFormula
             using (var bmp = new Bitmap(image.Width, image.Height))
             {
                 using (var g = Graphics.FromImage(bmp))
-                { 
-                    g.FillRectangle(Brushes.White, new Rectangle(0,0,image.Width,image.Height));
+                {
+                    g.FillRectangle(Brushes.White, new Rectangle(0, 0, image.Width, image.Height));
                     g.DrawImageUnscaled(image, 0, 0);
                 }
                 Clipboard.SetImage(bmp);
@@ -114,10 +114,44 @@ namespace PictureFromLatexFormula
 
         private void tsbSave_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog(Owner) == DialogResult.OK) 
+            if (saveFileDialog1.ShowDialog(Owner) == DialogResult.OK)
             {
                 pboxFormula.Image.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Png);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            tsbCopyFormula.Enabled = tboxLatex.TextLength > 0;
+            tsbPasteFormulaFromClipboard.Enabled = Clipboard.ContainsText(TextDataFormat.UnicodeText);
+            tsbSaveFormula.Enabled = tboxLatex.TextLength > 0;
+        }
+
+        private void tsbPasteFormulaFromClipboard_Click(object sender, EventArgs e)
+        {
+            if (Clipboard.ContainsText(TextDataFormat.UnicodeText))
+            {
+                tboxLatex.Text = Clipboard.GetText();
+            }
+        }
+
+        private void tsbCopyFormula_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tboxLatex.SelectedText))
+            {
+                Clipboard.SetText(tboxLatex.SelectedText);
+            }
+        }
+
+        private void tsbClearFormula_Click(object sender, EventArgs e)
+        {
+            tboxLatex.TextChanged -= tboxLatex_TextChanged;
+            tboxLatex.Text = string.Empty;
+            labFormulaPicture.ForeColor = SystemColors.ControlText;
+            labFormulaPicture.Text = "Картинка формулы:";
+            pboxFormula.Image = null;
+            tboxLatex.TextChanged += tboxLatex_TextChanged;
+            UpdateControlsEnabled();
         }
     }
 }
