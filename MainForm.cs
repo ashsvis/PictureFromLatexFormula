@@ -12,8 +12,8 @@ namespace PictureFromLatexFormula
         public MainForm()
         {
             InitializeComponent();
-            cboxSystemFontName.Items.AddRange(installedFontCollection.Families.Select(x => x.Name).Where(name => CheckFontName(name)).ToArray());
-            cboxSystemFontName.Text = "Segoe UI";
+            tscbSystemFontName.Items.AddRange(installedFontCollection.Families.Select(x => x.Name).Where(name => CheckFontName(name)).ToArray());
+            tscbSystemFontName.Text = "Times New Roman";
             tscbScale.Items.AddRange(Enumerable.Range(1, 120).Select(x => x.ToString()).ToArray());
             tscbScale.Text = "20";
         }
@@ -42,7 +42,7 @@ namespace PictureFromLatexFormula
         {
             GeneratePicture();
             tscbScale.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
-            cboxSystemFontName.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
+            tscbSystemFontName.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
         }
 
         private void nudScale_ValueChanged(object sender, EventArgs e)
@@ -59,12 +59,14 @@ namespace PictureFromLatexFormula
         {
             try
             {
+                labFormulaPicture.ForeColor = SystemColors.ControlText;
                 labFormulaPicture.Text = "Картинка формулы:";
-                pictboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), cboxSystemFontName.Text);
+                pictboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), tscbSystemFontName.Text);
             }
             catch (Exception ex)
             {
                 pictboxFormula.Image = null;
+                labFormulaPicture.ForeColor = Color.Red;
                 labFormulaPicture.Text = "Ошибка: " + ex.Message;
             }
         }
