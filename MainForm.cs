@@ -1,5 +1,8 @@
+using System;
+using System.ComponentModel;
 using System.Drawing.Text;
 using System.IO;
+using System.Windows.Forms;
 using WpfMath;
 using WpfMath.Parsers;
 
@@ -7,25 +10,37 @@ namespace PictureFromLatexFormula
 {
     public partial class MainForm : Form
     {
-        InstalledFontCollection installedFontCollection = new();
+        readonly InstalledFontCollection installedFontCollection = new();
+        readonly BackgroundWorker worker = new BackgroundWorker();
+
 
         public MainForm()
         {
             InitializeComponent();
-            tscbSystemFontName.Items.AddRange(installedFontCollection.Families.Select(x => x.Name).Where(name => CheckFontName(name)).ToArray());
+            tscbSystemFontName.Items.Add("Times New Roman");
             tscbSystemFontName.Text = "Times New Roman";
-            tscbScale.Items.AddRange(Enumerable.Range(1, 120).Select(x => x.ToString()).ToArray());
-            tscbScale.Text = "20";
+            worker.DoWork += Worker_DoWork;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void Worker_DoWork(object? sender, DoWorkEventArgs e)
         {
-            FillNotations();
-            //tboxLatex.Text = @"ax^2+bx+c=0; D=b^2-4ac;D>0,\text{ два корня: }x_{1,2}=\frac{-b+\sqrt{D}}{2a};D=0,\text{ один корень: }x_1=\frac{-b}{2a};D<0,\text{корней нет}";
-            tboxLatex.Text = @"ax^2+bx+c=0;\text{ квадратное уравнение}";
+            var range = installedFontCollection.Families.Select(x => x.Name).Where(name => CheckFontName(name)).ToArray();
+            e.Result = range;
         }
 
-        private bool CheckFontName(string name)
+        private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        {
+            var range = e.Result as string[];
+            tscbSystemFontName.Items.Clear();
+            tscbSystemFontName.Items.AddRange(range);
+            tscbSystemFontName.Text = "Times New Roman";
+            FillNotations();
+            tboxLatex.Text = @"ax^2+bx+c=0;\text{ квадратное уравнение}";
+            tableLayoutPanel1.Enabled = true;
+        }
+
+        private static bool CheckFontName(string name)
         {
             var parser = WpfTeXFormulaParser.Instance;
             try
@@ -38,6 +53,14 @@ namespace PictureFromLatexFormula
             {
                 return false;
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            tableLayoutPanel1.Enabled = false;
+            tscbScale.Items.AddRange(Enumerable.Range(1, 120).Select(x => x.ToString()).ToArray());
+            tscbScale.Text = "20";
+            worker.RunWorkerAsync();
         }
 
         private void tboxLatex_TextChanged(object sender, EventArgs e)
@@ -76,7 +99,8 @@ namespace PictureFromLatexFormula
             {
                 labFormulaPicture.ForeColor = SystemColors.ControlText;
                 labFormulaPicture.Text = "Картинка формулы:";
-                pboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), tscbSystemFontName.Text);
+                if (tboxLatex.TextLength > 0)
+                    pboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), tscbSystemFontName.Text);
                 UpdateControlsEnabled();
             }
             catch (Exception ex)

@@ -66,6 +66,7 @@
             btnAddLambdaCharacter = new Button();
             btnAddTauCharacter = new Button();
             btnAddEtaCharacter = new Button();
+            btnAddChiCharacter = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -73,7 +74,6 @@
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
             toolTip1 = new ToolTip(components);
-            btnAddChiCharacter = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -141,6 +141,7 @@
             tboxLatex.ScrollBars = ScrollBars.Vertical;
             tboxLatex.Size = new Size(997, 81);
             tboxLatex.TabIndex = 1;
+            tboxLatex.Text = "Загрузка программы...";
             tboxLatex.TextChanged += tboxLatex_TextChanged;
             // 
             // panel1
@@ -493,6 +494,19 @@
             btnAddEtaCharacter.UseVisualStyleBackColor = true;
             btnAddEtaCharacter.Click += btnInsertFunction_Click;
             // 
+            // btnAddChiCharacter
+            // 
+            btnAddChiCharacter.AutoSize = true;
+            btnAddChiCharacter.Location = new Point(329, 34);
+            btnAddChiCharacter.Name = "btnAddChiCharacter";
+            btnAddChiCharacter.Size = new Size(39, 25);
+            btnAddChiCharacter.TabIndex = 0;
+            btnAddChiCharacter.Tag = "0";
+            btnAddChiCharacter.Text = "\\chi";
+            toolTip1.SetToolTip(btnAddChiCharacter, "символ χ");
+            btnAddChiCharacter.UseVisualStyleBackColor = true;
+            btnAddChiCharacter.Click += btnInsertFunction_Click;
+            // 
             // saveFileDialog1
             // 
             saveFileDialog1.DefaultExt = "png";
@@ -549,19 +563,6 @@
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpNotes.Size = new Size(96, 100);
             tlpNotes.TabIndex = 7;
-            // 
-            // btnAddChiCharacter
-            // 
-            btnAddChiCharacter.AutoSize = true;
-            btnAddChiCharacter.Location = new Point(329, 34);
-            btnAddChiCharacter.Name = "btnAddChiCharacter";
-            btnAddChiCharacter.Size = new Size(39, 25);
-            btnAddChiCharacter.TabIndex = 0;
-            btnAddChiCharacter.Tag = "0";
-            btnAddChiCharacter.Text = "\\chi";
-            toolTip1.SetToolTip(btnAddChiCharacter, "символ χ");
-            btnAddChiCharacter.UseVisualStyleBackColor = true;
-            btnAddChiCharacter.Click += btnInsertFunction_Click;
             // 
             // MainForm
             // 
