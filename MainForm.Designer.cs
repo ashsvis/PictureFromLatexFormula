@@ -53,12 +53,18 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnAddFracFunction = new Button();
             btnAddTextFunction = new Button();
+            btnAddSqrtFunction = new Button();
+            btnAddSubIndexFunction = new Button();
+            btnAddSupIndexFunction = new Button();
+            btnAddPlusMinusCharacter = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
             openFileDialog2 = new OpenFileDialog();
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
+            toolTip1 = new ToolTip(components);
+            btnAddSqrt3Function = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -275,6 +281,11 @@
             flowLayoutPanel1.AutoSize = true;
             flowLayoutPanel1.Controls.Add(btnAddFracFunction);
             flowLayoutPanel1.Controls.Add(btnAddTextFunction);
+            flowLayoutPanel1.Controls.Add(btnAddSqrtFunction);
+            flowLayoutPanel1.Controls.Add(btnAddSqrt3Function);
+            flowLayoutPanel1.Controls.Add(btnAddSubIndexFunction);
+            flowLayoutPanel1.Controls.Add(btnAddSupIndexFunction);
+            flowLayoutPanel1.Controls.Add(btnAddPlusMinusCharacter);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(3, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -290,6 +301,7 @@
             btnAddFracFunction.TabIndex = 0;
             btnAddFracFunction.Tag = "3";
             btnAddFracFunction.Text = "\\frac{}{}";
+            toolTip1.SetToolTip(btnAddFracFunction, "дробь");
             btnAddFracFunction.UseVisualStyleBackColor = true;
             btnAddFracFunction.Click += btnInsertFunction_Click;
             // 
@@ -302,8 +314,61 @@
             btnAddTextFunction.TabIndex = 0;
             btnAddTextFunction.Tag = "1";
             btnAddTextFunction.Text = "\\text{}";
+            toolTip1.SetToolTip(btnAddTextFunction, "кирилический текст");
             btnAddTextFunction.UseVisualStyleBackColor = true;
             btnAddTextFunction.Click += btnInsertFunction_Click;
+            // 
+            // btnAddSqrtFunction
+            // 
+            btnAddSqrtFunction.AutoSize = true;
+            btnAddSqrtFunction.Location = new Point(123, 3);
+            btnAddSqrtFunction.Name = "btnAddSqrtFunction";
+            btnAddSqrtFunction.Size = new Size(50, 25);
+            btnAddSqrtFunction.TabIndex = 0;
+            btnAddSqrtFunction.Tag = "1";
+            btnAddSqrtFunction.Text = "\\sqrt{}";
+            toolTip1.SetToolTip(btnAddSqrtFunction, "извлечение корня");
+            btnAddSqrtFunction.UseVisualStyleBackColor = true;
+            btnAddSqrtFunction.Click += btnInsertFunction_Click;
+            // 
+            // btnAddSubIndexFunction
+            // 
+            btnAddSubIndexFunction.AutoSize = true;
+            btnAddSubIndexFunction.Location = new Point(249, 3);
+            btnAddSubIndexFunction.Name = "btnAddSubIndexFunction";
+            btnAddSubIndexFunction.Size = new Size(30, 25);
+            btnAddSubIndexFunction.TabIndex = 0;
+            btnAddSubIndexFunction.Tag = "1";
+            btnAddSubIndexFunction.Text = "_{}";
+            toolTip1.SetToolTip(btnAddSubIndexFunction, "нижний индекс");
+            btnAddSubIndexFunction.UseVisualStyleBackColor = true;
+            btnAddSubIndexFunction.Click += btnInsertFunction_Click;
+            // 
+            // btnAddSupIndexFunction
+            // 
+            btnAddSupIndexFunction.AutoSize = true;
+            btnAddSupIndexFunction.Location = new Point(285, 3);
+            btnAddSupIndexFunction.Name = "btnAddSupIndexFunction";
+            btnAddSupIndexFunction.Size = new Size(33, 25);
+            btnAddSupIndexFunction.TabIndex = 0;
+            btnAddSupIndexFunction.Tag = "1";
+            btnAddSupIndexFunction.Text = "^{}";
+            toolTip1.SetToolTip(btnAddSupIndexFunction, "верхний индекс");
+            btnAddSupIndexFunction.UseVisualStyleBackColor = true;
+            btnAddSupIndexFunction.Click += btnInsertFunction_Click;
+            // 
+            // btnAddPlusMinusCharacter
+            // 
+            btnAddPlusMinusCharacter.AutoSize = true;
+            btnAddPlusMinusCharacter.Location = new Point(324, 3);
+            btnAddPlusMinusCharacter.Name = "btnAddPlusMinusCharacter";
+            btnAddPlusMinusCharacter.Size = new Size(40, 25);
+            btnAddPlusMinusCharacter.TabIndex = 0;
+            btnAddPlusMinusCharacter.Tag = "0";
+            btnAddPlusMinusCharacter.Text = "\\pm";
+            toolTip1.SetToolTip(btnAddPlusMinusCharacter, "символ ±");
+            btnAddPlusMinusCharacter.UseVisualStyleBackColor = true;
+            btnAddPlusMinusCharacter.Click += btnInsertFunction_Click;
             // 
             // saveFileDialog1
             // 
@@ -361,6 +426,19 @@
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpNotes.Size = new Size(96, 100);
             tlpNotes.TabIndex = 7;
+            // 
+            // btnAddSqrt3Function
+            // 
+            btnAddSqrt3Function.AutoSize = true;
+            btnAddSqrt3Function.Location = new Point(179, 3);
+            btnAddSqrt3Function.Name = "btnAddSqrt3Function";
+            btnAddSqrt3Function.Size = new Size(64, 25);
+            btnAddSqrt3Function.TabIndex = 0;
+            btnAddSqrt3Function.Tag = "1";
+            btnAddSqrt3Function.Text = "\\sqrt[3]{}";
+            toolTip1.SetToolTip(btnAddSqrt3Function, "извлечение кубического корня");
+            btnAddSqrt3Function.UseVisualStyleBackColor = true;
+            btnAddSqrt3Function.Click += btnInsertFunction_Click;
             // 
             // MainForm
             // 
@@ -421,5 +499,11 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btnAddFracFunction;
         private Button btnAddTextFunction;
+        private Button btnAddSqrtFunction;
+        private Button btnAddSubIndexFunction;
+        private Button btnAddSupIndexFunction;
+        private Button btnAddPlusMinusCharacter;
+        private ToolTip toolTip1;
+        private Button btnAddSqrt3Function;
     }
 }
