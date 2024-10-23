@@ -160,9 +160,9 @@ namespace PictureFromLatexFormula
             lboxNotation.Items.Add(new Notation(@"\sum_{i=1}^{10} t_i"));
             lboxNotation.Items.Add(new Notation(@"\int_0^\infty e^{-x}\,\mathrm{d}x"));
             lboxNotation.Items.Add(new Notation(@"\int_a^b"));
-            lboxNotation.Items.Add(new Notation(@"( a ), [ b ], \{ c \}, | d |, \| e \|, \langle f \rangle, \lfloor g \rfloor,\lceil h \rceil, \ulcorner i \urcorner,/ j \backslash"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"(a),[b],\{c\},|d|,\|e\|"));
+            lboxNotation.Items.Add(new Notation(@"\langle f \rangle,\lfloor g \rfloor,\lceil h \rceil"));
+            lboxNotation.Items.Add(new Notation(@"\ulcorner i \urcorner,/ j \backslash"));
             lboxNotation.Items.Add(new Notation(@"*"));
             lboxNotation.Items.Add(new Notation(@"*"));
             lboxNotation.Items.Add(new Notation(@"*"));
@@ -185,7 +185,7 @@ namespace PictureFromLatexFormula
             var item = (Notation)lboxNotation.Items[e.Index];
             e.DrawBackground();
             var rText = e.Bounds;
-            rText.Width = width / 2;
+            rText.Width = 2 * width / 3;
             using (var sf = new StringFormat())
             {
                 sf.Alignment = StringAlignment.Near;
@@ -197,15 +197,15 @@ namespace PictureFromLatexFormula
             }
             e.Graphics.DrawRectangle(SystemPens.Highlight, rText);
             var rPict = e.Bounds;
-            rPict.Width = width / 2;
-            rPict.Offset(width / 2, 0);
+            rPict.Width = width / 3;
+            rPict.Offset(2 * width / 3, 0);
             e.Graphics.FillRectangle(Brushes.White, rPict);
             rPict.Offset(0, 5);
-            if (item.Picture.Width < width / 2) rPict.Offset((width / 2 - item.Picture.Width) / 2, 0);
+            if (item.Picture.Width < width / 3) rPict.Offset((width / 3 - item.Picture.Width) / 2, 0);
             e.Graphics.DrawImageUnscaled(item.Picture, rPict);
             rPict = e.Bounds;
-            rPict.Width = width / 2 - 1;
-            rPict.Offset(width / 2, 0);
+            rPict.Width = width / 3 - 1;
+            rPict.Offset(2 * width / 3, 0);
             e.Graphics.DrawRectangle(SystemPens.Highlight, rPict);
         }
     }
