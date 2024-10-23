@@ -20,7 +20,8 @@ namespace PictureFromLatexFormula
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            tboxLatex.Text = @"ax^2+bx+c=0; D=b^2-4ac;D>0,\text{ два корня: }x_{1,2}=\frac{-b+\sqrt{D}}{2a};D=0,\text{ один корень: }x_1=\frac{-b}{2a};D<0,\text{корней нет}";
+            //tboxLatex.Text = @"ax^2+bx+c=0; D=b^2-4ac;D>0,\text{ два корня: }x_{1,2}=\frac{-b+\sqrt{D}}{2a};D=0,\text{ один корень: }x_1=\frac{-b}{2a};D<0,\text{корней нет}";
+            tboxLatex.Text = @"ax^2+bx+c=0;\text{ квадратное уравнение}";
         }
 
         private bool CheckFontName(string name)
