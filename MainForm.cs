@@ -20,6 +20,7 @@ namespace PictureFromLatexFormula
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            FillNotations();
             //tboxLatex.Text = @"ax^2+bx+c=0; D=b^2-4ac;D>0,\text{ два корн€: }x_{1,2}=\frac{-b+\sqrt{D}}{2a};D=0,\text{ один корень: }x_1=\frac{-b}{2a};D<0,\text{корней нет}";
             tboxLatex.Text = @"ax^2+bx+c=0;\text{ квадратное уравнение}";
         }
@@ -87,7 +88,7 @@ namespace PictureFromLatexFormula
         /// </summary>
         /// <param name="latex">‘ормула</param>
         /// <returns>¬озвращаем картинку</returns>
-        private static Image GetImage(string latex, double scale, string systemFontName)
+        public static Image GetImage(string latex, double scale = 20.0, string systemFontName = "Times New Roman")
         {
             var parser = WpfTeXFormulaParser.Instance;
             var formula = parser.Parse(latex);
@@ -146,10 +147,78 @@ namespace PictureFromLatexFormula
 
         private void tsbLoadFormula_Click(object sender, EventArgs e)
         {
-            if (openFileDialog2.ShowDialog(this) == DialogResult.OK) 
-            { 
+            if (openFileDialog2.ShowDialog(this) == DialogResult.OK)
+            {
                 tboxLatex.Text = File.ReadAllText(openFileDialog2.FileName);
             }
         }
+
+        private void FillNotations()
+        {
+            lboxNotation.Items.Clear();
+            lboxNotation.Items.Add(new Notation(@"\sqrt{\frac{a}{b}}"));
+            lboxNotation.Items.Add(new Notation(@"\sum_{i=1}^{10} t_i"));
+            lboxNotation.Items.Add(new Notation(@"\int_0^\infty e^{-x}\,\mathrm{d}x"));
+            lboxNotation.Items.Add(new Notation(@"\int_a^b"));
+            lboxNotation.Items.Add(new Notation(@"( a ), [ b ], \{ c \}, | d |, \| e \|, \langle f \rangle, \lfloor g \rfloor,\lceil h \rceil, \ulcorner i \urcorner,/ j \backslash"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+            lboxNotation.Items.Add(new Notation(@"*"));
+        }
+
+        private void lboxNotation_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            e.ItemHeight = ((Notation)lboxNotation.Items[e.Index]).Picture.Height + 10;
+        }
+
+        private void lboxNotation_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            var width = lboxNotation.ClientRectangle.Width;
+            var item = (Notation)lboxNotation.Items[e.Index];
+            e.DrawBackground();
+            var rText = e.Bounds;
+            rText.Width = width / 2;
+            using (var sf = new StringFormat())
+            {
+                sf.Alignment = StringAlignment.Near;
+                sf.LineAlignment = StringAlignment.Center;
+                var foreColor = SystemBrushes.ControlText;
+                if (e.State.HasFlag(DrawItemState.Selected))
+                    foreColor = SystemBrushes.HighlightText;
+                e.Graphics.DrawString(item.Formula, lboxNotation.Font, foreColor, rText, sf);
+            }
+            e.Graphics.DrawRectangle(SystemPens.Highlight, rText);
+            var rPict = e.Bounds;
+            rPict.Width = width / 2;
+            rPict.Offset(width / 2, 0);
+            e.Graphics.FillRectangle(Brushes.White, rPict);
+            rPict.Offset(0, 5);
+            if (item.Picture.Width < width / 2) rPict.Offset((width / 2 - item.Picture.Width) / 2, 0);
+            e.Graphics.DrawImageUnscaled(item.Picture, rPict);
+            rPict = e.Bounds;
+            rPict.Width = width / 2 - 1;
+            rPict.Offset(width / 2, 0);
+            e.Graphics.DrawRectangle(SystemPens.Highlight, rPict);
+        }
+    }
+
+    public class Notation
+    {
+        public Notation(string formula)
+        {
+            Formula = formula;
+            Picture = MainForm.GetImage(formula);
+        }
+
+        public string Formula { get; private set; }
+        public Image Picture { get; private set; }
     }
 }
