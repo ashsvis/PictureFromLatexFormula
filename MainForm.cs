@@ -192,5 +192,19 @@ namespace PictureFromLatexFormula
                 row++;
             }
         }
+
+        private void tsbShowHideNotes_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel2Collapsed = !tsbShowHideNotes.Checked;
+        }
+
+        private void btnInsertFunction_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            tboxLatex.SelectedText = btn.Text;
+            if (int.TryParse($"{btn.Tag}", out int offset))
+                tboxLatex.SelectionStart -= offset;
+            tboxLatex.Focus();
+        }
     }
 }

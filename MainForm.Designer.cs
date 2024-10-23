@@ -48,6 +48,11 @@
             tsbClearFormula = new ToolStripButton();
             tsbLoadFormula = new ToolStripButton();
             tsbSaveFormula = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            tsbShowHideNotes = new ToolStripButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            btnAddFracFunction = new Button();
+            btnAddTextFunction = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -59,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
             toolStrip1.SuspendLayout();
             toolStrip2.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -70,22 +76,24 @@
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(label1, 0, 0);
-            tableLayoutPanel1.Controls.Add(labFormulaPicture, 0, 3);
+            tableLayoutPanel1.Controls.Add(labFormulaPicture, 0, 4);
             tableLayoutPanel1.Controls.Add(tboxLatex, 0, 2);
-            tableLayoutPanel1.Controls.Add(panel1, 0, 5);
-            tableLayoutPanel1.Controls.Add(toolStrip1, 0, 4);
+            tableLayoutPanel1.Controls.Add(panel1, 0, 6);
+            tableLayoutPanel1.Controls.Add(toolStrip1, 0, 5);
             tableLayoutPanel1.Controls.Add(toolStrip2, 0, 1);
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowCount = 7;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(509, 488);
+            tableLayoutPanel1.Size = new Size(1003, 488);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -102,7 +110,7 @@
             // 
             labFormulaPicture.AutoSize = true;
             labFormulaPicture.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labFormulaPicture.Location = new Point(3, 131);
+            labFormulaPicture.Location = new Point(3, 168);
             labFormulaPicture.Name = "labFormulaPicture";
             labFormulaPicture.Size = new Size(149, 19);
             labFormulaPicture.TabIndex = 0;
@@ -116,7 +124,7 @@
             tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(503, 81);
+            tboxLatex.Size = new Size(997, 81);
             tboxLatex.TabIndex = 1;
             tboxLatex.TextChanged += tboxLatex_TextChanged;
             // 
@@ -127,9 +135,9 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 178);
+            panel1.Location = new Point(3, 215);
             panel1.Name = "panel1";
-            panel1.Size = new Size(503, 307);
+            panel1.Size = new Size(997, 270);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -146,9 +154,9 @@
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
-            toolStrip1.Location = new Point(0, 150);
+            toolStrip1.Location = new Point(0, 187);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(509, 25);
+            toolStrip1.Size = new Size(1003, 25);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -208,10 +216,10 @@
             // toolStrip2
             // 
             toolStrip2.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator2, tsbShowHideNotes });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(509, 25);
+            toolStrip2.Size = new Size(1003, 25);
             toolStrip2.TabIndex = 5;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -245,6 +253,57 @@
             tsbSaveFormula.Size = new Size(23, 22);
             tsbSaveFormula.Text = "&Сохранить текст формулы в файл на диске...";
             tsbSaveFormula.Click += tsbSaveFormula_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 25);
+            // 
+            // tsbShowHideNotes
+            // 
+            tsbShowHideNotes.CheckOnClick = true;
+            tsbShowHideNotes.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbShowHideNotes.Image = Properties.Resources.Обратить_диаграмму;
+            tsbShowHideNotes.ImageTransparentColor = Color.White;
+            tsbShowHideNotes.Name = "tsbShowHideNotes";
+            tsbShowHideNotes.Size = new Size(23, 22);
+            tsbShowHideNotes.Text = "Показать / спрятать панель примеров";
+            tsbShowHideNotes.Click += tsbShowHideNotes_Click;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoSize = true;
+            flowLayoutPanel1.Controls.Add(btnAddFracFunction);
+            flowLayoutPanel1.Controls.Add(btnAddTextFunction);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(3, 134);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(997, 31);
+            flowLayoutPanel1.TabIndex = 6;
+            // 
+            // btnAddFracFunction
+            // 
+            btnAddFracFunction.AutoSize = true;
+            btnAddFracFunction.Location = new Point(3, 3);
+            btnAddFracFunction.Name = "btnAddFracFunction";
+            btnAddFracFunction.Size = new Size(58, 25);
+            btnAddFracFunction.TabIndex = 0;
+            btnAddFracFunction.Tag = "3";
+            btnAddFracFunction.Text = "\\frac{}{}";
+            btnAddFracFunction.UseVisualStyleBackColor = true;
+            btnAddFracFunction.Click += btnInsertFunction_Click;
+            // 
+            // btnAddTextFunction
+            // 
+            btnAddTextFunction.AutoSize = true;
+            btnAddTextFunction.Location = new Point(67, 3);
+            btnAddTextFunction.Name = "btnAddTextFunction";
+            btnAddTextFunction.Size = new Size(50, 25);
+            btnAddTextFunction.TabIndex = 0;
+            btnAddTextFunction.Tag = "1";
+            btnAddTextFunction.Text = "\\text{}";
+            btnAddTextFunction.UseVisualStyleBackColor = true;
+            btnAddTextFunction.Click += btnInsertFunction_Click;
             // 
             // saveFileDialog1
             // 
@@ -282,6 +341,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tlpNotes);
+            splitContainer1.Panel2Collapsed = true;
             splitContainer1.Size = new Size(1003, 488);
             splitContainer1.SplitterDistance = 509;
             splitContainer1.TabIndex = 1;
@@ -299,7 +359,7 @@
             tlpNotes.Name = "tlpNotes";
             tlpNotes.RowCount = 1;
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpNotes.Size = new Size(490, 488);
+            tlpNotes.Size = new Size(96, 100);
             tlpNotes.TabIndex = 7;
             // 
             // MainForm
@@ -321,6 +381,8 @@
             toolStrip1.PerformLayout();
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -354,5 +416,10 @@
         private OpenFileDialog openFileDialog2;
         private SplitContainer splitContainer1;
         private TableLayoutPanel tlpNotes;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripButton tsbShowHideNotes;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button btnAddFracFunction;
+        private Button btnAddTextFunction;
     }
 }

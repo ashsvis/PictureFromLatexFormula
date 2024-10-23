@@ -73,6 +73,16 @@ namespace PictureFromLatexFormula.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Обратить_диаграмму {
+            get {
+                object obj = ResourceManager.GetObject("Обратить диаграмму", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Сохранить {
             get {
                 object obj = ResourceManager.GetObject("Сохранить", resourceCulture);
