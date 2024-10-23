@@ -14,11 +14,13 @@ namespace PictureFromLatexFormula
             InitializeComponent();
             cboxSystemFontName.Items.AddRange(installedFontCollection.Families.Select(x => x.Name).Where(name => CheckFontName(name)).ToArray());
             cboxSystemFontName.Text = "Segoe UI";
+            tscbScale.Items.AddRange(Enumerable.Range(1, 120).Select(x => x.ToString()).ToArray());
+            tscbScale.Text = "20";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            tboxLatex.Text = @"x_1=123.456;\text{ // присваивание начального значения}";
+            tboxLatex.Text = @"ax^2+bx+c=0; D=b^2-4ac;D>0,\text{ два корня: }x_{1,2}=\frac{-b+\sqrt{D}}{2a};D=0,\text{ один корень: }x_1=\frac{-b}{2a};D<0,\text{корней нет}";
         }
 
         private bool CheckFontName(string name)
@@ -39,7 +41,7 @@ namespace PictureFromLatexFormula
         private void tboxLatex_TextChanged(object sender, EventArgs e)
         {
             GeneratePicture();
-            nudScale.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
+            tscbScale.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
             cboxSystemFontName.Enabled = !string.IsNullOrWhiteSpace(tboxLatex.Text);
         }
 
@@ -58,7 +60,7 @@ namespace PictureFromLatexFormula
             try
             {
                 labFormulaPicture.Text = "Картинка формулы:";
-                pictboxFormula.Image = GetImage(tboxLatex.Text, (double)nudScale.Value, cboxSystemFontName.Text);
+                pictboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), cboxSystemFontName.Text);
             }
             catch (Exception ex)
             {
