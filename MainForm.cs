@@ -155,70 +155,42 @@ namespace PictureFromLatexFormula
 
         private void FillNotations()
         {
-            lboxNotation.Items.Clear();
-            lboxNotation.Items.Add(new Notation(@"\sqrt{\frac{a}{b}}"));
-            lboxNotation.Items.Add(new Notation(@"\sum_{i=1}^{10} t_i"));
-            lboxNotation.Items.Add(new Notation(@"\int_0^\infty e^{-x}\,\mathrm{d}x"));
-            lboxNotation.Items.Add(new Notation(@"\int_a^b"));
-            lboxNotation.Items.Add(new Notation(@"(a),[b],\{c\},|d|,\|e\|"));
-            lboxNotation.Items.Add(new Notation(@"\langle f \rangle,\lfloor g \rfloor,\lceil h \rceil"));
-            lboxNotation.Items.Add(new Notation(@"\ulcorner i \urcorner,/ j \backslash"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-            lboxNotation.Items.Add(new Notation(@"*"));
-        }
-
-        private void lboxNotation_MeasureItem(object sender, MeasureItemEventArgs e)
-        {
-            e.ItemHeight = ((Notation)lboxNotation.Items[e.Index]).Picture.Height + 10;
-        }
-
-        private void lboxNotation_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0) return;
-            var width = lboxNotation.ClientRectangle.Width;
-            var item = (Notation)lboxNotation.Items[e.Index];
-            e.DrawBackground();
-            var rText = e.Bounds;
-            rText.Width = 2 * width / 3;
-            using (var sf = new StringFormat())
+            var notes = new List<Notation>()
             {
-                sf.Alignment = StringAlignment.Near;
-                sf.LineAlignment = StringAlignment.Center;
-                var foreColor = SystemBrushes.ControlText;
-                if (e.State.HasFlag(DrawItemState.Selected))
-                    foreColor = SystemBrushes.HighlightText;
-                e.Graphics.DrawString(item.Formula, lboxNotation.Font, foreColor, rText, sf);
+                new(@"\sqrt{\frac{a}{b}}"),
+                new(@"\sum_{i=1}^{10} t_i"),
+                new(@"\int_0^\infty e^{-x}\,\mathrm{d}x"),
+                new(@"\int_a^b"),
+                new(@"(a),[b],\{c\},|d|,\|e\|"),
+                new(@"\langle f \rangle,\lfloor g \rfloor,\lceil h \rceil"),
+                new(@"\ulcorner i \urcorner,/ j \backslash"),
+                new(@"\left(\frac{x^2}{y^3}\right)"),
+                new(@"k_{n+1} = n^2 + k_n^2 - k_{n-1}"),
+                new(@"A_{m,n} = 
+ \begin{pmatrix}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+  a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+  \cdots  &         &        &         \\
+  a_{m,1} & a_{m,2} & \cdots & a_{m,n} \\
+ \end{pmatrix}"),
+            };
+            var row = 0;
+            tlpNotes.ColumnCount = 2;
+            tlpNotes.ColumnStyles.Clear();
+            tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
+            tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tlpNotes.RowCount = notes.Count;
+            tlpNotes.RowStyles.Clear();
+            foreach (var note in notes)
+                tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            foreach (var note in notes)
+            {
+                tlpNotes.Controls.Add(new Label() { Text = note.Formula, AutoSize = true }, 0, row);
+                var pic = note.Picture;
+                tlpNotes.Controls.Add(new Label() { Image = pic, Width = pic.Width, Height = pic.Height }, 1, row);
+
+                row++;
             }
-            e.Graphics.DrawRectangle(SystemPens.Highlight, rText);
-            var rPict = e.Bounds;
-            rPict.Width = width / 3;
-            rPict.Offset(2 * width / 3, 0);
-            e.Graphics.FillRectangle(Brushes.White, rPict);
-            rPict.Offset(0, 5);
-            if (item.Picture.Width < width / 3) rPict.Offset((width / 3 - item.Picture.Width) / 2, 0);
-            e.Graphics.DrawImageUnscaled(item.Picture, rPict);
-            rPict = e.Bounds;
-            rPict.Width = width / 3 - 1;
-            rPict.Offset(2 * width / 3, 0);
-            e.Graphics.DrawRectangle(SystemPens.Highlight, rPict);
         }
-    }
-
-    public class Notation
-    {
-        public Notation(string formula)
-        {
-            Formula = formula;
-            Picture = MainForm.GetImage(formula);
-        }
-
-        public string Formula { get; private set; }
-        public Image Picture { get; private set; }
     }
 }

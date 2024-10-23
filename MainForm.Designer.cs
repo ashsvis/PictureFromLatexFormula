@@ -48,12 +48,12 @@
             tsbClearFormula = new ToolStripButton();
             tsbLoadFormula = new ToolStripButton();
             tsbSaveFormula = new ToolStripButton();
-            lboxNotation = new ListBox();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
             openFileDialog2 = new OpenFileDialog();
             splitContainer1 = new SplitContainer();
+            tlpNotes = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -85,7 +85,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(531, 448);
+            tableLayoutPanel1.Size = new Size(509, 488);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -116,7 +116,7 @@
             tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(525, 81);
+            tboxLatex.Size = new Size(503, 81);
             tboxLatex.TabIndex = 1;
             tboxLatex.TextChanged += tboxLatex_TextChanged;
             // 
@@ -129,7 +129,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 178);
             panel1.Name = "panel1";
-            panel1.Size = new Size(525, 267);
+            panel1.Size = new Size(503, 307);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -148,7 +148,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 150);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(531, 25);
+            toolStrip1.Size = new Size(509, 25);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -168,8 +168,8 @@
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(107, 22);
-            toolStripLabel2.Text = "Шрифт для \\text:{}";
+            toolStripLabel2.Size = new Size(155, 22);
+            toolStripLabel2.Text = "Шрифт для \\text{символы}";
             // 
             // tscbSystemFontName
             // 
@@ -211,7 +211,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(531, 25);
+            toolStrip2.Size = new Size(509, 25);
             toolStrip2.TabIndex = 5;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -245,20 +245,6 @@
             tsbSaveFormula.Size = new Size(23, 22);
             tsbSaveFormula.Text = "&Сохранить текст формулы в файл на диске...";
             tsbSaveFormula.Click += tsbSaveFormula_Click;
-            // 
-            // lboxNotation
-            // 
-            lboxNotation.Dock = DockStyle.Fill;
-            lboxNotation.DrawMode = DrawMode.OwnerDrawVariable;
-            lboxNotation.Font = new Font("Consolas", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            lboxNotation.FormattingEnabled = true;
-            lboxNotation.ItemHeight = 15;
-            lboxNotation.Location = new Point(0, 0);
-            lboxNotation.Name = "lboxNotation";
-            lboxNotation.Size = new Size(330, 448);
-            lboxNotation.TabIndex = 6;
-            lboxNotation.DrawItem += lboxNotation_DrawItem;
-            lboxNotation.MeasureItem += lboxNotation_MeasureItem;
             // 
             // saveFileDialog1
             // 
@@ -295,16 +281,32 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(lboxNotation);
-            splitContainer1.Size = new Size(865, 448);
-            splitContainer1.SplitterDistance = 531;
+            splitContainer1.Panel2.Controls.Add(tlpNotes);
+            splitContainer1.Size = new Size(1003, 488);
+            splitContainer1.SplitterDistance = 509;
             splitContainer1.TabIndex = 1;
+            // 
+            // tlpNotes
+            // 
+            tlpNotes.AutoScroll = true;
+            tlpNotes.BackColor = SystemColors.Window;
+            tlpNotes.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tlpNotes.ColumnCount = 2;
+            tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpNotes.Dock = DockStyle.Fill;
+            tlpNotes.Location = new Point(0, 0);
+            tlpNotes.Name = "tlpNotes";
+            tlpNotes.RowCount = 1;
+            tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpNotes.Size = new Size(490, 488);
+            tlpNotes.TabIndex = 7;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(865, 448);
+            ClientSize = new Size(1003, 488);
             Controls.Add(splitContainer1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -350,7 +352,7 @@
         private System.Windows.Forms.Timer timer1;
         private SaveFileDialog saveFileDialog2;
         private OpenFileDialog openFileDialog2;
-        private ListBox lboxNotation;
         private SplitContainer splitContainer1;
+        private TableLayoutPanel tlpNotes;
     }
 }
