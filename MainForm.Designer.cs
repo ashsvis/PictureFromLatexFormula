@@ -73,6 +73,7 @@
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
             toolTip1 = new ToolTip(components);
+            btnAddChiCharacter = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -322,6 +323,7 @@
             flowLayoutPanel1.Controls.Add(btnAddLambdaCharacter);
             flowLayoutPanel1.Controls.Add(btnAddTauCharacter);
             flowLayoutPanel1.Controls.Add(btnAddEtaCharacter);
+            flowLayoutPanel1.Controls.Add(btnAddChiCharacter);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(3, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -548,6 +550,19 @@
             tlpNotes.Size = new Size(96, 100);
             tlpNotes.TabIndex = 7;
             // 
+            // btnAddChiCharacter
+            // 
+            btnAddChiCharacter.AutoSize = true;
+            btnAddChiCharacter.Location = new Point(329, 34);
+            btnAddChiCharacter.Name = "btnAddChiCharacter";
+            btnAddChiCharacter.Size = new Size(39, 25);
+            btnAddChiCharacter.TabIndex = 0;
+            btnAddChiCharacter.Tag = "0";
+            btnAddChiCharacter.Text = "\\chi";
+            toolTip1.SetToolTip(btnAddChiCharacter, "символ χ");
+            btnAddChiCharacter.UseVisualStyleBackColor = true;
+            btnAddChiCharacter.Click += btnInsertFunction_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -621,5 +636,6 @@
         private Button btnAddEtaCharacter;
         private Label label2;
         private Label label3;
+        private Button btnAddChiCharacter;
     }
 }
