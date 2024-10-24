@@ -185,11 +185,39 @@ namespace PictureFromLatexFormula
 
         private void FillNotations()
         {
+            /*
+
+            */
+            var category = "Греческий алфавит";
             var notes = new List<Notation>()
             {
-                new(@"\frac{°C}{2}"),
-                new(@"\sqrt{\frac{a}{b}}"),
-                new(@"\sum_{i=1}^{10} t_i"),
+                new(category, @"\alpha"),
+                new(category, @"\beta"),
+                new(category, @"\gamma"),
+                new(category, @"\delta"),
+                new(category, @"\epsilon"),
+                new(category, @"\zeta"),
+                new(category, @"\eta"),
+                new(category, @"\theta"),
+                new(category, @"\iota"),
+                new(category, @"\kappa"),
+                new(category, @"\lambda"),
+                new(category, @"\mu"),
+                new(category, @"\nu"),
+                new(category, @"\xi"),
+                new(category, @"\omicron"),
+                new(category, @"\pi"),
+                new(category, @"\rho"),
+                new(category, @"\sigma"),
+                new(category, @"\tau"),
+                new(category, @"\upsilon"),
+                new(category, @"\phi"),
+                new(category, @"\chi"),
+                new(category, @"\psi"),
+                new(category, @"\omega"),
+ //               new(@"\frac{°C}{2}"),
+ //               new(@"\sqrt{\frac{a}{b}}"),
+ //               new(@"\sum_{i=1}^{10} t_i"),
  //               new(@"\int_0^\infty e^{-x}\,\mathrm{d}x"),
  //               new(@"\int_a^b"),
  //               new(@"(a),[b],\{c\},|d|,\|e\|"),
@@ -214,20 +242,40 @@ namespace PictureFromLatexFormula
             tlpNotes.RowStyles.Clear();
             foreach (var note in notes)
                 tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            foreach (var note in notes)
+            foreach (var noteCategory in notes.GroupBy(note => note.Category))
             {
-                //tlpNotes.Controls.Add(new Label() { Text = note.Formula, AutoSize = true }, 0, row);
-                if (note.ErrorInFormula)
-                {
-                    var pic = note.Picture;
-                    tlpNotes.Controls.Add(new Label { Image = pic, Width = pic.Width, Height = pic.Height, TextAlign = ContentAlignment.MiddleCenter }, 0, row);
-                }
-                else 
-                {
-                    var pic = note.Picture;
-                    tlpNotes.Controls.Add(new Button { Text = note.Formula, Image = pic, Width = pic.Width, Height = pic.Height, TextAlign = ContentAlignment.MiddleCenter }, 0, row);
-                }
+                tlpNotes.Controls.Add(new Label() { Text = noteCategory.Key, AutoSize = true }, 0, row);
                 row++;
+                foreach (var note in noteCategory)
+                {
+                    if (note.ErrorInFormula)
+                    {
+                        var pic = note.Picture;
+                        tlpNotes.Controls.Add(
+                            new Label
+                            {
+                                Image = pic,
+                                Width = pic.Width,
+                                Height = pic.Height,
+                                TextAlign = ContentAlignment.MiddleCenter,
+                            }, 0, row);
+                    }
+                    else
+                    {
+                        var pic = note.Picture;
+                        var btn = new Button
+                        {
+                            Tag = note.Formula,
+                            Image = pic,
+                            Width = pic.Width + 5,
+                            Height = pic.Height + 5,
+                            FlatStyle = FlatStyle.Flat,
+                        };
+                        btn.Click += (s, e) => { tboxLatex.SelectedText = $"{btn.Tag}"; };
+                        tlpNotes.Controls.Add(btn, 0, row);
+                    }
+                    row++;
+                }
             }
         }
 

@@ -2,8 +2,9 @@
 {
     public class Notation
     {
-        public Notation(string formula)
+        public Notation(string category, string formula)
         {
+            Category = category;
             Formula = formula;
             try
             {
@@ -17,6 +18,7 @@
             }
         }
 
+        public string Category { get; private set; }
         public string Formula { get; private set; }
         public Image Picture { get; private set; }
         public bool ErrorInFormula { get; private set; }
