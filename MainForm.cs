@@ -494,10 +494,10 @@ namespace PictureFromLatexFormula
                             Height = height + 5,
                             FlatStyle = FlatStyle.Flat,
                         };
-                        btn.Click += (s, e) => 
-                        { 
-                            tboxLatex.SelectedText = $"{btn.Tag}"; 
-                            tboxLatex.Focus(); 
+                        btn.Click += (s, e) =>
+                        {
+                            tboxLatex.SelectedText = $"{btn.Tag}";
+                            tboxLatex.Focus();
                         };
                         flp.Controls.Add(btn);
                     }
@@ -527,6 +527,16 @@ namespace PictureFromLatexFormula
         private void tsbLessFontSize_Click(object sender, EventArgs e)
         {
             tscbScale.SelectedIndex--;
+        }
+
+        private void labFunctions_Click(object sender, EventArgs e)
+        {
+            ManageUserFunctions();
+        }
+
+        private void ManageUserFunctions()
+        {
+            
         }
     }
 }

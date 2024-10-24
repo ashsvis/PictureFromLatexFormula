@@ -53,7 +53,7 @@
             toolStripSeparator2 = new ToolStripSeparator();
             tsbShowHideNotes = new ToolStripButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            label2 = new Label();
+            labFunctions = new Label();
             btnAddFracFunction = new Button();
             btnAddTextFunction = new Button();
             btnAddSqrtFunction = new Button();
@@ -309,7 +309,7 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.Controls.Add(label2);
+            flowLayoutPanel1.Controls.Add(labFunctions);
             flowLayoutPanel1.Controls.Add(btnAddFracFunction);
             flowLayoutPanel1.Controls.Add(btnAddTextFunction);
             flowLayoutPanel1.Controls.Add(btnAddSqrtFunction);
@@ -328,15 +328,17 @@
             flowLayoutPanel1.TabIndex = 6;
             toolTip1.SetToolTip(flowLayoutPanel1, "увеличить масштаб");
             // 
-            // label2
+            // labFunctions
             // 
-            label2.Cursor = Cursors.Hand;
-            label2.Location = new Point(3, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(60, 31);
-            label2.TabIndex = 1;
-            label2.Text = "Функции:";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            labFunctions.Cursor = Cursors.Hand;
+            labFunctions.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point);
+            labFunctions.Location = new Point(3, 0);
+            labFunctions.Name = "labFunctions";
+            labFunctions.Size = new Size(60, 31);
+            labFunctions.TabIndex = 1;
+            labFunctions.Text = "Функции:";
+            labFunctions.TextAlign = ContentAlignment.MiddleLeft;
+            labFunctions.Click += labFunctions_Click;
             // 
             // btnAddFracFunction
             // 
@@ -600,7 +602,7 @@
         private ToolTip toolTip1;
         private ToolStripButton tsbMoreFontSize;
         private ToolStripButton tsbLessFontSize;
-        private Label label2;
+        private Label labFunctions;
         private Button btnSetRedColorFontFunction;
         private Button btnAddSmallSpaceFunction;
         private Button btnAddMediumSpaceFunction;

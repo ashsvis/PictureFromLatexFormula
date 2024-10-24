@@ -22,5 +22,17 @@ namespace PictureFromLatexFormula.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserFunctions {
+            get {
+                return ((string)(this["UserFunctions"]));
+            }
+            set {
+                this["UserFunctions"] = value;
+            }
+        }
     }
 }
