@@ -2,7 +2,6 @@ using System.ComponentModel;
 using System.Drawing.Text;
 using WpfMath;
 using WpfMath.Parsers;
-using System.Linq;
 
 namespace PictureFromLatexFormula
 {
@@ -10,16 +9,10 @@ namespace PictureFromLatexFormula
     {
         readonly InstalledFontCollection installedFontCollection = new();
         readonly BackgroundWorker worker = new();
-        readonly AutoCompleteStringCollection source = new();
 
         public MainForm()
         {
             InitializeComponent();
-
-            tboxLatex.AutoCompleteCustomSource = source;
-            tboxLatex.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            tboxLatex.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
             splitContainer1.Panel2Collapsed = true;
             tscbSystemFontName.Items.Add("Times New Roman");
             tscbSystemFontName.Text = "Times New Roman";
@@ -110,11 +103,6 @@ namespace PictureFromLatexFormula
                 {
                     var formula = tboxLatex.Text;
                     pboxFormula.Image = GetImage(formula, scale, tscbSystemFontName.Text);
-                    var trimmed = formula.TrimEnd(' ', '_', '^', '\\', '/', '+', '-', '*', '(', '{', '[');
-                    if (!source.Contains(trimmed))
-                    {
-                        source.Add(trimmed);
-                    }
                 }
                 UpdateControlsEnabled();
             }
@@ -172,12 +160,16 @@ namespace PictureFromLatexFormula
 
         private void tsbClearFormula_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
             tboxLatex.TextChanged -= tboxLatex_TextChanged;
+#pragma warning restore CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
             tboxLatex.Text = string.Empty;
             labFormulaPicture.ForeColor = SystemColors.ControlText;
             labFormulaPicture.Text = "Картинка формулы:";
             pboxFormula.Image = null;
+#pragma warning disable CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
             tboxLatex.TextChanged += tboxLatex_TextChanged;
+#pragma warning restore CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
             UpdateControlsEnabled();
         }
 
@@ -284,32 +276,6 @@ namespace PictureFromLatexFormula
                 
                 #endregion
 
-                #region Акценты
-
-                new("Акценты", @"a^{\prime}"),
-                new("Акценты", @"\hat{a}"),
-                new("Акценты", @"\grave{a}"),
-                new("Акценты", @"\dot{a}"),
-                new("Акценты", @"\not{a}"),
-                new("Акценты", @"a''"),
-                new("Акценты", @"\bar{a}"),
-                new("Акценты", @"\acute{a}"),
-                new("Акценты", @"\ddot{a}"),
-                //new("Акценты", @"\mathring{a}"),
-                new("Акценты", @"a'''"),
-                new("Акценты", @"a''''"),
-                new("Акценты", @"\overline{aaa}"),
-                new("Акценты", @"\check{a}"),
-                new("Акценты", @"\breve{a}"),
-                new("Акценты", @"\vec{a}"),
-                new("Акценты", @"\tilde{a}"),
-                new("Акценты", @"\underline{a}"),
-                new("Акценты", @"\widehat{AAA}"),
-                new("Акценты", @"\widetilde{AAA}"),
-                //new("Акценты", @"\stackrel\frown{AAA}"),
-                
-                #endregion
-               
                 #region Операторы отношений
 
                 new("Операторы отношений", @"="),               // Равно
@@ -453,12 +419,37 @@ namespace PictureFromLatexFormula
                 
                 #endregion
 
-            };
+                 #region Акценты
+
+                new("Акценты", @"a^{\prime}"),
+                new("Акценты", @"\hat{a}"),
+                new("Акценты", @"\grave{a}"),
+                new("Акценты", @"\dot{a}"),
+                new("Акценты", @"\not{a}"),
+                new("Акценты", @"a''"),
+                new("Акценты", @"\bar{a}"),
+                new("Акценты", @"\acute{a}"),
+                new("Акценты", @"\ddot{a}"),
+                //new("Акценты", @"\mathring{a}"),
+                new("Акценты", @"a'''"),
+                new("Акценты", @"a''''"),
+                new("Акценты", @"\overline{aaa}"),
+                new("Акценты", @"\check{a}"),
+                new("Акценты", @"\breve{a}"),
+                new("Акценты", @"\vec{a}"),
+                new("Акценты", @"\tilde{a}"),
+                new("Акценты", @"\underline{a}"),
+                new("Акценты", @"\widehat{AAA}"),
+                new("Акценты", @"\widetilde{AAA}"),
+                //new("Акценты", @"\stackrel\frown{AAA}"),
+                
+                #endregion
+               
+           };
             var row = 0;
             tlpNotes.ColumnCount = 1;
             tlpNotes.ColumnStyles.Clear();
             tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            //tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
             tlpNotes.RowCount = notes.GroupBy(note => note.Category).Count() * 2;
             tlpNotes.RowStyles.Clear();
@@ -471,8 +462,12 @@ namespace PictureFromLatexFormula
                 tlpNotes.Controls.Add(labCategoryName, 0, row++);
                 var flp = new FlowLayoutPanel() { AutoSize = true, Dock = DockStyle.Fill };
                 tlpNotes.Controls.Add(flp, 0, row++);
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
                 var width = noteCategory.Where(note => !note.ErrorInFormula).Max(note => note.Picture.Width);
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
                 var height = noteCategory.Where(note => !note.ErrorInFormula).Max(note => note.Picture.Height);
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
                 foreach (var note in noteCategory)
                 {
                     if (note.ErrorInFormula)
