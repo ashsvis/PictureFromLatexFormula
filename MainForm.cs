@@ -1,8 +1,5 @@
-using System;
 using System.ComponentModel;
 using System.Drawing.Text;
-using System.IO;
-using System.Windows.Forms;
 using WpfMath;
 using WpfMath.Parsers;
 
@@ -11,7 +8,7 @@ namespace PictureFromLatexFormula
     public partial class MainForm : Form
     {
         readonly InstalledFontCollection installedFontCollection = new();
-        readonly BackgroundWorker worker = new BackgroundWorker();
+        readonly BackgroundWorker worker = new();
 
 
         public MainForm()
@@ -32,6 +29,9 @@ namespace PictureFromLatexFormula
         private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             var range = e.Result as string[];
+            tscbScale.Items.Clear();
+            tscbScale.Items.AddRange(Enumerable.Range(1, 120).Select(x => x.ToString()).ToArray());
+            tscbScale.Text = "20";
             tscbSystemFontName.Items.Clear();
             tscbSystemFontName.Items.AddRange(range);
             tscbSystemFontName.Text = "Times New Roman";
@@ -58,8 +58,6 @@ namespace PictureFromLatexFormula
         private void MainForm_Load(object sender, EventArgs e)
         {
             tableLayoutPanel1.Enabled = false;
-            tscbScale.Items.AddRange(Enumerable.Range(1, 120).Select(x => x.ToString()).ToArray());
-            tscbScale.Text = "20";
             worker.RunWorkerAsync();
         }
 
@@ -99,8 +97,10 @@ namespace PictureFromLatexFormula
             {
                 labFormulaPicture.ForeColor = SystemColors.ControlText;
                 labFormulaPicture.Text = "Картинка формулы:";
-                if (tboxLatex.TextLength > 0)
-                    pboxFormula.Image = GetImage(tboxLatex.Text, double.Parse(tscbScale.Text), tscbSystemFontName.Text);
+                if (tboxLatex.TextLength > 0 && 
+                    double.TryParse(tscbScale.Text, out double scale) && 
+                    !string.IsNullOrWhiteSpace(tscbSystemFontName.Text))
+                    pboxFormula.Image = GetImage(tboxLatex.Text, scale, tscbSystemFontName.Text);
                 UpdateControlsEnabled();
             }
             catch (Exception ex)
