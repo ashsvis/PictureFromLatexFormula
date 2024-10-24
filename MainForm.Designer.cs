@@ -108,7 +108,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1003, 488);
+            tableLayoutPanel1.Size = new Size(505, 488);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -139,7 +139,7 @@
             tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(997, 81);
+            tboxLatex.Size = new Size(499, 81);
             tboxLatex.TabIndex = 1;
             tboxLatex.Text = "Загрузка программы...";
             tboxLatex.TextChanged += tboxLatex_TextChanged;
@@ -153,7 +153,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 246);
             panel1.Name = "panel1";
-            panel1.Size = new Size(997, 239);
+            panel1.Size = new Size(499, 239);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -172,7 +172,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 218);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1003, 25);
+            toolStrip1.Size = new Size(505, 25);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -257,7 +257,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator2, tsbShowHideNotes });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(1003, 25);
+            toolStrip2.Size = new Size(505, 25);
             toolStrip2.TabIndex = 5;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -328,7 +328,7 @@
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(3, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(997, 62);
+            flowLayoutPanel1.Size = new Size(499, 62);
             flowLayoutPanel1.TabIndex = 6;
             toolTip1.SetToolTip(flowLayoutPanel1, "увеличить масштаб");
             // 
@@ -543,9 +543,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tlpNotes);
-            splitContainer1.Panel2Collapsed = true;
             splitContainer1.Size = new Size(1003, 488);
-            splitContainer1.SplitterDistance = 509;
+            splitContainer1.SplitterDistance = 505;
             splitContainer1.TabIndex = 1;
             // 
             // tlpNotes
@@ -553,15 +552,14 @@
             tlpNotes.AutoScroll = true;
             tlpNotes.BackColor = SystemColors.Window;
             tlpNotes.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tlpNotes.ColumnCount = 2;
-            tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpNotes.ColumnCount = 1;
             tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpNotes.Dock = DockStyle.Fill;
             tlpNotes.Location = new Point(0, 0);
             tlpNotes.Name = "tlpNotes";
             tlpNotes.RowCount = 1;
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpNotes.Size = new Size(96, 100);
+            tlpNotes.Size = new Size(494, 488);
             tlpNotes.TabIndex = 7;
             // 
             // MainForm

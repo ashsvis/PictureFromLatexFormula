@@ -14,6 +14,7 @@ namespace PictureFromLatexFormula
         public MainForm()
         {
             InitializeComponent();
+            splitContainer1.Panel2Collapsed = true;
             tscbSystemFontName.Items.Add("Times New Roman");
             tscbSystemFontName.Text = "Times New Roman";
             worker.DoWork += Worker_DoWork;
@@ -117,7 +118,7 @@ namespace PictureFromLatexFormula
         /// </summary>
         /// <param name="latex">Формула</param>
         /// <returns>Возвращаем картинку</returns>
-        public static Image GetImage(string latex, double scale = 20.0, string systemFontName = "Times New Roman")
+        public static Image? GetImage(string latex, double scale = 20.0, string systemFontName = "Times New Roman")
         {
             var parser = WpfTeXFormulaParser.Instance;
             var formula = parser.Parse(latex);
@@ -186,38 +187,38 @@ namespace PictureFromLatexFormula
         {
             var notes = new List<Notation>()
             {
+                new(@"\frac{°C}{2}"),
                 new(@"\sqrt{\frac{a}{b}}"),
                 new(@"\sum_{i=1}^{10} t_i"),
-                new(@"\int_0^\infty e^{-x}\,\mathrm{d}x"),
-                new(@"\int_a^b"),
-                new(@"(a),[b],\{c\},|d|,\|e\|"),
-                new(@"\langle f \rangle,\lfloor g \rfloor,\lceil h \rceil"),
-                new(@"\ulcorner i \urcorner,/ j \backslash"),
-                new(@"\left(\frac{x^2}{y^3}\right)"),
-                new(@"k_{n+1} = n^2 + k_n^2 - k_{n-1}"),
-                new(@"A_{m,n} = 
- \begin{pmatrix}
-  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
-  a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
-  \cdots  &         &        &         \\
-  a_{m,1} & a_{m,2} & \cdots & a_{m,n} \\
- \end{pmatrix}"),
+ //               new(@"\int_0^\infty e^{-x}\,\mathrm{d}x"),
+ //               new(@"\int_a^b"),
+ //               new(@"(a),[b],\{c\},|d|,\|e\|"),
+ //               new(@"\langle f \rangle,\lfloor g \rfloor,\lceil h \rceil"),
+ //               new(@"\ulcorner i \urcorner,/ j \backslash"),
+ //               new(@"\left(\frac{x^2}{y^3}\right)"),
+ //               new(@"k_{n+1} = n^2 + k_n^2 - k_{n-1}"),
+ //               new(@"A_{m,n} = 
+ //\begin{pmatrix}
+ // a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+ // a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+ // \cdots  &         &        &         \\
+ // a_{m,1} & a_{m,2} & \cdots & a_{m,n} \\
+ //\end{pmatrix}"),
             };
             var row = 0;
-            tlpNotes.ColumnCount = 2;
+            tlpNotes.ColumnCount = 1;
             tlpNotes.ColumnStyles.Clear();
             tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
-            tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            //tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             tlpNotes.RowCount = notes.Count;
             tlpNotes.RowStyles.Clear();
             foreach (var note in notes)
                 tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            foreach (var note in notes)
+            foreach (var note in notes.Where(x => x.Picture != null))
             {
-                tlpNotes.Controls.Add(new Label() { Text = note.Formula, AutoSize = true }, 0, row);
+                //tlpNotes.Controls.Add(new Label() { Text = note.Formula, AutoSize = true }, 0, row);
                 var pic = note.Picture;
-                tlpNotes.Controls.Add(new Label() { Image = pic, Width = pic.Width, Height = pic.Height }, 1, row);
-
+                tlpNotes.Controls.Add(new Label() { Image = pic, Width = pic.Width, Height = pic.Height, TextAlign = ContentAlignment.MiddleCenter }, 0, row);
                 row++;
             }
         }

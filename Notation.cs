@@ -5,10 +5,17 @@
         public Notation(string formula)
         {
             Formula = formula;
-            Picture = MainForm.GetImage(formula);
+            try
+            {
+                Picture = MainForm.GetImage(formula);
+            }
+            catch (Exception ex)
+            {
+                Picture = MainForm.GetImage($@"\text{{in formula: {formula} error: {ex.Message}}}", 14);
+            }
         }
 
         public string Formula { get; private set; }
-        public Image Picture { get; private set; }
+        public Image? Picture { get; private set; }
     }
 }
