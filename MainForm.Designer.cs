@@ -57,16 +57,14 @@
             btnAddFracFunction = new Button();
             btnAddTextFunction = new Button();
             btnAddSqrtFunction = new Button();
-            btnAddSqrt3Function = new Button();
             btnAddSubIndexFunction = new Button();
             btnAddSupIndexFunction = new Button();
-            label3 = new Label();
-            btnAddPlusMinusCharacter = new Button();
-            btnAddPiCharacter = new Button();
-            btnAddLambdaCharacter = new Button();
-            btnAddTauCharacter = new Button();
-            btnAddEtaCharacter = new Button();
-            btnAddChiCharacter = new Button();
+            btnSetRegularFontFunction = new Button();
+            btnSetItalicFontFunction = new Button();
+            btnAddSmallSpaceFunction = new Button();
+            btnAddMediumSpaceFunction = new Button();
+            btnAddLargeSpaceFunction = new Button();
+            btnAddNegativeSpaceFunction = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -74,6 +72,7 @@
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
             toolTip1 = new ToolTip(components);
+            btnSetRedColorFontFunction = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -179,14 +178,14 @@
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(62, 22);
+            toolStripLabel1.Size = new Size(62, 24);
             toolStripLabel1.Text = "Масштаб:";
             // 
             // tscbScale
             // 
             tscbScale.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbScale.Name = "tscbScale";
-            tscbScale.Size = new Size(75, 25);
+            tscbScale.Size = new Size(75, 27);
             tscbScale.SelectedIndexChanged += nudScale_ValueChanged;
             // 
             // tsbMoreFontSize
@@ -196,7 +195,7 @@
             tsbMoreFontSize.Image = Properties.Resources.Увеличить_размер_шрифта;
             tsbMoreFontSize.ImageTransparentColor = Color.White;
             tsbMoreFontSize.Name = "tsbMoreFontSize";
-            tsbMoreFontSize.Size = new Size(23, 22);
+            tsbMoreFontSize.Size = new Size(23, 24);
             tsbMoreFontSize.Text = "увеличить масштаб";
             tsbMoreFontSize.Click += tsbMoreFontSize_Click;
             // 
@@ -207,21 +206,21 @@
             tsbLessFontSize.Image = Properties.Resources.Уменьшить_размер_шрифта;
             tsbLessFontSize.ImageTransparentColor = Color.White;
             tsbLessFontSize.Name = "tsbLessFontSize";
-            tsbLessFontSize.Size = new Size(23, 22);
+            tsbLessFontSize.Size = new Size(23, 24);
             tsbLessFontSize.Text = "уменьшить масштаб";
             tsbLessFontSize.Click += tsbLessFontSize_Click;
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(113, 22);
+            toolStripLabel2.Size = new Size(113, 24);
             toolStripLabel2.Text = "Шрифт для \\text{...}";
             // 
             // tscbSystemFontName
             // 
             tscbSystemFontName.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbSystemFontName.Name = "tscbSystemFontName";
-            tscbSystemFontName.Size = new Size(140, 25);
+            tscbSystemFontName.Size = new Size(140, 23);
             tscbSystemFontName.SelectedIndexChanged += cboxSystemFontName_SelectionChangeCommitted;
             // 
             // toolStripSeparator1
@@ -247,7 +246,7 @@
             tsbSave.Image = (Image)resources.GetObject("tsbSave.Image");
             tsbSave.ImageTransparentColor = Color.Magenta;
             tsbSave.Name = "tsbSave";
-            tsbSave.Size = new Size(23, 22);
+            tsbSave.Size = new Size(23, 20);
             tsbSave.Text = "&Сохранить картинку в файл на диске...";
             tsbSave.Click += tsbSave_Click;
             // 
@@ -315,16 +314,15 @@
             flowLayoutPanel1.Controls.Add(btnAddFracFunction);
             flowLayoutPanel1.Controls.Add(btnAddTextFunction);
             flowLayoutPanel1.Controls.Add(btnAddSqrtFunction);
-            flowLayoutPanel1.Controls.Add(btnAddSqrt3Function);
             flowLayoutPanel1.Controls.Add(btnAddSubIndexFunction);
             flowLayoutPanel1.Controls.Add(btnAddSupIndexFunction);
-            flowLayoutPanel1.Controls.Add(label3);
-            flowLayoutPanel1.Controls.Add(btnAddPlusMinusCharacter);
-            flowLayoutPanel1.Controls.Add(btnAddPiCharacter);
-            flowLayoutPanel1.Controls.Add(btnAddLambdaCharacter);
-            flowLayoutPanel1.Controls.Add(btnAddTauCharacter);
-            flowLayoutPanel1.Controls.Add(btnAddEtaCharacter);
-            flowLayoutPanel1.Controls.Add(btnAddChiCharacter);
+            flowLayoutPanel1.Controls.Add(btnSetRegularFontFunction);
+            flowLayoutPanel1.Controls.Add(btnSetItalicFontFunction);
+            flowLayoutPanel1.Controls.Add(btnAddSmallSpaceFunction);
+            flowLayoutPanel1.Controls.Add(btnAddMediumSpaceFunction);
+            flowLayoutPanel1.Controls.Add(btnAddLargeSpaceFunction);
+            flowLayoutPanel1.Controls.Add(btnAddNegativeSpaceFunction);
+            flowLayoutPanel1.Controls.Add(btnSetRedColorFontFunction);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(3, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -380,23 +378,10 @@
             btnAddSqrtFunction.UseVisualStyleBackColor = true;
             btnAddSqrtFunction.Click += btnInsertFunction_Click;
             // 
-            // btnAddSqrt3Function
-            // 
-            btnAddSqrt3Function.AutoSize = true;
-            btnAddSqrt3Function.Location = new Point(255, 3);
-            btnAddSqrt3Function.Name = "btnAddSqrt3Function";
-            btnAddSqrt3Function.Size = new Size(64, 25);
-            btnAddSqrt3Function.TabIndex = 0;
-            btnAddSqrt3Function.Tag = "1";
-            btnAddSqrt3Function.Text = "\\sqrt[3]{}";
-            toolTip1.SetToolTip(btnAddSqrt3Function, "извлечение кубического корня");
-            btnAddSqrt3Function.UseVisualStyleBackColor = true;
-            btnAddSqrt3Function.Click += btnInsertFunction_Click;
-            // 
             // btnAddSubIndexFunction
             // 
             btnAddSubIndexFunction.AutoSize = true;
-            btnAddSubIndexFunction.Location = new Point(325, 3);
+            btnAddSubIndexFunction.Location = new Point(255, 3);
             btnAddSubIndexFunction.Name = "btnAddSubIndexFunction";
             btnAddSubIndexFunction.Size = new Size(30, 25);
             btnAddSubIndexFunction.TabIndex = 0;
@@ -410,7 +395,7 @@
             // 
             btnAddSupIndexFunction.AutoSize = true;
             flowLayoutPanel1.SetFlowBreak(btnAddSupIndexFunction, true);
-            btnAddSupIndexFunction.Location = new Point(361, 3);
+            btnAddSupIndexFunction.Location = new Point(291, 3);
             btnAddSupIndexFunction.Name = "btnAddSupIndexFunction";
             btnAddSupIndexFunction.Size = new Size(33, 25);
             btnAddSupIndexFunction.TabIndex = 0;
@@ -420,92 +405,83 @@
             btnAddSupIndexFunction.UseVisualStyleBackColor = true;
             btnAddSupIndexFunction.Click += btnInsertFunction_Click;
             // 
-            // label3
+            // btnSetRegularFontFunction
             // 
-            label3.Location = new Point(3, 31);
-            label3.Name = "label3";
-            label3.Size = new Size(70, 23);
-            label3.TabIndex = 1;
-            label3.Text = "Символы:";
-            label3.TextAlign = ContentAlignment.MiddleLeft;
+            btnSetRegularFontFunction.AutoSize = true;
+            btnSetRegularFontFunction.Location = new Point(3, 34);
+            btnSetRegularFontFunction.Name = "btnSetRegularFontFunction";
+            btnSetRegularFontFunction.Size = new Size(73, 25);
+            btnSetRegularFontFunction.TabIndex = 0;
+            btnSetRegularFontFunction.Tag = "1";
+            btnSetRegularFontFunction.Text = "\\mathrm{}";
+            toolTip1.SetToolTip(btnSetRegularFontFunction, "обычный шрифт, без выделения");
+            btnSetRegularFontFunction.UseVisualStyleBackColor = true;
+            btnSetRegularFontFunction.Click += btnInsertFunction_Click;
             // 
-            // btnAddPlusMinusCharacter
+            // btnSetItalicFontFunction
             // 
-            btnAddPlusMinusCharacter.AutoSize = true;
-            btnAddPlusMinusCharacter.Location = new Point(79, 34);
-            btnAddPlusMinusCharacter.Name = "btnAddPlusMinusCharacter";
-            btnAddPlusMinusCharacter.Size = new Size(40, 25);
-            btnAddPlusMinusCharacter.TabIndex = 0;
-            btnAddPlusMinusCharacter.Tag = "0";
-            btnAddPlusMinusCharacter.Text = "\\pm";
-            toolTip1.SetToolTip(btnAddPlusMinusCharacter, "символ ±");
-            btnAddPlusMinusCharacter.UseVisualStyleBackColor = true;
-            btnAddPlusMinusCharacter.Click += btnInsertFunction_Click;
+            btnSetItalicFontFunction.AutoSize = true;
+            btnSetItalicFontFunction.Location = new Point(82, 34);
+            btnSetItalicFontFunction.Name = "btnSetItalicFontFunction";
+            btnSetItalicFontFunction.Size = new Size(65, 25);
+            btnSetItalicFontFunction.TabIndex = 0;
+            btnSetItalicFontFunction.Tag = "1";
+            btnSetItalicFontFunction.Text = "\\mathit{}";
+            toolTip1.SetToolTip(btnSetItalicFontFunction, "курсивный шрифт");
+            btnSetItalicFontFunction.UseVisualStyleBackColor = true;
+            btnSetItalicFontFunction.Click += btnInsertFunction_Click;
             // 
-            // btnAddPiCharacter
+            // btnAddSmallSpaceFunction
             // 
-            btnAddPiCharacter.AutoSize = true;
-            btnAddPiCharacter.Location = new Point(125, 34);
-            btnAddPiCharacter.Name = "btnAddPiCharacter";
-            btnAddPiCharacter.Size = new Size(40, 25);
-            btnAddPiCharacter.TabIndex = 0;
-            btnAddPiCharacter.Tag = "0";
-            btnAddPiCharacter.Text = "\\pi";
-            toolTip1.SetToolTip(btnAddPiCharacter, "символ π");
-            btnAddPiCharacter.UseVisualStyleBackColor = true;
-            btnAddPiCharacter.Click += btnInsertFunction_Click;
+            btnAddSmallSpaceFunction.AutoSize = true;
+            btnAddSmallSpaceFunction.Location = new Point(153, 34);
+            btnAddSmallSpaceFunction.Name = "btnAddSmallSpaceFunction";
+            btnAddSmallSpaceFunction.Size = new Size(30, 25);
+            btnAddSmallSpaceFunction.TabIndex = 0;
+            btnAddSmallSpaceFunction.Tag = "";
+            btnAddSmallSpaceFunction.Text = "\\,";
+            toolTip1.SetToolTip(btnAddSmallSpaceFunction, "добавить 3/18 от пробела");
+            btnAddSmallSpaceFunction.UseVisualStyleBackColor = true;
+            btnAddSmallSpaceFunction.Click += btnInsertFunction_Click;
             // 
-            // btnAddLambdaCharacter
+            // btnAddMediumSpaceFunction
             // 
-            btnAddLambdaCharacter.AutoSize = true;
-            btnAddLambdaCharacter.Location = new Point(171, 34);
-            btnAddLambdaCharacter.Name = "btnAddLambdaCharacter";
-            btnAddLambdaCharacter.Size = new Size(62, 25);
-            btnAddLambdaCharacter.TabIndex = 0;
-            btnAddLambdaCharacter.Tag = "0";
-            btnAddLambdaCharacter.Text = "\\lambda";
-            toolTip1.SetToolTip(btnAddLambdaCharacter, "символ λ");
-            btnAddLambdaCharacter.UseVisualStyleBackColor = true;
-            btnAddLambdaCharacter.Click += btnInsertFunction_Click;
+            btnAddMediumSpaceFunction.AutoSize = true;
+            btnAddMediumSpaceFunction.Location = new Point(189, 34);
+            btnAddMediumSpaceFunction.Name = "btnAddMediumSpaceFunction";
+            btnAddMediumSpaceFunction.Size = new Size(30, 25);
+            btnAddMediumSpaceFunction.TabIndex = 0;
+            btnAddMediumSpaceFunction.Tag = "";
+            btnAddMediumSpaceFunction.Text = "\\:";
+            toolTip1.SetToolTip(btnAddMediumSpaceFunction, "добавить 4/18 от пробела");
+            btnAddMediumSpaceFunction.UseVisualStyleBackColor = true;
+            btnAddMediumSpaceFunction.Click += btnInsertFunction_Click;
             // 
-            // btnAddTauCharacter
+            // btnAddLargeSpaceFunction
             // 
-            btnAddTauCharacter.AutoSize = true;
-            btnAddTauCharacter.Location = new Point(239, 34);
-            btnAddTauCharacter.Name = "btnAddTauCharacter";
-            btnAddTauCharacter.Size = new Size(39, 25);
-            btnAddTauCharacter.TabIndex = 0;
-            btnAddTauCharacter.Tag = "0";
-            btnAddTauCharacter.Text = "\\tau";
-            toolTip1.SetToolTip(btnAddTauCharacter, "символ τ");
-            btnAddTauCharacter.UseVisualStyleBackColor = true;
-            btnAddTauCharacter.Click += btnInsertFunction_Click;
+            btnAddLargeSpaceFunction.AutoSize = true;
+            btnAddLargeSpaceFunction.Location = new Point(225, 34);
+            btnAddLargeSpaceFunction.Name = "btnAddLargeSpaceFunction";
+            btnAddLargeSpaceFunction.Size = new Size(30, 25);
+            btnAddLargeSpaceFunction.TabIndex = 0;
+            btnAddLargeSpaceFunction.Tag = "";
+            btnAddLargeSpaceFunction.Text = "\\;";
+            toolTip1.SetToolTip(btnAddLargeSpaceFunction, "добавить 5/18 от пробела");
+            btnAddLargeSpaceFunction.UseVisualStyleBackColor = true;
+            btnAddLargeSpaceFunction.Click += btnInsertFunction_Click;
             // 
-            // btnAddEtaCharacter
+            // btnAddNegativeSpaceFunction
             // 
-            btnAddEtaCharacter.AutoSize = true;
-            btnAddEtaCharacter.Location = new Point(284, 34);
-            btnAddEtaCharacter.Name = "btnAddEtaCharacter";
-            btnAddEtaCharacter.Size = new Size(39, 25);
-            btnAddEtaCharacter.TabIndex = 0;
-            btnAddEtaCharacter.Tag = "0";
-            btnAddEtaCharacter.Text = "\\eta";
-            toolTip1.SetToolTip(btnAddEtaCharacter, "символ η");
-            btnAddEtaCharacter.UseVisualStyleBackColor = true;
-            btnAddEtaCharacter.Click += btnInsertFunction_Click;
-            // 
-            // btnAddChiCharacter
-            // 
-            btnAddChiCharacter.AutoSize = true;
-            btnAddChiCharacter.Location = new Point(329, 34);
-            btnAddChiCharacter.Name = "btnAddChiCharacter";
-            btnAddChiCharacter.Size = new Size(39, 25);
-            btnAddChiCharacter.TabIndex = 0;
-            btnAddChiCharacter.Tag = "0";
-            btnAddChiCharacter.Text = "\\chi";
-            toolTip1.SetToolTip(btnAddChiCharacter, "символ χ");
-            btnAddChiCharacter.UseVisualStyleBackColor = true;
-            btnAddChiCharacter.Click += btnInsertFunction_Click;
+            btnAddNegativeSpaceFunction.AutoSize = true;
+            btnAddNegativeSpaceFunction.Location = new Point(261, 34);
+            btnAddNegativeSpaceFunction.Name = "btnAddNegativeSpaceFunction";
+            btnAddNegativeSpaceFunction.Size = new Size(30, 25);
+            btnAddNegativeSpaceFunction.TabIndex = 0;
+            btnAddNegativeSpaceFunction.Tag = "";
+            btnAddNegativeSpaceFunction.Text = "\\!";
+            toolTip1.SetToolTip(btnAddNegativeSpaceFunction, "отнять 3/18 от пробела");
+            btnAddNegativeSpaceFunction.UseVisualStyleBackColor = true;
+            btnAddNegativeSpaceFunction.Click += btnInsertFunction_Click;
             // 
             // saveFileDialog1
             // 
@@ -560,6 +536,19 @@
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpNotes.Size = new Size(365, 509);
             tlpNotes.TabIndex = 7;
+            // 
+            // btnSetRedColorFontFunction
+            // 
+            btnSetRedColorFontFunction.AutoSize = true;
+            btnSetRedColorFontFunction.Location = new Point(297, 34);
+            btnSetRedColorFontFunction.Name = "btnSetRedColorFontFunction";
+            btnSetRedColorFontFunction.Size = new Size(82, 25);
+            btnSetRedColorFontFunction.TabIndex = 0;
+            btnSetRedColorFontFunction.Tag = "1";
+            btnSetRedColorFontFunction.Text = "{\\color{red}}";
+            toolTip1.SetToolTip(btnSetRedColorFontFunction, "окрасить красным цветом");
+            btnSetRedColorFontFunction.UseVisualStyleBackColor = true;
+            btnSetRedColorFontFunction.Click += btnInsertFunction_Click;
             // 
             // MainForm
             // 
@@ -623,17 +612,16 @@
         private Button btnAddSqrtFunction;
         private Button btnAddSubIndexFunction;
         private Button btnAddSupIndexFunction;
-        private Button btnAddPlusMinusCharacter;
         private ToolTip toolTip1;
-        private Button btnAddSqrt3Function;
         private ToolStripButton tsbMoreFontSize;
         private ToolStripButton tsbLessFontSize;
-        private Button btnAddPiCharacter;
-        private Button btnAddLambdaCharacter;
-        private Button btnAddTauCharacter;
-        private Button btnAddEtaCharacter;
         private Label label2;
-        private Label label3;
-        private Button btnAddChiCharacter;
+        private Button btnSetRedColorFontFunction;
+        private Button btnSetItalicFontFunction;
+        private Button btnAddSmallSpaceFunction;
+        private Button btnAddMediumSpaceFunction;
+        private Button btnAddLargeSpaceFunction;
+        private Button btnAddNegativeSpaceFunction;
+        private Button btnSetRegularFontFunction;
     }
 }
