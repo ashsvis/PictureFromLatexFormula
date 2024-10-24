@@ -59,6 +59,7 @@
             btnAddSqrtFunction = new Button();
             btnAddSubIndexFunction = new Button();
             btnAddSupIndexFunction = new Button();
+            btnAddBigBracesFunction = new Button();
             btnSetRegularFontFunction = new Button();
             btnSetItalicFontFunction = new Button();
             btnAddSmallSpaceFunction = new Button();
@@ -73,7 +74,6 @@
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
             toolTip1 = new ToolTip(components);
-            btnAddBigBracesFunction = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -181,14 +181,14 @@
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(62, 24);
+            toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Масштаб:";
             // 
             // tscbScale
             // 
             tscbScale.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbScale.Name = "tscbScale";
-            tscbScale.Size = new Size(75, 27);
+            tscbScale.Size = new Size(75, 25);
             tscbScale.SelectedIndexChanged += nudScale_ValueChanged;
             // 
             // tsbMoreFontSize
@@ -198,7 +198,7 @@
             tsbMoreFontSize.Image = Properties.Resources.Увеличить_размер_шрифта;
             tsbMoreFontSize.ImageTransparentColor = Color.White;
             tsbMoreFontSize.Name = "tsbMoreFontSize";
-            tsbMoreFontSize.Size = new Size(23, 24);
+            tsbMoreFontSize.Size = new Size(23, 22);
             tsbMoreFontSize.Text = "увеличить масштаб";
             tsbMoreFontSize.Click += tsbMoreFontSize_Click;
             // 
@@ -209,21 +209,21 @@
             tsbLessFontSize.Image = Properties.Resources.Уменьшить_размер_шрифта;
             tsbLessFontSize.ImageTransparentColor = Color.White;
             tsbLessFontSize.Name = "tsbLessFontSize";
-            tsbLessFontSize.Size = new Size(23, 24);
+            tsbLessFontSize.Size = new Size(23, 22);
             tsbLessFontSize.Text = "уменьшить масштаб";
             tsbLessFontSize.Click += tsbLessFontSize_Click;
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(113, 24);
+            toolStripLabel2.Size = new Size(113, 22);
             toolStripLabel2.Text = "Шрифт для \\text{...}";
             // 
             // tscbSystemFontName
             // 
             tscbSystemFontName.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbSystemFontName.Name = "tscbSystemFontName";
-            tscbSystemFontName.Size = new Size(140, 23);
+            tscbSystemFontName.Size = new Size(140, 25);
             tscbSystemFontName.SelectedIndexChanged += cboxSystemFontName_SelectionChangeCommitted;
             // 
             // toolStripSeparator1
@@ -249,7 +249,7 @@
             tsbSave.Image = (Image)resources.GetObject("tsbSave.Image");
             tsbSave.ImageTransparentColor = Color.Magenta;
             tsbSave.Name = "tsbSave";
-            tsbSave.Size = new Size(23, 20);
+            tsbSave.Size = new Size(23, 22);
             tsbSave.Text = "&Сохранить картинку в файл на диске...";
             tsbSave.Click += tsbSave_Click;
             // 
@@ -319,13 +319,13 @@
             flowLayoutPanel1.Controls.Add(btnAddSqrtFunction);
             flowLayoutPanel1.Controls.Add(btnAddSubIndexFunction);
             flowLayoutPanel1.Controls.Add(btnAddSupIndexFunction);
-            flowLayoutPanel1.Controls.Add(btnAddBigBracesFunction);
             flowLayoutPanel1.Controls.Add(btnSetRegularFontFunction);
             flowLayoutPanel1.Controls.Add(btnSetItalicFontFunction);
             flowLayoutPanel1.Controls.Add(btnAddSmallSpaceFunction);
             flowLayoutPanel1.Controls.Add(btnAddMediumSpaceFunction);
             flowLayoutPanel1.Controls.Add(btnAddLargeSpaceFunction);
             flowLayoutPanel1.Controls.Add(btnAddNegativeSpaceFunction);
+            flowLayoutPanel1.Controls.Add(btnAddBigBracesFunction);
             flowLayoutPanel1.Controls.Add(btnSetRedColorFontFunction);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(3, 76);
@@ -408,10 +408,23 @@
             btnAddSupIndexFunction.UseVisualStyleBackColor = true;
             btnAddSupIndexFunction.Click += btnInsertFunction_Click;
             // 
+            // btnAddBigBracesFunction
+            // 
+            btnAddBigBracesFunction.AutoSize = true;
+            btnAddBigBracesFunction.Location = new Point(147, 34);
+            btnAddBigBracesFunction.Name = "btnAddBigBracesFunction";
+            btnAddBigBracesFunction.Size = new Size(77, 25);
+            btnAddBigBracesFunction.TabIndex = 0;
+            btnAddBigBracesFunction.Tag = "7";
+            btnAddBigBracesFunction.Text = "\\left(\\right)";
+            toolTip1.SetToolTip(btnAddBigBracesFunction, "большие круглые скобки");
+            btnAddBigBracesFunction.UseVisualStyleBackColor = true;
+            btnAddBigBracesFunction.Click += btnInsertFunction_Click;
+            // 
             // btnSetRegularFontFunction
             // 
             btnSetRegularFontFunction.AutoSize = true;
-            btnSetRegularFontFunction.Location = new Point(413, 3);
+            btnSetRegularFontFunction.Location = new Point(330, 3);
             btnSetRegularFontFunction.Name = "btnSetRegularFontFunction";
             btnSetRegularFontFunction.Size = new Size(73, 25);
             btnSetRegularFontFunction.TabIndex = 0;
@@ -424,7 +437,7 @@
             // btnSetItalicFontFunction
             // 
             btnSetItalicFontFunction.AutoSize = true;
-            btnSetItalicFontFunction.Location = new Point(3, 34);
+            btnSetItalicFontFunction.Location = new Point(409, 3);
             btnSetItalicFontFunction.Name = "btnSetItalicFontFunction";
             btnSetItalicFontFunction.Size = new Size(65, 25);
             btnSetItalicFontFunction.TabIndex = 0;
@@ -437,7 +450,7 @@
             // btnAddSmallSpaceFunction
             // 
             btnAddSmallSpaceFunction.AutoSize = true;
-            btnAddSmallSpaceFunction.Location = new Point(74, 34);
+            btnAddSmallSpaceFunction.Location = new Point(3, 34);
             btnAddSmallSpaceFunction.Name = "btnAddSmallSpaceFunction";
             btnAddSmallSpaceFunction.Size = new Size(30, 25);
             btnAddSmallSpaceFunction.TabIndex = 0;
@@ -450,7 +463,7 @@
             // btnAddMediumSpaceFunction
             // 
             btnAddMediumSpaceFunction.AutoSize = true;
-            btnAddMediumSpaceFunction.Location = new Point(110, 34);
+            btnAddMediumSpaceFunction.Location = new Point(39, 34);
             btnAddMediumSpaceFunction.Name = "btnAddMediumSpaceFunction";
             btnAddMediumSpaceFunction.Size = new Size(30, 25);
             btnAddMediumSpaceFunction.TabIndex = 0;
@@ -463,7 +476,7 @@
             // btnAddLargeSpaceFunction
             // 
             btnAddLargeSpaceFunction.AutoSize = true;
-            btnAddLargeSpaceFunction.Location = new Point(146, 34);
+            btnAddLargeSpaceFunction.Location = new Point(75, 34);
             btnAddLargeSpaceFunction.Name = "btnAddLargeSpaceFunction";
             btnAddLargeSpaceFunction.Size = new Size(30, 25);
             btnAddLargeSpaceFunction.TabIndex = 0;
@@ -476,7 +489,7 @@
             // btnAddNegativeSpaceFunction
             // 
             btnAddNegativeSpaceFunction.AutoSize = true;
-            btnAddNegativeSpaceFunction.Location = new Point(182, 34);
+            btnAddNegativeSpaceFunction.Location = new Point(111, 34);
             btnAddNegativeSpaceFunction.Name = "btnAddNegativeSpaceFunction";
             btnAddNegativeSpaceFunction.Size = new Size(30, 25);
             btnAddNegativeSpaceFunction.TabIndex = 0;
@@ -489,7 +502,7 @@
             // btnSetRedColorFontFunction
             // 
             btnSetRedColorFontFunction.AutoSize = true;
-            btnSetRedColorFontFunction.Location = new Point(218, 34);
+            btnSetRedColorFontFunction.Location = new Point(230, 34);
             btnSetRedColorFontFunction.Name = "btnSetRedColorFontFunction";
             btnSetRedColorFontFunction.Size = new Size(82, 25);
             btnSetRedColorFontFunction.TabIndex = 0;
@@ -552,19 +565,6 @@
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpNotes.Size = new Size(429, 509);
             tlpNotes.TabIndex = 7;
-            // 
-            // btnAddBigBracesFunction
-            // 
-            btnAddBigBracesFunction.AutoSize = true;
-            btnAddBigBracesFunction.Location = new Point(330, 3);
-            btnAddBigBracesFunction.Name = "btnAddBigBracesFunction";
-            btnAddBigBracesFunction.Size = new Size(77, 25);
-            btnAddBigBracesFunction.TabIndex = 0;
-            btnAddBigBracesFunction.Tag = "7";
-            btnAddBigBracesFunction.Text = "\\left(\\right)";
-            toolTip1.SetToolTip(btnAddBigBracesFunction, "большие круглые скобки");
-            btnAddBigBracesFunction.UseVisualStyleBackColor = true;
-            btnAddBigBracesFunction.Click += btnInsertFunction_Click;
             // 
             // MainForm
             // 
