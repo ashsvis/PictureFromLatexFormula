@@ -187,34 +187,57 @@ namespace PictureFromLatexFormula
         {
             /*
 
-            */
-            var category = "Греческий алфавит";
+             */
             var notes = new List<Notation>()
             {
-                new(category, @"\alpha"),
-                new(category, @"\beta"),
-                new(category, @"\gamma"),
-                new(category, @"\delta"),
-                new(category, @"\epsilon"),
-                new(category, @"\zeta"),
-                new(category, @"\eta"),
-                new(category, @"\theta"),
-                new(category, @"\iota"),
-                new(category, @"\kappa"),
-                new(category, @"\lambda"),
-                new(category, @"\mu"),
-                new(category, @"\nu"),
-                new(category, @"\xi"),
-                new(category, @"\omicron"),
-                new(category, @"\pi"),
-                new(category, @"\rho"),
-                new(category, @"\sigma"),
-                new(category, @"\tau"),
-                new(category, @"\upsilon"),
-                new(category, @"\phi"),
-                new(category, @"\chi"),
-                new(category, @"\psi"),
-                new(category, @"\omega"),
+                new("Греческий алфавит", @"\alpha"),
+                new("Греческий алфавит", @"\beta"),
+                new("Греческий алфавит", @"\gamma"),
+                new("Греческий алфавит", @"\delta"),
+                new("Греческий алфавит", @"\epsilon"),
+                new("Греческий алфавит", @"\zeta"),
+                new("Греческий алфавит", @"\eta"),
+                new("Греческий алфавит", @"\theta"),
+                new("Греческий алфавит", @"\iota"),
+                new("Греческий алфавит", @"\kappa"),
+                new("Греческий алфавит", @"\lambda"),
+                new("Греческий алфавит", @"\mu"),
+                new("Греческий алфавит", @"\nu"),
+                new("Греческий алфавит", @"\xi"),
+                new("Греческий алфавит", @"\omicron"),
+                new("Греческий алфавит", @"\pi"),
+                new("Греческий алфавит", @"\rho"),
+                new("Греческий алфавит", @"\sigma"),
+                new("Греческий алфавит", @"\tau"),
+                new("Греческий алфавит", @"\upsilon"),
+                new("Греческий алфавит", @"\phi"),
+                new("Греческий алфавит", @"\chi"),
+                new("Греческий алфавит", @"\psi"),
+                new("Греческий алфавит", @"\omega"),
+                //new("Греческий алфавит", @"\Alpha"),
+                //new("Греческий алфавит", @"\Beta"),
+                new("Греческий алфавит", @"\Gamma"),
+                new("Греческий алфавит", @"\Delta"),
+                //new("Греческий алфавит", @"\Epsilon"),
+                //new("Греческий алфавит", @"\Zeta"),
+                //new("Греческий алфавит", @"\Eta"),
+                new("Греческий алфавит", @"\Theta"),
+                //new("Греческий алфавит", @"\Iota"),
+                //new("Греческий алфавит", @"\Kappa"),
+                new("Греческий алфавит", @"\Lambda"),
+                //new("Греческий алфавит", @"\Mu"),
+                //new("Греческий алфавит", @"\NU"),
+                new("Греческий алфавит", @"\Xi"),
+                //new("Греческий алфавит", @"\Omicron"),
+                new("Греческий алфавит", @"\Pi"),
+                //new("Греческий алфавит", @"\Rho"),
+                new("Греческий алфавит", @"\Sigma"),
+                //new("Греческий алфавит", @"\Tau"),
+                new("Греческий алфавит", @"\Upsilon"),
+                new("Греческий алфавит", @"\Phi"),
+                //new("Греческий алфавит", @"\Chi"),
+                new("Греческий алфавит", @"\Psi"),
+                new("Греческий алфавит", @"\Omega"),
  //               new(@"\frac{°C}{2}"),
  //               new(@"\sqrt{\frac{a}{b}}"),
  //               new(@"\sum_{i=1}^{10} t_i"),
@@ -238,7 +261,7 @@ namespace PictureFromLatexFormula
             tlpNotes.ColumnStyles.Clear();
             tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             //tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-            tlpNotes.RowCount = notes.Count;
+            tlpNotes.RowCount = notes.GroupBy(note => note.Category).Count() * 2;
             tlpNotes.RowStyles.Clear();
             foreach (var note in notes)
                 tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
@@ -271,7 +294,7 @@ namespace PictureFromLatexFormula
                             Tag = note.Formula,
                             Image = pic,
                             Width = pic.Width + 5,
-                            Height = height + 5, //pic.Height + 5,
+                            Height = height + 5,
                             FlatStyle = FlatStyle.Flat,
                         };
                         btn.Click += (s, e) => { tboxLatex.SelectedText = $"{btn.Tag}"; };
