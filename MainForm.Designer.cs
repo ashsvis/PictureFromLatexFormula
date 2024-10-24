@@ -65,6 +65,7 @@
             btnAddMediumSpaceFunction = new Button();
             btnAddLargeSpaceFunction = new Button();
             btnAddNegativeSpaceFunction = new Button();
+            btnSetRedColorFontFunction = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -72,7 +73,6 @@
             splitContainer1 = new SplitContainer();
             tlpNotes = new TableLayoutPanel();
             toolTip1 = new ToolTip(components);
-            btnSetRedColorFontFunction = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
@@ -334,7 +334,7 @@
             // 
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(70, 23);
+            label2.Size = new Size(70, 31);
             label2.TabIndex = 1;
             label2.Text = "Функции:";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -483,6 +483,19 @@
             btnAddNegativeSpaceFunction.UseVisualStyleBackColor = true;
             btnAddNegativeSpaceFunction.Click += btnInsertFunction_Click;
             // 
+            // btnSetRedColorFontFunction
+            // 
+            btnSetRedColorFontFunction.AutoSize = true;
+            btnSetRedColorFontFunction.Location = new Point(297, 34);
+            btnSetRedColorFontFunction.Name = "btnSetRedColorFontFunction";
+            btnSetRedColorFontFunction.Size = new Size(82, 25);
+            btnSetRedColorFontFunction.TabIndex = 0;
+            btnSetRedColorFontFunction.Tag = "1";
+            btnSetRedColorFontFunction.Text = "{\\color{red}}";
+            toolTip1.SetToolTip(btnSetRedColorFontFunction, "окрасить красным цветом");
+            btnSetRedColorFontFunction.UseVisualStyleBackColor = true;
+            btnSetRedColorFontFunction.Click += btnInsertFunction_Click;
+            // 
             // saveFileDialog1
             // 
             saveFileDialog1.DefaultExt = "png";
@@ -536,19 +549,6 @@
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tlpNotes.Size = new Size(365, 509);
             tlpNotes.TabIndex = 7;
-            // 
-            // btnSetRedColorFontFunction
-            // 
-            btnSetRedColorFontFunction.AutoSize = true;
-            btnSetRedColorFontFunction.Location = new Point(297, 34);
-            btnSetRedColorFontFunction.Name = "btnSetRedColorFontFunction";
-            btnSetRedColorFontFunction.Size = new Size(82, 25);
-            btnSetRedColorFontFunction.TabIndex = 0;
-            btnSetRedColorFontFunction.Tag = "1";
-            btnSetRedColorFontFunction.Text = "{\\color{red}}";
-            toolTip1.SetToolTip(btnSetRedColorFontFunction, "окрасить красным цветом");
-            btnSetRedColorFontFunction.UseVisualStyleBackColor = true;
-            btnSetRedColorFontFunction.Click += btnInsertFunction_Click;
             // 
             // MainForm
             // 
