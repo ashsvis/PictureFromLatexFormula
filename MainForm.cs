@@ -190,56 +190,19 @@ namespace PictureFromLatexFormula
             var notes = new List<Notation>()
             {
 
-                #region Греческий алфавит
-                
-                new("Греческий алфавит", @"\alpha"),
-                new("Греческий алфавит", @"\beta"),
-                new("Греческий алфавит", @"\gamma"),
-                new("Греческий алфавит", @"\delta"),
-                new("Греческий алфавит", @"\epsilon"),
-                new("Греческий алфавит", @"\zeta"),
-                new("Греческий алфавит", @"\eta"),
-                new("Греческий алфавит", @"\theta"),
-                new("Греческий алфавит", @"\iota"),
-                new("Греческий алфавит", @"\kappa"),
-                new("Греческий алфавит", @"\lambda"),
-                new("Греческий алфавит", @"\mu"),
-                new("Греческий алфавит", @"\nu"),
-                new("Греческий алфавит", @"\xi"),
-                new("Греческий алфавит", @"\omicron"),
-                new("Греческий алфавит", @"\pi"),
-                new("Греческий алфавит", @"\rho"),
-                new("Греческий алфавит", @"\sigma"),
-                new("Греческий алфавит", @"\tau"),
-                new("Греческий алфавит", @"\upsilon"),
-                new("Греческий алфавит", @"\phi"),
-                new("Греческий алфавит", @"\chi"),
-                new("Греческий алфавит", @"\psi"),
-                new("Греческий алфавит", @"\omega"),
-                //new("Греческий алфавит", @"\Alpha"),
-                //new("Греческий алфавит", @"\Beta"),
-                new("Греческий алфавит", @"\Gamma"),
-                new("Греческий алфавит", @"\Delta"),
-                //new("Греческий алфавит", @"\Epsilon"),
-                //new("Греческий алфавит", @"\Zeta"),
-                //new("Греческий алфавит", @"\Eta"),
-                new("Греческий алфавит", @"\Theta"),
-                //new("Греческий алфавит", @"\Iota"),
-                //new("Греческий алфавит", @"\Kappa"),
-                new("Греческий алфавит", @"\Lambda"),
-                //new("Греческий алфавит", @"\Mu"),
-                //new("Греческий алфавит", @"\NU"),
-                new("Греческий алфавит", @"\Xi"),
-                //new("Греческий алфавит", @"\Omicron"),
-                new("Греческий алфавит", @"\Pi"),
-                //new("Греческий алфавит", @"\Rho"),
-                new("Греческий алфавит", @"\Sigma"),
-                //new("Греческий алфавит", @"\Tau"),
-                new("Греческий алфавит", @"\Upsilon"),
-                new("Греческий алфавит", @"\Phi"),
-                //new("Греческий алфавит", @"\Chi"),
-                new("Греческий алфавит", @"\Psi"),
-                new("Греческий алфавит", @"\Omega"),
+                #region Математические функции
+
+                new("Математические функции", @"a_{1}"),                // Нижний индекс
+                new("Математические функции", @"x^{2}"),                // Верхний индекс
+                new("Математические функции", @"\sqrt{x}"),             // Квадратный корень
+                new("Математические функции", @"\sqrt[3]{x}"),          // Кубический корень
+                new("Математические функции", @"\frac{a}{b}"),          // Деление: в первых скобках числитель, во вторых скобках знаменатель
+                //new("Математические функции", @"\longrightarrow"),    // Длинная стрелка слева направо
+                new("Математические функции", @"\bar x"),               // Верхняя черта над символом
+                new("Математические функции", @"\dot x"),               // Точка над символом
+                new("Математические функции", @"\sum"),                 // Большой знак суммы
+                new("Математические функции", @"\prod"),                // Большой знак произведения
+                new("Математические функции", @"\int"),                 // Интеграл
                 
                 #endregion
                 
@@ -277,6 +240,7 @@ namespace PictureFromLatexFormula
                 new("Бинарные операции", @"\circ"),
                 new("Бинарные операции", @"\setminus"),
                 new("Бинарные операции", @"\amalg"),
+                new("Бинарные операции", @"\ldots"),            // Многоточие
                 
                 #endregion
 
@@ -307,6 +271,8 @@ namespace PictureFromLatexFormula
                 
                 #region Операторы отношений
 
+                new("Операторы отношений", @"="),               // Равно
+                new("Операторы отношений", @"\neq"),            // Не равно
                 new("Операторы отношений", @"<"),               // Меньше чем
                 //new("Операторы отношений", @"\nless"),        // Не меньше чем
                 new("Операторы отношений", @"\leq"),            // Меньше или равен
@@ -361,36 +327,74 @@ namespace PictureFromLatexFormula
 
                 #endregion
 
-                //new("Математические функции", @"^"),                    // Верхний индекс
-                //new("Математические функции", @"^2"),                   // Это квадрат
-                //new("Математические функции", @"U^{235}"),              // Индексы в два и более символа надо заключать в фигурные скобки
-                //new("Математические функции", @"_"),                    // Нижний индекс
-                //new("Математические функции", @"H_2"),                  // Например, водород
-                //new("Математические функции", @"O_{16}"),               // Молекула кислорода
-                //new("Математические функции", @"\frac{dX_i}{dt}"),      // Деление: в первых скобках числитель, во вторых скобках знаменатель
-                //new("Математические функции", @"\ldots"),               // Многоточие
-                //new("Математические функции", @"\longrightarrow"),      // Длинная стрелка слева направо
-                //new("Математические функции", @"\bar"),                 // Верхняя черта над символом
-                //new("Математические функции", @"\dot"),                 // Точка над символом
-                //new("Математические функции", @"\sum"),                 // Большой знак суммы
-                //new("Математические функции", @"\prod"),                // Большой знак произведения
-                //new("Математические функции", @"\"),                    // Пробел
-                //new("Математические функции", @"\cdot"),                // Знак умножения в виде точки
-                //new("Математические функции", @"\times"),               // Знак умножения крест
-                //new("Математические функции", @"\int_{lower}^{upper}"), // Интеграл
+                #region Греческий алфавит
+                
+                new("Греческий алфавит", @"\alpha"),
+                new("Греческий алфавит", @"\beta"),
+                new("Греческий алфавит", @"\gamma"),
+                new("Греческий алфавит", @"\delta"),
+                new("Греческий алфавит", @"\epsilon"),
+                new("Греческий алфавит", @"\zeta"),
+                new("Греческий алфавит", @"\eta"),
+                new("Греческий алфавит", @"\theta"),
+                new("Греческий алфавит", @"\iota"),
+                new("Греческий алфавит", @"\kappa"),
+                new("Греческий алфавит", @"\lambda"),
+                new("Греческий алфавит", @"\mu"),
+                new("Греческий алфавит", @"\nu"),
+                new("Греческий алфавит", @"\xi"),
+                new("Греческий алфавит", @"\omicron"),
+                new("Греческий алфавит", @"\pi"),
+                new("Греческий алфавит", @"\rho"),
+                new("Греческий алфавит", @"\sigma"),
+                new("Греческий алфавит", @"\tau"),
+                new("Греческий алфавит", @"\upsilon"),
+                new("Греческий алфавит", @"\phi"),
+                new("Греческий алфавит", @"\chi"),
+                new("Греческий алфавит", @"\psi"),
+                new("Греческий алфавит", @"\omega"),
+                //new("Греческий алфавит", @"\Alpha"),
+                //new("Греческий алфавит", @"\Beta"),
+                new("Греческий алфавит", @"\Gamma"),
+                new("Греческий алфавит", @"\Delta"),
+                //new("Греческий алфавит", @"\Epsilon"),
+                //new("Греческий алфавит", @"\Zeta"),
+                //new("Греческий алфавит", @"\Eta"),
+                new("Греческий алфавит", @"\Theta"),
+                //new("Греческий алфавит", @"\Iota"),
+                //new("Греческий алфавит", @"\Kappa"),
+                new("Греческий алфавит", @"\Lambda"),
+                //new("Греческий алфавит", @"\Mu"),
+                //new("Греческий алфавит", @"\NU"),
+                new("Греческий алфавит", @"\Xi"),
+                //new("Греческий алфавит", @"\Omicron"),
+                new("Греческий алфавит", @"\Pi"),
+                //new("Греческий алфавит", @"\Rho"),
+                new("Греческий алфавит", @"\Sigma"),
+                //new("Греческий алфавит", @"\Tau"),
+                new("Греческий алфавит", @"\Upsilon"),
+                new("Греческий алфавит", @"\Phi"),
+                //new("Греческий алфавит", @"\Chi"),
+                new("Греческий алфавит", @"\Psi"),
+                new("Греческий алфавит", @"\Omega"),
+                
+                #endregion
+
             };
             var row = 0;
             tlpNotes.ColumnCount = 1;
             tlpNotes.ColumnStyles.Clear();
             tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50f));
             //tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
             tlpNotes.RowCount = notes.GroupBy(note => note.Category).Count() * 2;
             tlpNotes.RowStyles.Clear();
             foreach (var note in notes)
                 tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
             foreach (var noteCategory in notes.GroupBy(note => note.Category))
             {
-                var labCategoryName = new Label() { Text = noteCategory.Key, AutoSize = true };
+                var labCategoryName = new Label() { Text = noteCategory.Key, AutoSize = true, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter };
                 tlpNotes.Controls.Add(labCategoryName, 0, row++);
                 var flp = new FlowLayoutPanel() { AutoSize = true, Dock = DockStyle.Fill };
                 tlpNotes.Controls.Add(flp, 0, row++);
@@ -400,13 +404,13 @@ namespace PictureFromLatexFormula
                 {
                     if (note.ErrorInFormula)
                     {
-                        var pic = note.Picture;
+                        if (flp.Controls.Count > 0)
+                            flp.SetFlowBreak(flp.Controls[flp.Controls.Count - 1], true);
                         var labError = new Label
                         {
-                            Image = pic,
-                            Width = pic.Width,
-                            Height = pic.Height,
-                            TextAlign = ContentAlignment.MiddleCenter,
+                            AutoSize = true,
+                            Text = note.ErrorInFormulaText,
+                            TextAlign = ContentAlignment.TopLeft,
                         };
                         flp.Controls.Add(labError);
                         flp.SetFlowBreak(labError, true);

@@ -108,7 +108,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(505, 488);
+            tableLayoutPanel1.Size = new Size(505, 509);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -153,7 +153,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 246);
             panel1.Name = "panel1";
-            panel1.Size = new Size(499, 239);
+            panel1.Size = new Size(499, 260);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -532,7 +532,6 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.FixedPanel = FixedPanel.Panel2;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -543,7 +542,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tlpNotes);
-            splitContainer1.Size = new Size(1003, 488);
+            splitContainer1.Size = new Size(855, 509);
             splitContainer1.SplitterDistance = 505;
             splitContainer1.TabIndex = 1;
             // 
@@ -551,22 +550,22 @@
             // 
             tlpNotes.AutoScroll = true;
             tlpNotes.BackColor = SystemColors.Window;
-            tlpNotes.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             tlpNotes.ColumnCount = 1;
             tlpNotes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tlpNotes.Dock = DockStyle.Fill;
+            tlpNotes.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             tlpNotes.Location = new Point(0, 0);
             tlpNotes.Name = "tlpNotes";
             tlpNotes.RowCount = 1;
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpNotes.Size = new Size(494, 488);
+            tlpNotes.Size = new Size(346, 509);
             tlpNotes.TabIndex = 7;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1003, 488);
+            ClientSize = new Size(855, 509);
             Controls.Add(splitContainer1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
