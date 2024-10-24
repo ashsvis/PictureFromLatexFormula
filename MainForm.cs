@@ -244,21 +244,24 @@ namespace PictureFromLatexFormula
                 tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             foreach (var noteCategory in notes.GroupBy(note => note.Category))
             {
-                tlpNotes.Controls.Add(new Label() { Text = noteCategory.Key, AutoSize = true }, 0, row);
-                row++;
+                var labCategoryName = new Label() { Text = noteCategory.Key, AutoSize = true };
+                tlpNotes.Controls.Add(labCategoryName, 0, row++);
+                var flp = new FlowLayoutPanel() { AutoSize = true, Dock = DockStyle.Fill };
+                tlpNotes.Controls.Add(flp, 0, row++);
+                var height = noteCategory.Where(note => !note.ErrorInFormula).Max(note => note.Picture.Height);
                 foreach (var note in noteCategory)
                 {
                     if (note.ErrorInFormula)
                     {
                         var pic = note.Picture;
-                        tlpNotes.Controls.Add(
+                        flp.Controls.Add(
                             new Label
                             {
                                 Image = pic,
                                 Width = pic.Width,
                                 Height = pic.Height,
                                 TextAlign = ContentAlignment.MiddleCenter,
-                            }, 0, row);
+                            });
                     }
                     else
                     {
@@ -268,13 +271,12 @@ namespace PictureFromLatexFormula
                             Tag = note.Formula,
                             Image = pic,
                             Width = pic.Width + 5,
-                            Height = pic.Height + 5,
+                            Height = height + 5, //pic.Height + 5,
                             FlatStyle = FlatStyle.Flat,
                         };
                         btn.Click += (s, e) => { tboxLatex.SelectedText = $"{btn.Tag}"; };
-                        tlpNotes.Controls.Add(btn, 0, row);
+                        flp.Controls.Add(btn);
                     }
-                    row++;
                 }
             }
         }
