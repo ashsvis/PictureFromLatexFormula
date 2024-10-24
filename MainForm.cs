@@ -118,7 +118,7 @@ namespace PictureFromLatexFormula
         /// </summary>
         /// <param name="latex">Формула</param>
         /// <returns>Возвращаем картинку</returns>
-        public static Image? GetImage(string latex, double scale = 20.0, string systemFontName = "Times New Roman")
+        public static Image GetImage(string latex, double scale = 20.0, string systemFontName = "Times New Roman")
         {
             var parser = WpfTeXFormulaParser.Instance;
             var formula = parser.Parse(latex);
@@ -214,11 +214,19 @@ namespace PictureFromLatexFormula
             tlpNotes.RowStyles.Clear();
             foreach (var note in notes)
                 tlpNotes.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-            foreach (var note in notes.Where(x => x.Picture != null))
+            foreach (var note in notes)
             {
                 //tlpNotes.Controls.Add(new Label() { Text = note.Formula, AutoSize = true }, 0, row);
-                var pic = note.Picture;
-                tlpNotes.Controls.Add(new Label() { Image = pic, Width = pic.Width, Height = pic.Height, TextAlign = ContentAlignment.MiddleCenter }, 0, row);
+                if (note.ErrorInFormula)
+                {
+                    var pic = note.Picture;
+                    tlpNotes.Controls.Add(new Label { Image = pic, Width = pic.Width, Height = pic.Height, TextAlign = ContentAlignment.MiddleCenter }, 0, row);
+                }
+                else 
+                {
+                    var pic = note.Picture;
+                    tlpNotes.Controls.Add(new Button { Text = note.Formula, Image = pic, Width = pic.Width, Height = pic.Height, TextAlign = ContentAlignment.MiddleCenter }, 0, row);
+                }
                 row++;
             }
         }
