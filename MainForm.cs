@@ -9,11 +9,15 @@ namespace PictureFromLatexFormula
     {
         readonly InstalledFontCollection installedFontCollection = new();
         readonly BackgroundWorker worker = new();
-
+        readonly AutoCompleteStringCollection source = new();
 
         public MainForm()
         {
             InitializeComponent();
+            tboxLatex.AutoCompleteCustomSource = source;
+            tboxLatex.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tboxLatex.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
             splitContainer1.Panel2Collapsed = true;
             tscbSystemFontName.Items.Add("Times New Roman");
             tscbSystemFontName.Text = "Times New Roman";
@@ -98,10 +102,16 @@ namespace PictureFromLatexFormula
             {
                 labFormulaPicture.ForeColor = SystemColors.ControlText;
                 labFormulaPicture.Text = "Картинка формулы:";
-                if (tboxLatex.TextLength > 0 && 
-                    double.TryParse(tscbScale.Text, out double scale) && 
+                if (tboxLatex.TextLength > 0 &&
+                    double.TryParse(tscbScale.Text, out double scale) &&
                     !string.IsNullOrWhiteSpace(tscbSystemFontName.Text))
-                    pboxFormula.Image = GetImage(tboxLatex.Text, scale, tscbSystemFontName.Text);
+                {
+                    var formula = tboxLatex.Text;
+                    pboxFormula.Image = GetImage(formula, scale, tscbSystemFontName.Text);
+                    var trimmed = formula.TrimEnd(' ', '_', '^', '\\', '/', '+', '-', '*', '(', ')','{', '}', '[', ']');
+                    if (!source.Contains(trimmed))
+                        source.Add(trimmed);
+                }
                 UpdateControlsEnabled();
             }
             catch (Exception ex)

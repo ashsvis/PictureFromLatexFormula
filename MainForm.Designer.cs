@@ -124,7 +124,7 @@
             // 
             labFormulaPicture.AutoSize = true;
             labFormulaPicture.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labFormulaPicture.Location = new Point(3, 199);
+            labFormulaPicture.Location = new Point(3, 141);
             labFormulaPicture.Name = "labFormulaPicture";
             labFormulaPicture.Size = new Size(149, 19);
             labFormulaPicture.TabIndex = 0;
@@ -133,12 +133,14 @@
             // tboxLatex
             // 
             tboxLatex.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tboxLatex.AutoCompleteCustomSource.AddRange(new string[] { "\\text{проба}", "\\substr{a}{b+c}", "\\sqrt{x}" });
+            tboxLatex.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            tboxLatex.AutoCompleteSource = AutoCompleteSource.CustomSource;
             tboxLatex.Font = new Font("Consolas", 10F, FontStyle.Regular, GraphicsUnit.Point);
             tboxLatex.Location = new Point(3, 47);
-            tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(426, 81);
+            tboxLatex.Size = new Size(426, 23);
             tboxLatex.TabIndex = 1;
             tboxLatex.Text = "Загрузка программы...";
             tboxLatex.TextChanged += tboxLatex_TextChanged;
@@ -150,9 +152,9 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 248);
+            panel1.Location = new Point(3, 190);
             panel1.Name = "panel1";
-            panel1.Size = new Size(426, 258);
+            panel1.Size = new Size(426, 316);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -169,7 +171,7 @@
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
-            toolStrip1.Location = new Point(0, 218);
+            toolStrip1.Location = new Point(0, 160);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(432, 27);
             toolStrip1.TabIndex = 4;
@@ -324,7 +326,7 @@
             flowLayoutPanel1.Controls.Add(btnAddNegativeSpaceFunction);
             flowLayoutPanel1.Controls.Add(btnSetRedColorFontFunction);
             flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(3, 134);
+            flowLayoutPanel1.Location = new Point(3, 76);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(426, 62);
             flowLayoutPanel1.TabIndex = 6;
