@@ -16,14 +16,6 @@ namespace PictureFromLatexFormula
         {
             InitializeComponent();
 
-            if (Properties.Settings.Default.formulas != null)
-            {
-                foreach (var s in Properties.Settings.Default.formulas)
-                    source.Add(s);
-            }
-            else
-                Properties.Settings.Default.formulas = new System.Collections.Specialized.StringCollection();
-
             tboxLatex.AutoCompleteCustomSource = source;
             tboxLatex.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             tboxLatex.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -122,13 +114,6 @@ namespace PictureFromLatexFormula
                     if (!source.Contains(trimmed))
                     {
                         source.Add(trimmed);
-                        if (Properties.Settings.Default.formulas != null)
-                        {
-                            Properties.Settings.Default.formulas.Clear();
-                            foreach (var s in source.Cast<string>())
-                                Properties.Settings.Default.formulas.Add(s);
-                            Properties.Settings.Default.Save();
-                        }
                     }
                 }
                 UpdateControlsEnabled();
