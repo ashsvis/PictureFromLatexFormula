@@ -21,6 +21,8 @@ namespace PictureFromLatexFormula
                 foreach (var s in Properties.Settings.Default.formulas)
                     source.Add(s);
             }
+            else
+                Properties.Settings.Default.formulas = new System.Collections.Specialized.StringCollection();
 
             tboxLatex.AutoCompleteCustomSource = source;
             tboxLatex.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -116,7 +118,7 @@ namespace PictureFromLatexFormula
                 {
                     var formula = tboxLatex.Text;
                     pboxFormula.Image = GetImage(formula, scale, tscbSystemFontName.Text);
-                    var trimmed = formula.TrimEnd(' ', '_', '^', '\\', '/', '+', '-', '*', '(', ')','{', '}', '[', ']');
+                    var trimmed = formula.TrimEnd(' ', '_', '^', '\\', '/', '+', '-', '*', '(', '{', '[');
                     if (!source.Contains(trimmed))
                     {
                         source.Add(trimmed);
