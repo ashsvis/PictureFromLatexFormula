@@ -52,19 +52,8 @@
             tsbSaveFormula = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             tsbShowHideNotes = new ToolStripButton();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flpUserFunctions = new FlowLayoutPanel();
             labFunctions = new Label();
-            btnAddFracFunction = new Button();
-            btnAddTextFunction = new Button();
-            btnAddSqrtFunction = new Button();
-            btnAddSubIndexFunction = new Button();
-            btnAddSupIndexFunction = new Button();
-            btnAddSmallSpaceFunction = new Button();
-            btnAddMediumSpaceFunction = new Button();
-            btnAddLargeSpaceFunction = new Button();
-            btnAddNegativeSpaceFunction = new Button();
-            btnAddBigBracesFunction = new Button();
-            btnSetRedColorFontFunction = new Button();
             saveFileDialog1 = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             saveFileDialog2 = new SaveFileDialog();
@@ -77,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)pboxFormula).BeginInit();
             toolStrip1.SuspendLayout();
             toolStrip2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            flpUserFunctions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -94,7 +83,7 @@
             tableLayoutPanel1.Controls.Add(panel1, 0, 6);
             tableLayoutPanel1.Controls.Add(toolStrip1, 0, 5);
             tableLayoutPanel1.Controls.Add(toolStrip2, 0, 1);
-            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 0, 3);
+            tableLayoutPanel1.Controls.Add(flpUserFunctions, 0, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -123,7 +112,7 @@
             // 
             labFormulaPicture.AutoSize = true;
             labFormulaPicture.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labFormulaPicture.Location = new Point(3, 218);
+            labFormulaPicture.Location = new Point(3, 187);
             labFormulaPicture.Name = "labFormulaPicture";
             labFormulaPicture.Size = new Size(149, 19);
             labFormulaPicture.TabIndex = 0;
@@ -149,9 +138,9 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 265);
+            panel1.Location = new Point(3, 234);
             panel1.Name = "panel1";
-            panel1.Size = new Size(499, 241);
+            panel1.Size = new Size(499, 272);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -168,7 +157,7 @@
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
-            toolStrip1.Location = new Point(0, 237);
+            toolStrip1.Location = new Point(0, 206);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(505, 25);
             toolStrip1.TabIndex = 4;
@@ -306,27 +295,16 @@
             tsbShowHideNotes.Text = "Показать / спрятать панель примеров";
             tsbShowHideNotes.Click += tsbShowHideNotes_Click;
             // 
-            // flowLayoutPanel1
+            // flpUserFunctions
             // 
-            flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.Controls.Add(labFunctions);
-            flowLayoutPanel1.Controls.Add(btnAddFracFunction);
-            flowLayoutPanel1.Controls.Add(btnAddTextFunction);
-            flowLayoutPanel1.Controls.Add(btnAddSqrtFunction);
-            flowLayoutPanel1.Controls.Add(btnAddSubIndexFunction);
-            flowLayoutPanel1.Controls.Add(btnAddSupIndexFunction);
-            flowLayoutPanel1.Controls.Add(btnAddSmallSpaceFunction);
-            flowLayoutPanel1.Controls.Add(btnAddMediumSpaceFunction);
-            flowLayoutPanel1.Controls.Add(btnAddLargeSpaceFunction);
-            flowLayoutPanel1.Controls.Add(btnAddNegativeSpaceFunction);
-            flowLayoutPanel1.Controls.Add(btnAddBigBracesFunction);
-            flowLayoutPanel1.Controls.Add(btnSetRedColorFontFunction);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(3, 153);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(499, 62);
-            flowLayoutPanel1.TabIndex = 6;
-            toolTip1.SetToolTip(flowLayoutPanel1, "увеличить масштаб");
+            flpUserFunctions.AutoSize = true;
+            flpUserFunctions.Controls.Add(labFunctions);
+            flpUserFunctions.Dock = DockStyle.Fill;
+            flpUserFunctions.Location = new Point(3, 153);
+            flpUserFunctions.Name = "flpUserFunctions";
+            flpUserFunctions.Size = new Size(499, 31);
+            flpUserFunctions.TabIndex = 6;
+            toolTip1.SetToolTip(flpUserFunctions, "увеличить масштаб");
             // 
             // labFunctions
             // 
@@ -339,149 +317,6 @@
             labFunctions.Text = "Функции:";
             labFunctions.TextAlign = ContentAlignment.MiddleLeft;
             labFunctions.Click += labFunctions_Click;
-            // 
-            // btnAddFracFunction
-            // 
-            btnAddFracFunction.AutoSize = true;
-            btnAddFracFunction.Location = new Point(69, 3);
-            btnAddFracFunction.Name = "btnAddFracFunction";
-            btnAddFracFunction.Size = new Size(58, 25);
-            btnAddFracFunction.TabIndex = 0;
-            btnAddFracFunction.Tag = "3";
-            btnAddFracFunction.Text = "\\frac{}{}";
-            toolTip1.SetToolTip(btnAddFracFunction, "дробь");
-            btnAddFracFunction.UseVisualStyleBackColor = true;
-            btnAddFracFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddTextFunction
-            // 
-            btnAddTextFunction.AutoSize = true;
-            btnAddTextFunction.Location = new Point(133, 3);
-            btnAddTextFunction.Name = "btnAddTextFunction";
-            btnAddTextFunction.Size = new Size(50, 25);
-            btnAddTextFunction.TabIndex = 0;
-            btnAddTextFunction.Tag = "1";
-            btnAddTextFunction.Text = "\\text{}";
-            toolTip1.SetToolTip(btnAddTextFunction, "кирилический текст");
-            btnAddTextFunction.UseVisualStyleBackColor = true;
-            btnAddTextFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddSqrtFunction
-            // 
-            btnAddSqrtFunction.AutoSize = true;
-            btnAddSqrtFunction.Location = new Point(189, 3);
-            btnAddSqrtFunction.Name = "btnAddSqrtFunction";
-            btnAddSqrtFunction.Size = new Size(50, 25);
-            btnAddSqrtFunction.TabIndex = 0;
-            btnAddSqrtFunction.Tag = "1";
-            btnAddSqrtFunction.Text = "\\sqrt{}";
-            toolTip1.SetToolTip(btnAddSqrtFunction, "извлечение корня");
-            btnAddSqrtFunction.UseVisualStyleBackColor = true;
-            btnAddSqrtFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddSubIndexFunction
-            // 
-            btnAddSubIndexFunction.AutoSize = true;
-            btnAddSubIndexFunction.Location = new Point(245, 3);
-            btnAddSubIndexFunction.Name = "btnAddSubIndexFunction";
-            btnAddSubIndexFunction.Size = new Size(30, 25);
-            btnAddSubIndexFunction.TabIndex = 0;
-            btnAddSubIndexFunction.Tag = "1";
-            btnAddSubIndexFunction.Text = "_{}";
-            toolTip1.SetToolTip(btnAddSubIndexFunction, "нижний индекс");
-            btnAddSubIndexFunction.UseVisualStyleBackColor = true;
-            btnAddSubIndexFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddSupIndexFunction
-            // 
-            btnAddSupIndexFunction.AutoSize = true;
-            btnAddSupIndexFunction.Location = new Point(281, 3);
-            btnAddSupIndexFunction.Name = "btnAddSupIndexFunction";
-            btnAddSupIndexFunction.Size = new Size(33, 25);
-            btnAddSupIndexFunction.TabIndex = 0;
-            btnAddSupIndexFunction.Tag = "1";
-            btnAddSupIndexFunction.Text = "^{}";
-            toolTip1.SetToolTip(btnAddSupIndexFunction, "верхний индекс");
-            btnAddSupIndexFunction.UseVisualStyleBackColor = true;
-            btnAddSupIndexFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddSmallSpaceFunction
-            // 
-            btnAddSmallSpaceFunction.AutoSize = true;
-            btnAddSmallSpaceFunction.Location = new Point(320, 3);
-            btnAddSmallSpaceFunction.Name = "btnAddSmallSpaceFunction";
-            btnAddSmallSpaceFunction.Size = new Size(30, 25);
-            btnAddSmallSpaceFunction.TabIndex = 0;
-            btnAddSmallSpaceFunction.Tag = "";
-            btnAddSmallSpaceFunction.Text = "\\,";
-            toolTip1.SetToolTip(btnAddSmallSpaceFunction, "добавить 3/18 от пробела");
-            btnAddSmallSpaceFunction.UseVisualStyleBackColor = true;
-            btnAddSmallSpaceFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddMediumSpaceFunction
-            // 
-            btnAddMediumSpaceFunction.AutoSize = true;
-            btnAddMediumSpaceFunction.Location = new Point(356, 3);
-            btnAddMediumSpaceFunction.Name = "btnAddMediumSpaceFunction";
-            btnAddMediumSpaceFunction.Size = new Size(30, 25);
-            btnAddMediumSpaceFunction.TabIndex = 0;
-            btnAddMediumSpaceFunction.Tag = "";
-            btnAddMediumSpaceFunction.Text = "\\:";
-            toolTip1.SetToolTip(btnAddMediumSpaceFunction, "добавить 4/18 от пробела");
-            btnAddMediumSpaceFunction.UseVisualStyleBackColor = true;
-            btnAddMediumSpaceFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddLargeSpaceFunction
-            // 
-            btnAddLargeSpaceFunction.AutoSize = true;
-            btnAddLargeSpaceFunction.Location = new Point(392, 3);
-            btnAddLargeSpaceFunction.Name = "btnAddLargeSpaceFunction";
-            btnAddLargeSpaceFunction.Size = new Size(30, 25);
-            btnAddLargeSpaceFunction.TabIndex = 0;
-            btnAddLargeSpaceFunction.Tag = "";
-            btnAddLargeSpaceFunction.Text = "\\;";
-            toolTip1.SetToolTip(btnAddLargeSpaceFunction, "добавить 5/18 от пробела");
-            btnAddLargeSpaceFunction.UseVisualStyleBackColor = true;
-            btnAddLargeSpaceFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddNegativeSpaceFunction
-            // 
-            btnAddNegativeSpaceFunction.AutoSize = true;
-            btnAddNegativeSpaceFunction.Location = new Point(428, 3);
-            btnAddNegativeSpaceFunction.Name = "btnAddNegativeSpaceFunction";
-            btnAddNegativeSpaceFunction.Size = new Size(30, 25);
-            btnAddNegativeSpaceFunction.TabIndex = 0;
-            btnAddNegativeSpaceFunction.Tag = "";
-            btnAddNegativeSpaceFunction.Text = "\\!";
-            toolTip1.SetToolTip(btnAddNegativeSpaceFunction, "отнять 3/18 от пробела");
-            btnAddNegativeSpaceFunction.UseVisualStyleBackColor = true;
-            btnAddNegativeSpaceFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnAddBigBracesFunction
-            // 
-            btnAddBigBracesFunction.AutoSize = true;
-            btnAddBigBracesFunction.Location = new Point(3, 34);
-            btnAddBigBracesFunction.Name = "btnAddBigBracesFunction";
-            btnAddBigBracesFunction.Size = new Size(77, 25);
-            btnAddBigBracesFunction.TabIndex = 0;
-            btnAddBigBracesFunction.Tag = "7";
-            btnAddBigBracesFunction.Text = "\\left(\\right)";
-            toolTip1.SetToolTip(btnAddBigBracesFunction, "большие круглые скобки");
-            btnAddBigBracesFunction.UseVisualStyleBackColor = true;
-            btnAddBigBracesFunction.Click += btnInsertFunction_Click;
-            // 
-            // btnSetRedColorFontFunction
-            // 
-            btnSetRedColorFontFunction.AutoSize = true;
-            btnSetRedColorFontFunction.Location = new Point(86, 34);
-            btnSetRedColorFontFunction.Name = "btnSetRedColorFontFunction";
-            btnSetRedColorFontFunction.Size = new Size(82, 25);
-            btnSetRedColorFontFunction.TabIndex = 0;
-            btnSetRedColorFontFunction.Tag = "1";
-            btnSetRedColorFontFunction.Text = "{\\color{red}}";
-            toolTip1.SetToolTip(btnSetRedColorFontFunction, "окрасить красным цветом");
-            btnSetRedColorFontFunction.UseVisualStyleBackColor = true;
-            btnSetRedColorFontFunction.Click += btnInsertFunction_Click;
             // 
             // saveFileDialog1
             // 
@@ -556,8 +391,7 @@
             toolStrip1.PerformLayout();
             toolStrip2.ResumeLayout(false);
             toolStrip2.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            flpUserFunctions.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -593,21 +427,10 @@
         private TableLayoutPanel tlpNotes;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripButton tsbShowHideNotes;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Button btnAddFracFunction;
-        private Button btnAddTextFunction;
-        private Button btnAddSqrtFunction;
-        private Button btnAddSubIndexFunction;
-        private Button btnAddSupIndexFunction;
+        private FlowLayoutPanel flpUserFunctions;
         private ToolTip toolTip1;
         private ToolStripButton tsbMoreFontSize;
         private ToolStripButton tsbLessFontSize;
         private Label labFunctions;
-        private Button btnSetRedColorFontFunction;
-        private Button btnAddSmallSpaceFunction;
-        private Button btnAddMediumSpaceFunction;
-        private Button btnAddLargeSpaceFunction;
-        private Button btnAddNegativeSpaceFunction;
-        private Button btnAddBigBracesFunction;
     }
 }

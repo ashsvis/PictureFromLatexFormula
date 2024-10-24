@@ -36,6 +36,7 @@ namespace PictureFromLatexFormula
             tscbSystemFontName.Items.AddRange(range);
             tscbSystemFontName.Text = "Times New Roman";
             FillNotations();
+            LoadUserFunctions();
             tboxLatex.Text = "";
             tableLayoutPanel1.Enabled = true;
         }
@@ -536,7 +537,42 @@ namespace PictureFromLatexFormula
 
         private void ManageUserFunctions()
         {
-            
+            var frm = new UserFunctionsTuningForm();
+            frm.Build(Properties.Settings.Default.UserFunctions);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.UserFunctions = frm.Data;
+                Properties.Settings.Default.Save();
+                LoadUserFunctions();
+            }
+            //foreach (var btn in flpUserFunctions.Controls.OfType<Button>())
+            //{
+            //    var item = new UserFunction(btn.Text, btn.Text, int.TryParse($"{btn.Tag}", out int pos) ? pos : 0);
+            //    list.Add(item.ToString());
+            //}
+            //Properties.Settings.Default.UserFunctions = string.Join("\n", list.ToArray());
+            //Properties.Settings.Default.Save();
+        }
+
+        private void LoadUserFunctions()
+        {
+            for (var i = flpUserFunctions.Controls.Count - 1; i > 1; i--)
+                flpUserFunctions.Controls.RemoveAt(i);
+            foreach (var line in Properties.Settings.Default.UserFunctions.Split('\n'))
+            {
+                var vals = line.Split('\t');
+                var item = new UserFunction();
+                item.Build(line);
+                var btn = new Button 
+                { 
+                    Text = item.CaptionFormula, 
+                    Tag = item.OffsetPosition, 
+                    AutoSize = true, 
+                    FlatStyle = FlatStyle.Flat 
+                };
+                btn.Click += btnInsertFunction_Click;
+                flpUserFunctions.Controls.Add(btn);
+            }
         }
     }
 }
