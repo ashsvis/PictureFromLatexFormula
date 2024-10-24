@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Drawing.Text;
 using WpfMath;
 using WpfMath.Parsers;
+using System.Linq;
 
 namespace PictureFromLatexFormula
 {
@@ -14,6 +15,13 @@ namespace PictureFromLatexFormula
         public MainForm()
         {
             InitializeComponent();
+
+            if (Properties.Settings.Default.formulas != null)
+            {
+                foreach (var s in Properties.Settings.Default.formulas)
+                    source.Add(s);
+            }
+
             tboxLatex.AutoCompleteCustomSource = source;
             tboxLatex.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             tboxLatex.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -110,7 +118,16 @@ namespace PictureFromLatexFormula
                     pboxFormula.Image = GetImage(formula, scale, tscbSystemFontName.Text);
                     var trimmed = formula.TrimEnd(' ', '_', '^', '\\', '/', '+', '-', '*', '(', ')','{', '}', '[', ']');
                     if (!source.Contains(trimmed))
+                    {
                         source.Add(trimmed);
+                        if (Properties.Settings.Default.formulas != null)
+                        {
+                            Properties.Settings.Default.formulas.Clear();
+                            foreach (var s in source.Cast<string>())
+                                Properties.Settings.Default.formulas.Add(s);
+                            Properties.Settings.Default.Save();
+                        }
+                    }
                 }
                 UpdateControlsEnabled();
             }
