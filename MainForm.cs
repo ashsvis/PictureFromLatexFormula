@@ -499,7 +499,11 @@ namespace PictureFromLatexFormula
                             Height = height + 5,
                             FlatStyle = FlatStyle.Flat,
                         };
-                        btn.Click += (s, e) => { tboxLatex.SelectedText = $"{btn.Tag}"; };
+                        btn.Click += (s, e) => 
+                        { 
+                            tboxLatex.SelectedText = $"{btn.Tag}"; 
+                            tboxLatex.Focus(); 
+                        };
                         flp.Controls.Add(btn);
                     }
                 }
