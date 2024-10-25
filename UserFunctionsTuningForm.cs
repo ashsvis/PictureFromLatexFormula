@@ -22,28 +22,89 @@ namespace PictureFromLatexFormula
             Data = string.Empty;
         }
 
+        private Button current = null;
+
         public void Build(string userFunctions)
         {
-            flpButtons.Controls.Clear();
+            flpUserFunctions.Controls.Clear();
 
-
-
-            var pic = note.Picture;
-            var btn = new Button
+            foreach (var line in userFunctions.Split('\n'))
             {
-                Tag = note.Formula,
-                Image = pic,
-                Width = width + 5,
-                Height = height + 5,
-                FlatStyle = FlatStyle.Flat,
-            };
-            btn.Click += (s, e) =>
-            {
-                tboxLatex.SelectedText = $"{btn.Tag}";
-                tboxLatex.Focus();
-            };
-            flp.Controls.Add(btn);
+                var vals = line.Split('\t');
+                var item = new UserFunction();
+                item.Build(line);
+                var btn = new Button
+                {
+                    Tag = item.OffsetPosition,
+                    Width = 20,
+                    AutoSize = true,
+                    FlatStyle = FlatStyle.Flat,
+                    TabStop = false,
+                };
+                try
+                {
+                    btn.Image = FormulaHelper.GetImage(item.CaptionFormula);
+                }
+                catch
+                {
+                    btn.Text = item.CaptionFormula;
+                    btn.ForeColor = Color.Red;
+                }
+                btn.Click += (s, e) =>
+                {
+                    current = (Button)s;
+                    tboxInsertFormula.Text = item.InsertFormula;
+                    tboxInsertFormula.Enabled = true;
+                    tboxCaptionFormula.Text = item.CaptionFormula;
+                    tboxCaptionFormula.Enabled = true;
+                    nudOffsetPosition.Value = item.OffsetPosition;
+                    nudOffsetPosition.Enabled = true;
+                    try
+                    {
+                        pboxButtonImage.Image = FormulaHelper.GetImage(item.CaptionFormula);
+                        btnApply.Enabled = true;
+                    }
+                    catch
+                    {
+                        pboxButtonImage.Image = pboxButtonImage.ErrorImage;
+                        btnApply.Enabled = false;
+                    }
+                };
+                flpUserFunctions.Controls.Add(btn);
+            }
+        }
 
+        private void tboxCaptionFormula_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var captionFormula = tboxCaptionFormula.Text;
+                pboxButtonImage.Image = FormulaHelper.GetImage(captionFormula);
+                btnApply.Enabled = true;
+            }
+            catch
+            {
+                pboxButtonImage.Image = pboxButtonImage.ErrorImage;
+                btnApply.Enabled = false;
+            }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            if (current == null) return;
+            var captionFormula = tboxCaptionFormula.Text;
+            try
+            {
+                current.Image = FormulaHelper.GetImage(captionFormula);
+                current.Text = string.Empty;
+                ForeColor = SystemColors.ControlText;
+            }
+            catch
+            {
+                current.Image = null;
+                current.Text = captionFormula;
+                ForeColor = Color.Red;
+            }
         }
     }
 }

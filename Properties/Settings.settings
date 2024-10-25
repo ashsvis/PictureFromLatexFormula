@@ -13,7 +13,7 @@ _{}	_{}	1
 \;	\;	0
 \!	\!	0
 \left(\right)	\left(\right)	7
-{\color{red}}	{\color{red}}	1</Value>
+\color{red}{}	\color{red}{}	1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

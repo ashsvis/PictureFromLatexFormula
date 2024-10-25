@@ -8,7 +8,7 @@
             Formula = formula;
             try
             {
-                Picture = MainForm.GetImage(formula);
+                Picture = FormulaHelper.GetImage(formula);
                 ErrorInFormulaText = string.Empty;
                 ErrorInFormula = false;
             }

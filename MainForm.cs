@@ -103,7 +103,7 @@ namespace PictureFromLatexFormula
                     !string.IsNullOrWhiteSpace(tscbSystemFontName.Text))
                 {
                     var formula = tboxLatex.Text;
-                    pboxFormula.Image = GetImage(formula, scale, tscbSystemFontName.Text);
+                    pboxFormula.Image = FormulaHelper.GetImage(formula, scale, tscbSystemFontName.Text);
                 }
                 UpdateControlsEnabled();
             }
@@ -113,22 +113,6 @@ namespace PictureFromLatexFormula
                 labFormulaPicture.ForeColor = Color.Red;
                 labFormulaPicture.Text = "ќшибка: " + ex.Message;
                 UpdateControlsEnabled();
-            }
-        }
-
-        /// <summary>
-        /// —оздаем картинку на лету из формулы в нотации latex
-        /// </summary>
-        /// <param name="latex">‘ормула</param>
-        /// <returns>¬озвращаем картинку</returns>
-        public static Image GetImage(string latex, double scale = 20.0, string systemFontName = "Times New Roman")
-        {
-            var parser = WpfTeXFormulaParser.Instance;
-            var formula = parser.Parse(latex);
-            var pngBytes = formula.RenderToPng(scale, 0.0, 0.0, systemFontName);
-            using (var stream = new MemoryStream(pngBytes))
-            {
-                return Image.FromStream(stream);
             }
         }
 
@@ -557,7 +541,12 @@ namespace PictureFromLatexFormula
         private void LoadUserFunctions()
         {
             for (var i = flpUserFunctions.Controls.Count - 1; i > 1; i--)
+            {
+#pragma warning disable CS8622 // ƒопустимость значений NULL дл€ ссылочных типов в типе параметра не соответствует целевому объекту делегировани€ (возможно, из-за атрибутов допустимости значений NULL).
+                flpUserFunctions.Controls[i].Click -= btnInsertFunction_Click;
+#pragma warning restore CS8622 // ƒопустимость значений NULL дл€ ссылочных типов в типе параметра не соответствует целевому объекту делегировани€ (возможно, из-за атрибутов допустимости значений NULL).
                 flpUserFunctions.Controls.RemoveAt(i);
+            }
             foreach (var line in Properties.Settings.Default.UserFunctions.Split('\n'))
             {
                 var vals = line.Split('\t');
@@ -567,10 +556,13 @@ namespace PictureFromLatexFormula
                 { 
                     Text = item.CaptionFormula, 
                     Tag = item.OffsetPosition, 
+                    Width = 30,
                     AutoSize = true, 
                     FlatStyle = FlatStyle.Flat 
                 };
+#pragma warning disable CS8622 // ƒопустимость значений NULL дл€ ссылочных типов в типе параметра не соответствует целевому объекту делегировани€ (возможно, из-за атрибутов допустимости значений NULL).
                 btn.Click += btnInsertFunction_Click;
+#pragma warning restore CS8622 // ƒопустимость значений NULL дл€ ссылочных типов в типе параметра не соответствует целевому объекту делегировани€ (возможно, из-за атрибутов допустимости значений NULL).
                 flpUserFunctions.Controls.Add(btn);
             }
         }
