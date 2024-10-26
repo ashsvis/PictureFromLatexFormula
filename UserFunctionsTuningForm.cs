@@ -14,20 +14,22 @@ namespace PictureFromLatexFormula
 {
     public partial class UserFunctionsTuningForm : Form
     {
-        public readonly string Data;
+        public string Data { get; private set; }
 
         public UserFunctionsTuningForm()
         {
             InitializeComponent();
             Data = string.Empty;
+            labExample.Text = string.Empty;
+            ((Control)nudOffset).TextChanged += tboxFormula_TextChanged;
         }
 
-        private Button current = null;
+        private Button? current = null;
+        private bool busy = false;
 
         public void Build(string userFunctions)
         {
             flpUserFunctions.Controls.Clear();
-
             foreach (var line in userFunctions.Split('\n'))
             {
                 var vals = line.Split('\t');
@@ -35,76 +37,65 @@ namespace PictureFromLatexFormula
                 item.Build(line);
                 var btn = new Button
                 {
-                    Tag = item.OffsetPosition,
+                    Text = item.Formula,
+                    Tag = item.Offset,
                     Width = 20,
                     AutoSize = true,
                     FlatStyle = FlatStyle.Flat,
                     TabStop = false,
                 };
-                try
-                {
-                    btn.Image = FormulaHelper.GetImage(item.CaptionFormula);
-                }
-                catch
-                {
-                    btn.Text = item.CaptionFormula;
-                    btn.ForeColor = Color.Red;
-                }
                 btn.Click += (s, e) =>
                 {
-                    current = (Button)s;
-                    tboxInsertFormula.Text = item.InsertFormula;
-                    tboxInsertFormula.Enabled = true;
-                    tboxCaptionFormula.Text = item.CaptionFormula;
-                    tboxCaptionFormula.Enabled = true;
-                    nudOffsetPosition.Value = item.OffsetPosition;
-                    nudOffsetPosition.Enabled = true;
-                    try
-                    {
-                        pboxButtonImage.Image = FormulaHelper.GetImage(item.CaptionFormula);
-                        btnApply.Enabled = true;
-                    }
-                    catch
-                    {
-                        pboxButtonImage.Image = pboxButtonImage.ErrorImage;
-                        btnApply.Enabled = false;
-                    }
+                    busy = true;
+
+                    current = (Button?)s;
+                    tboxFormula.Text = current?.Text;
+                    tboxFormula.Enabled = true;
+                    nudOffset.Value = int.TryParse($"{current?.Tag}", out int offset) ? offset : 0;
+                    nudOffset.Enabled = true;
+                    labExample.Text = current?.Text;
+
+                    busy = false;
                 };
                 flpUserFunctions.Controls.Add(btn);
-            }
-        }
-
-        private void tboxCaptionFormula_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var captionFormula = tboxCaptionFormula.Text;
-                pboxButtonImage.Image = FormulaHelper.GetImage(captionFormula);
-                btnApply.Enabled = true;
-            }
-            catch
-            {
-                pboxButtonImage.Image = pboxButtonImage.ErrorImage;
-                btnApply.Enabled = false;
             }
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
             if (current == null) return;
-            var captionFormula = tboxCaptionFormula.Text;
-            try
+            current.Text = tboxFormula.Text;
+            current.Tag = (int)nudOffset.Value;
+            btnApply.Enabled = false;
+
+            busy = true;
+
+            tboxFormula.Text = string.Empty;
+            nudOffset.Value = 0;
+
+            busy = false;
+
+            tboxFormula.Enabled = false;
+            nudOffset.Enabled = false;
+            BuildData();
+        }
+
+        private void tboxFormula_TextChanged(object sender, EventArgs e)
+        {
+            if (busy) return;
+
+            btnApply.Enabled = true;
+        }
+
+        private void BuildData()
+        {
+            List<string> list = new(); 
+            foreach (var btn in flpUserFunctions.Controls.OfType<Button>())
             {
-                current.Image = FormulaHelper.GetImage(captionFormula);
-                current.Text = string.Empty;
-                ForeColor = SystemColors.ControlText;
+                var item = new UserFunction(btn.Text, btn.Text, int.TryParse($"{btn.Tag}", out int pos) ? pos : 0);
+                list.Add(item.ToString());
             }
-            catch
-            {
-                current.Image = null;
-                current.Text = captionFormula;
-                ForeColor = Color.Red;
-            }
+            Data = string.Join("\n", list.ToArray());
         }
     }
 }

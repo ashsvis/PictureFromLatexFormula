@@ -4,38 +4,34 @@
     {
         public UserFunction() 
         {
-            CaptionFormula = string.Empty;
-            InsertFormula = string.Empty;
-            OffsetPosition = 0;
+            Formula = string.Empty;
+            Offset = 0;
         }
 
         public UserFunction(string captionFormula, string insertFormula, int offsetPosition)
         {
-            CaptionFormula = captionFormula;
-            InsertFormula = insertFormula;
-            OffsetPosition = offsetPosition;
+            Formula = insertFormula;
+            Offset = offsetPosition;
         }
 
-        public string CaptionFormula { get; set; }
-        public string InsertFormula {  get; set; }
-        public int OffsetPosition { get; set; }
+        public string Formula {  get; set; }
+        public int Offset { get; set; }
 
         public override string ToString()
         {
-            return $"{CaptionFormula}\t{InsertFormula}\t{OffsetPosition}";
+            return $"{Formula}\t{Offset}";
         }
 
         public void Build(string source)
         {
             var vals = source.Split('\t');
-            if (vals.Length == 3 )
+            if (vals.Length == 2 )
             {
-                CaptionFormula = vals[0];
-                InsertFormula = vals[1];
-                if (int.TryParse(vals[2], out int value))
-                    OffsetPosition = value;
+                Formula = vals[0];
+                if (int.TryParse(vals[1], out int value))
+                    Offset = value;
                 else
-                    OffsetPosition = 0;
+                    Offset = 0;
             }
         }
 

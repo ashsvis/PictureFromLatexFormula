@@ -25,9 +25,8 @@ namespace PictureFromLatexFormula.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\frac{}{}\t\\frac{}{}\t3\r\n\\text{}\t\\text{}\t1\r\n\\sqrt{}\t\\sqrt{}\t1\r\n_{}\t_{}\t1\r\n^{}\t^{}\t1" +
-            "\r\n\\,\t\\,\t0\r\n\\:\t\\:\t0\r\n\\;\t\\;\t0\r\n\\!\t\\!\t0\r\n\\left(\\right)\t\\left(\\right)\t7\r\n\\color{red}" +
-            "{}\t\\color{red}{}\t1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\frac{}{}\t3\r\n\\text{}\t1\r\n\\sqrt{}\t1\r\n_{}\t1\r\n^{}\t1\r\n\\,\t0\r\n\\:\t0\r\n\\;\t0\r\n\\!\t0\r\n\\left(\\r" +
+            "ight)\t7\r\n\\color{red}{}\t1")]
         public string UserFunctions {
             get {
                 return ((string)(this["UserFunctions"]));

@@ -529,13 +529,6 @@ namespace PictureFromLatexFormula
                 Properties.Settings.Default.Save();
                 LoadUserFunctions();
             }
-            //foreach (var btn in flpUserFunctions.Controls.OfType<Button>())
-            //{
-            //    var item = new UserFunction(btn.Text, btn.Text, int.TryParse($"{btn.Tag}", out int pos) ? pos : 0);
-            //    list.Add(item.ToString());
-            //}
-            //Properties.Settings.Default.UserFunctions = string.Join("\n", list.ToArray());
-            //Properties.Settings.Default.Save();
         }
 
         private void LoadUserFunctions()
@@ -554,9 +547,9 @@ namespace PictureFromLatexFormula
                 item.Build(line);
                 var btn = new Button 
                 { 
-                    Text = item.CaptionFormula, 
-                    Tag = item.OffsetPosition, 
-                    Width = 30,
+                    Text = item.Formula, 
+                    Tag = item.Offset, 
+                    Width = 20,
                     AutoSize = true, 
                     FlatStyle = FlatStyle.Flat 
                 };
