@@ -2,10 +2,12 @@
 {
     public class Notation
     {
-        public Notation(string category, string formula)
+        public Notation(string category, string formula, string pasted = "", int offset = 0)
         {
             Category = category;
             Formula = formula;
+            Pasted = string.IsNullOrWhiteSpace(pasted) ? formula : pasted;
+            Offset = offset;
             try
             {
                 Picture = FormulaHelper.GetImage(formula);
@@ -25,5 +27,8 @@
         public Image? Picture { get; private set; }
         public bool ErrorInFormula { get; private set; }
         public string ErrorInFormulaText { get; private set; }
+
+        public string Pasted { get; private set; }
+        public int Offset { get; private set; }
     }
 }

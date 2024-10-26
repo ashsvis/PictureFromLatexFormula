@@ -95,7 +95,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(505, 509);
+            tableLayoutPanel1.Size = new Size(384, 576);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -126,7 +126,7 @@
             tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(499, 100);
+            tboxLatex.Size = new Size(378, 100);
             tboxLatex.TabIndex = 1;
             tboxLatex.Text = "Загрузка программы...";
             tboxLatex.TextChanged += tboxLatex_TextChanged;
@@ -138,9 +138,9 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 234);
+            panel1.Location = new Point(3, 236);
             panel1.Name = "panel1";
-            panel1.Size = new Size(499, 272);
+            panel1.Size = new Size(378, 337);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -159,21 +159,21 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 206);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(505, 25);
+            toolStrip1.Size = new Size(384, 27);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(62, 22);
+            toolStripLabel1.Size = new Size(62, 24);
             toolStripLabel1.Text = "Масштаб:";
             // 
             // tscbScale
             // 
             tscbScale.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbScale.Name = "tscbScale";
-            tscbScale.Size = new Size(75, 25);
+            tscbScale.Size = new Size(75, 27);
             tscbScale.SelectedIndexChanged += nudScale_ValueChanged;
             // 
             // tsbMoreFontSize
@@ -183,7 +183,7 @@
             tsbMoreFontSize.Image = Properties.Resources.Увеличить_размер_шрифта;
             tsbMoreFontSize.ImageTransparentColor = Color.White;
             tsbMoreFontSize.Name = "tsbMoreFontSize";
-            tsbMoreFontSize.Size = new Size(23, 22);
+            tsbMoreFontSize.Size = new Size(23, 24);
             tsbMoreFontSize.Text = "увеличить масштаб";
             tsbMoreFontSize.Click += tsbMoreFontSize_Click;
             // 
@@ -194,21 +194,21 @@
             tsbLessFontSize.Image = Properties.Resources.Уменьшить_размер_шрифта;
             tsbLessFontSize.ImageTransparentColor = Color.White;
             tsbLessFontSize.Name = "tsbLessFontSize";
-            tsbLessFontSize.Size = new Size(23, 22);
+            tsbLessFontSize.Size = new Size(23, 24);
             tsbLessFontSize.Text = "уменьшить масштаб";
             tsbLessFontSize.Click += tsbLessFontSize_Click;
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(113, 22);
+            toolStripLabel2.Size = new Size(113, 24);
             toolStripLabel2.Text = "Шрифт для \\text{...}";
             // 
             // tscbSystemFontName
             // 
             tscbSystemFontName.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbSystemFontName.Name = "tscbSystemFontName";
-            tscbSystemFontName.Size = new Size(140, 25);
+            tscbSystemFontName.Size = new Size(140, 23);
             tscbSystemFontName.SelectedIndexChanged += cboxSystemFontName_SelectionChangeCommitted;
             // 
             // toolStripSeparator1
@@ -223,7 +223,7 @@
             tsbCopyToClipboard.Image = (Image)resources.GetObject("tsbCopyToClipboard.Image");
             tsbCopyToClipboard.ImageTransparentColor = Color.Magenta;
             tsbCopyToClipboard.Name = "tsbCopyToClipboard";
-            tsbCopyToClipboard.Size = new Size(23, 22);
+            tsbCopyToClipboard.Size = new Size(23, 20);
             tsbCopyToClipboard.Text = "&Копировать картинку в буфер обмена";
             tsbCopyToClipboard.Click += tsbCopyToClipboard_Click;
             // 
@@ -234,7 +234,7 @@
             tsbSave.Image = (Image)resources.GetObject("tsbSave.Image");
             tsbSave.ImageTransparentColor = Color.Magenta;
             tsbSave.Name = "tsbSave";
-            tsbSave.Size = new Size(23, 22);
+            tsbSave.Size = new Size(23, 20);
             tsbSave.Text = "&Сохранить картинку в файл на диске...";
             tsbSave.Click += tsbSave_Click;
             // 
@@ -244,7 +244,7 @@
             toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator2, tsbShowHideNotes });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(505, 25);
+            toolStrip2.Size = new Size(384, 25);
             toolStrip2.TabIndex = 5;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -302,7 +302,7 @@
             flpUserFunctions.Dock = DockStyle.Fill;
             flpUserFunctions.Location = new Point(3, 153);
             flpUserFunctions.Name = "flpUserFunctions";
-            flpUserFunctions.Size = new Size(499, 31);
+            flpUserFunctions.Size = new Size(378, 31);
             flpUserFunctions.TabIndex = 6;
             toolTip1.SetToolTip(flpUserFunctions, "увеличить масштаб");
             // 
@@ -343,6 +343,7 @@
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.FixedPanel = FixedPanel.Panel2;
             splitContainer1.Location = new Point(0, 0);
             splitContainer1.Name = "splitContainer1";
             // 
@@ -353,8 +354,8 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tlpNotes);
-            splitContainer1.Size = new Size(938, 509);
-            splitContainer1.SplitterDistance = 505;
+            splitContainer1.Size = new Size(965, 576);
+            splitContainer1.SplitterDistance = 384;
             splitContainer1.TabIndex = 1;
             // 
             // tlpNotes
@@ -369,14 +370,14 @@
             tlpNotes.Name = "tlpNotes";
             tlpNotes.RowCount = 1;
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpNotes.Size = new Size(429, 509);
+            tlpNotes.Size = new Size(577, 576);
             tlpNotes.TabIndex = 7;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(938, 509);
+            ClientSize = new Size(965, 576);
             Controls.Add(splitContainer1);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
