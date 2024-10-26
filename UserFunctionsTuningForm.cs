@@ -2,13 +2,17 @@
 {
     public partial class UserFunctionsTuningForm : Form
     {
+        private readonly List<UserFunction> functions = new();
+
         public string Data { get; private set; }
 
         public UserFunctionsTuningForm()
         {
             InitializeComponent();
             Data = string.Empty;
+#pragma warning disable CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
             ((Control)nudOffset).TextChanged += tboxFormula_TextChanged;
+#pragma warning restore CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
         }
 
         private Button? current = null;
@@ -16,38 +20,65 @@
 
         public void Build(string userFunctions)
         {
+            btnDelete.Enabled = false;
             flpUserFunctions.Controls.Clear();
-            foreach (var line in userFunctions.Split('\n'))
+            foreach (var line in userFunctions.Split('\n', StringSplitOptions.RemoveEmptyEntries))
             {
                 var vals = line.Split('\t');
                 var item = new UserFunction();
                 item.Build(line);
+                functions.Add(item);
+
                 var btn = new Button
                 {
                     Text = item.Formula,
-                    Tag = item.Offset,
+                    Tag = item,
                     Width = 20,
                     AutoSize = true,
                     FlatStyle = FlatStyle.Flat,
                     TabStop = false,
                 };
-                btn.Click += (s, e) =>
-                {
-                    busy = true;
-
-                    current = (Button?)s;
-                    var formula = (current?.Text) ?? string.Empty;
-                    tboxFormula.Text = formula;
-                    tboxFormula.Enabled = true;
-                    nudOffset.Value = int.TryParse($"{current?.Tag}", out int offset) ? offset : 0;
-                    nudOffset.Maximum = formula.Length;
-                    nudOffset.Enabled = true;
-
-                    BuildOffsetExample(formula, offset);
-
-                    busy = false;
-                };
+                btn.Click += Btn_Click;
                 flpUserFunctions.Controls.Add(btn);
+                flpUserFunctions.SetFlowBreak(btn, true);
+            }
+        }
+
+        /// <summary>
+        /// Выбор текущей кнопки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Click(object? sender, EventArgs e)
+        {
+            busy = true;
+
+            if (current != null)
+                current.FlatAppearance.BorderColor = SystemColors.ControlText;
+
+            current = (Button?)sender;
+
+            if (current != null)
+                current.FlatAppearance.BorderColor = Color.Cyan;
+
+            EnableEditors();
+            btnDelete.Enabled = true;
+
+            busy = false;
+        }
+
+        private void EnableEditors()
+        {
+            if (current?.Tag is UserFunction function)
+            {
+                var formula = function.Formula;
+                tboxFormula.Text = formula;
+                tboxFormula.Enabled = true;
+                nudOffset.Maximum = formula.Length;
+                nudOffset.Value = function.Offset;
+                nudOffset.Enabled = true;
+
+                BuildOffsetExample(formula, function.Offset);
             }
         }
 
@@ -63,8 +94,26 @@
         private void btnApply_Click(object sender, EventArgs e)
         {
             if (current == null) return;
-            current.Text = tboxFormula.Text;
-            current.Tag = (int)nudOffset.Value;
+            if (!flpUserFunctions.Controls.Cast<Button>().Any(btn => btn == current))
+            {
+                if (current?.Tag is UserFunction func)
+                {
+                    functions.Add(func);
+                    flpUserFunctions.Controls.Add(current);
+                    flpUserFunctions.SetFlowBreak(current, true);
+                    current.Focus();
+                }
+            }
+
+            if (current?.Tag is UserFunction function)
+            {
+                function.Formula = tboxFormula.Text;
+                function.Offset = (int)nudOffset.Value;
+                current.Text = function.Formula;
+                current.Tag = function.Offset;
+                current.Width = 20;
+            }
+
             btnApply.Enabled = false;
 
             busy = true;
@@ -85,21 +134,56 @@
 
             if (sender == tboxFormula)
                 nudOffset.Maximum = tboxFormula.TextLength;
-            if (sender == nudOffset)
+            if (sender == nudOffset || sender == tboxFormula)
                 BuildOffsetExample(tboxFormula.Text, (int)nudOffset.Value);
 
             btnApply.Enabled = true;
+            btnAdd.Enabled = tboxFormula.TextLength > 0;
         }
 
         private void BuildData()
         {
-            List<string> list = new(); 
-            foreach (var btn in flpUserFunctions.Controls.OfType<Button>())
+            Data = string.Join("\n", functions);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (!flpUserFunctions.Controls.Cast<Button>().Any(btn => btn.Text == tboxFormula.Text))
             {
-                var item = new UserFunction(btn.Text, btn.Text, int.TryParse($"{btn.Tag}", out int pos) ? pos : 0);
-                list.Add(item.ToString());
+                var btn = new Button
+                {
+                    Width = 20,
+                    AutoSize = true,
+                    FlatStyle = FlatStyle.Flat,
+                    TabStop = false,
+                    Tag = new UserFunction()
+                };
+                btn.Click += Btn_Click;
+                current = btn;
+                EnableEditors();
             }
-            Data = string.Join("\n", list.ToArray());
+            else
+            {
+                tboxFormula.Text = string.Empty;
+                nudOffset.Value = 0;
+                btnApply.Enabled = false;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (flpUserFunctions.Controls.Cast<Button>().Any(btn => btn.Text == tboxFormula.Text))
+            {
+                var btn = flpUserFunctions.Controls.Cast<Button>().FirstOrDefault(btn => btn == current);
+                if (btn != null)
+                {
+                    flpUserFunctions.Controls.Remove(btn);
+                    if (btn.Tag is UserFunction function)
+                        functions.Remove(function);
+                }
+                BuildData();
+                btnDelete.Enabled = false;
+            }
         }
     }
 }

@@ -9,6 +9,18 @@ namespace PictureFromLatexFormula
     {
         readonly InstalledFontCollection installedFontCollection = new();
         readonly BackgroundWorker worker = new();
+        readonly string predefined = @"\frac{}{}	3
+\text{}	1
+\sqrt{}	1
+_{}	1
+^{}	1
+\,	0
+\:	0
+\;	0
+\!	0
+\left(\right)	7
+\color{red}{}	1
+";
 
         public MainForm()
         {
@@ -521,8 +533,11 @@ namespace PictureFromLatexFormula
 
         private void ManageUserFunctions()
         {
+            var functions = Properties.Settings.Default.UserFunctions;
+            if (string.IsNullOrEmpty(functions))
+                functions = predefined;
             var frm = new UserFunctionsTuningForm();
-            frm.Build(Properties.Settings.Default.UserFunctions);
+            frm.Build(functions);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.UserFunctions = frm.Data;
@@ -533,14 +548,17 @@ namespace PictureFromLatexFormula
 
         private void LoadUserFunctions()
         {
-            for (var i = flpUserFunctions.Controls.Count - 1; i > 1; i--)
+            for (var i = flpUserFunctions.Controls.Count - 1; i > 0; i--)
             {
 #pragma warning disable CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
                 flpUserFunctions.Controls[i].Click -= btnInsertFunction_Click;
 #pragma warning restore CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
                 flpUserFunctions.Controls.RemoveAt(i);
             }
-            foreach (var line in Properties.Settings.Default.UserFunctions.Split('\n'))
+            var functions = Properties.Settings.Default.UserFunctions;
+            if (string.IsNullOrEmpty(functions))
+                functions = predefined;
+            foreach (var line in functions.Split('\n', StringSplitOptions.RemoveEmptyEntries))
             {
                 var vals = line.Split('\t');
                 var item = new UserFunction();

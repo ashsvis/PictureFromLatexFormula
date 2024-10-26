@@ -41,6 +41,7 @@
             btnApply = new Button();
             btnDelete = new Button();
             flpExample = new FlowLayoutPanel();
+            btnAdd = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudOffset).BeginInit();
@@ -50,7 +51,7 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 264F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 139F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(flpUserFunctions, 0, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 0);
@@ -59,7 +60,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(676, 303);
+            tableLayoutPanel1.Size = new Size(507, 303);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // flpUserFunctions
@@ -69,7 +70,7 @@
             flpUserFunctions.Dock = DockStyle.Fill;
             flpUserFunctions.Location = new Point(3, 3);
             flpUserFunctions.Name = "flpUserFunctions";
-            flpUserFunctions.Size = new Size(258, 297);
+            flpUserFunctions.Size = new Size(133, 297);
             flpUserFunctions.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -86,15 +87,16 @@
             tableLayoutPanel2.Controls.Add(btnApply, 1, 2);
             tableLayoutPanel2.Controls.Add(btnDelete, 0, 3);
             tableLayoutPanel2.Controls.Add(flpExample, 2, 1);
+            tableLayoutPanel2.Controls.Add(btnAdd, 0, 2);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(267, 3);
+            tableLayoutPanel2.Location = new Point(142, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
-            tableLayoutPanel2.Size = new Size(406, 297);
+            tableLayoutPanel2.Size = new Size(362, 297);
             tableLayoutPanel2.TabIndex = 1;
             // 
             // label1
@@ -126,7 +128,7 @@
             tboxFormula.Enabled = false;
             tboxFormula.Location = new Point(171, 3);
             tboxFormula.Name = "tboxFormula";
-            tboxFormula.Size = new Size(232, 23);
+            tboxFormula.Size = new Size(188, 23);
             tboxFormula.TabIndex = 1;
             tboxFormula.TextChanged += tboxFormula_TextChanged;
             // 
@@ -135,7 +137,7 @@
             nudOffset.Enabled = false;
             nudOffset.Location = new Point(171, 32);
             nudOffset.Name = "nudOffset";
-            nudOffset.Size = new Size(64, 23);
+            nudOffset.Size = new Size(44, 23);
             nudOffset.TabIndex = 2;
             nudOffset.ValueChanged += tboxFormula_TextChanged;
             // 
@@ -146,7 +148,7 @@
             tableLayoutPanel2.SetColumnSpan(flowLayoutPanel2, 2);
             flowLayoutPanel2.Controls.Add(btnOk);
             flowLayoutPanel2.Controls.Add(btnCancel);
-            flowLayoutPanel2.Location = new Point(241, 265);
+            flowLayoutPanel2.Location = new Point(197, 265);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(162, 29);
             flowLayoutPanel2.TabIndex = 4;
@@ -176,7 +178,7 @@
             btnApply.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             tableLayoutPanel2.SetColumnSpan(btnApply, 2);
             btnApply.Enabled = false;
-            btnApply.Location = new Point(316, 61);
+            btnApply.Location = new Point(272, 61);
             btnApply.Name = "btnApply";
             btnApply.Size = new Size(87, 23);
             btnApply.TabIndex = 0;
@@ -194,16 +196,27 @@
             btnDelete.TabIndex = 0;
             btnDelete.Text = "Удалить кнопку";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // flpExample
             // 
             flpExample.AutoSize = true;
             flpExample.Dock = DockStyle.Fill;
-            flpExample.Location = new Point(241, 32);
+            flpExample.Location = new Point(221, 32);
             flpExample.Name = "flpExample";
-            flpExample.Size = new Size(162, 23);
+            flpExample.Size = new Size(138, 23);
             flpExample.TabIndex = 5;
             flpExample.WrapContents = false;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(3, 61);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(117, 23);
+            btnAdd.TabIndex = 0;
+            btnAdd.Text = "Добавить кнопку";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // UserFunctionsTuningForm
             // 
@@ -211,7 +224,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new Size(676, 303);
+            ClientSize = new Size(507, 303);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
@@ -243,5 +256,6 @@
         private Button btnApply;
         private Button btnDelete;
         private FlowLayoutPanel flpExample;
+        private Button btnAdd;
     }
 }
