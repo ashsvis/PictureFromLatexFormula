@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.WebRequestMethods;
-using System.Windows.Media.Media3D;
-
-namespace PictureFromLatexFormula
+﻿namespace PictureFromLatexFormula
 {
     public partial class UserFunctionsTuningForm : Form
     {
@@ -20,7 +8,6 @@ namespace PictureFromLatexFormula
         {
             InitializeComponent();
             Data = string.Empty;
-            labExample.Text = string.Empty;
             ((Control)nudOffset).TextChanged += tboxFormula_TextChanged;
         }
 
@@ -49,16 +36,28 @@ namespace PictureFromLatexFormula
                     busy = true;
 
                     current = (Button?)s;
-                    tboxFormula.Text = current?.Text;
+                    var formula = (current?.Text) ?? string.Empty;
+                    tboxFormula.Text = formula;
                     tboxFormula.Enabled = true;
                     nudOffset.Value = int.TryParse($"{current?.Tag}", out int offset) ? offset : 0;
+                    nudOffset.Maximum = formula.Length;
                     nudOffset.Enabled = true;
-                    labExample.Text = current?.Text;
+
+                    BuildOffsetExample(formula, offset);
 
                     busy = false;
                 };
                 flpUserFunctions.Controls.Add(btn);
             }
+        }
+
+        private void BuildOffsetExample(string? formula, int offset)
+        {
+            flpExample.Controls.Clear();
+            flpExample.Controls.Add(new Label { Text = formula?.Substring(0, formula.Length - offset), AutoSize = true, Margin = new Padding(0, 5, 0, 0) });
+            flpExample.Controls.Add(new Label { Text = "|", AutoSize = true, Margin = new Padding(0, 5, 0, 0), BackColor = SystemColors.Info });
+            if (offset > 0)
+                flpExample.Controls.Add(new Label { Text = formula?.Substring(formula.Length - offset), AutoSize = true, Margin = new Padding(0, 5, 0, 0) });
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -83,6 +82,11 @@ namespace PictureFromLatexFormula
         private void tboxFormula_TextChanged(object sender, EventArgs e)
         {
             if (busy) return;
+
+            if (sender == tboxFormula)
+                nudOffset.Maximum = tboxFormula.TextLength;
+            if (sender == nudOffset)
+                BuildOffsetExample(tboxFormula.Text, (int)nudOffset.Value);
 
             btnApply.Enabled = true;
         }

@@ -40,7 +40,7 @@
             btnCancel = new Button();
             btnApply = new Button();
             btnDelete = new Button();
-            labExample = new Label();
+            flpExample = new FlowLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudOffset).BeginInit();
@@ -85,7 +85,7 @@
             tableLayoutPanel2.Controls.Add(flowLayoutPanel2, 1, 3);
             tableLayoutPanel2.Controls.Add(btnApply, 1, 2);
             tableLayoutPanel2.Controls.Add(btnDelete, 0, 3);
-            tableLayoutPanel2.Controls.Add(labExample, 2, 1);
+            tableLayoutPanel2.Controls.Add(flpExample, 2, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(267, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -195,16 +195,15 @@
             btnDelete.Text = "Удалить кнопку";
             btnDelete.UseVisualStyleBackColor = true;
             // 
-            // labExample
+            // flpExample
             // 
-            labExample.AutoSize = true;
-            labExample.Dock = DockStyle.Fill;
-            labExample.Location = new Point(241, 29);
-            labExample.Name = "labExample";
-            labExample.Size = new Size(162, 29);
-            labExample.TabIndex = 5;
-            labExample.Text = "...";
-            labExample.TextAlign = ContentAlignment.MiddleLeft;
+            flpExample.AutoSize = true;
+            flpExample.Dock = DockStyle.Fill;
+            flpExample.Location = new Point(241, 32);
+            flpExample.Name = "flpExample";
+            flpExample.Size = new Size(162, 23);
+            flpExample.TabIndex = 5;
+            flpExample.WrapContents = false;
             // 
             // UserFunctionsTuningForm
             // 
@@ -243,6 +242,6 @@
         private Button btnCancel;
         private Button btnApply;
         private Button btnDelete;
-        private Label labExample;
+        private FlowLayoutPanel flpExample;
     }
 }
