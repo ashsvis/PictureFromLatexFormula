@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Drawing.Text;
+using System.Globalization;
 using WpfMath;
 using WpfMath.Parsers;
 
@@ -155,6 +156,16 @@ _{}	1
         private void timer1_Tick(object sender, EventArgs e)
         {
             tsbSaveFormula.Enabled = tboxLatex.TextLength > 0;
+            if (InputLanguage.CurrentInputLanguage.Culture.Name == "en-US")
+            {
+                tsbEN.Checked = true;
+                tsbRU.Checked = false;
+            }
+            else if (InputLanguage.CurrentInputLanguage.Culture.Name == "ru-RU")
+            {
+                tsbRU.Checked = true;
+                tsbEN.Checked = false;
+            }
         }
 
         private void tsbClearFormula_Click(object sender, EventArgs e)
@@ -633,6 +644,8 @@ _{}	1
             if (int.TryParse($"{btn.Tag}", out int offset))
                 tboxLatex.SelectionStart -= offset;
             tboxLatex.Focus();
+            if (btn.Text == @"\text{}")
+                InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ru-RU"));
         }
 
         private void tsbMoreFontSize_Click(object sender, EventArgs e)
@@ -682,19 +695,34 @@ _{}	1
                 var vals = line.Split('\t');
                 var item = new UserFunction();
                 item.Build(line);
-                var btn = new Button 
-                { 
-                    Text = item.Formula, 
-                    Tag = item.Offset, 
+                var btn = new Button
+                {
+                    Text = item.Formula,
+                    Tag = item.Offset,
                     Width = 20,
-                    AutoSize = true, 
-                    FlatStyle = FlatStyle.Flat 
+                    AutoSize = true,
+                    FlatStyle = FlatStyle.Flat
                 };
 #pragma warning disable CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
                 btn.Click += btnInsertFunction_Click;
 #pragma warning restore CS8622 // Допустимость значений NULL для ссылочных типов в типе параметра не соответствует целевому объекту делегирования (возможно, из-за атрибутов допустимости значений NULL).
                 flpUserFunctions.Controls.Add(btn);
             }
+        }
+
+        private void tboxLatex_Enter(object sender, EventArgs e)
+        {
+            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("en-US"));
+        }
+
+        private void tsbEN_Click(object sender, EventArgs e)
+        {
+            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("en-US"));
+        }
+
+        private void tsbRU_Click(object sender, EventArgs e)
+        {
+            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ru-RU"));
         }
     }
 }

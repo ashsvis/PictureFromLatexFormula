@@ -52,6 +52,8 @@
             tsbSaveFormula = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             tsbShowHideNotes = new ToolStripButton();
+            tsbEN = new ToolStripButton();
+            tsbRU = new ToolStripButton();
             flpUserFunctions = new FlowLayoutPanel();
             labFunctions = new Label();
             saveFileDialog1 = new SaveFileDialog();
@@ -95,7 +97,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(384, 576);
+            tableLayoutPanel1.Size = new Size(496, 576);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -126,10 +128,11 @@
             tboxLatex.Multiline = true;
             tboxLatex.Name = "tboxLatex";
             tboxLatex.ScrollBars = ScrollBars.Vertical;
-            tboxLatex.Size = new Size(378, 100);
+            tboxLatex.Size = new Size(490, 100);
             tboxLatex.TabIndex = 1;
             tboxLatex.Text = "Загрузка программы...";
             tboxLatex.TextChanged += tboxLatex_TextChanged;
+            tboxLatex.Enter += tboxLatex_Enter;
             // 
             // panel1
             // 
@@ -138,9 +141,9 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(pboxFormula);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 236);
+            panel1.Location = new Point(3, 234);
             panel1.Name = "panel1";
-            panel1.Size = new Size(378, 337);
+            panel1.Size = new Size(490, 339);
             panel1.TabIndex = 2;
             // 
             // pboxFormula
@@ -159,21 +162,21 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1, tscbScale, tsbMoreFontSize, tsbLessFontSize, toolStripLabel2, tscbSystemFontName, toolStripSeparator1, tsbCopyToClipboard, tsbSave });
             toolStrip1.Location = new Point(0, 206);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(384, 27);
+            toolStrip1.Size = new Size(496, 25);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new Size(62, 24);
+            toolStripLabel1.Size = new Size(62, 22);
             toolStripLabel1.Text = "Масштаб:";
             // 
             // tscbScale
             // 
             tscbScale.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbScale.Name = "tscbScale";
-            tscbScale.Size = new Size(75, 27);
+            tscbScale.Size = new Size(75, 25);
             tscbScale.SelectedIndexChanged += nudScale_ValueChanged;
             // 
             // tsbMoreFontSize
@@ -183,7 +186,7 @@
             tsbMoreFontSize.Image = Properties.Resources.Увеличить_размер_шрифта;
             tsbMoreFontSize.ImageTransparentColor = Color.White;
             tsbMoreFontSize.Name = "tsbMoreFontSize";
-            tsbMoreFontSize.Size = new Size(23, 24);
+            tsbMoreFontSize.Size = new Size(23, 22);
             tsbMoreFontSize.Text = "увеличить масштаб";
             tsbMoreFontSize.Click += tsbMoreFontSize_Click;
             // 
@@ -194,21 +197,21 @@
             tsbLessFontSize.Image = Properties.Resources.Уменьшить_размер_шрифта;
             tsbLessFontSize.ImageTransparentColor = Color.White;
             tsbLessFontSize.Name = "tsbLessFontSize";
-            tsbLessFontSize.Size = new Size(23, 24);
+            tsbLessFontSize.Size = new Size(23, 22);
             tsbLessFontSize.Text = "уменьшить масштаб";
             tsbLessFontSize.Click += tsbLessFontSize_Click;
             // 
             // toolStripLabel2
             // 
             toolStripLabel2.Name = "toolStripLabel2";
-            toolStripLabel2.Size = new Size(113, 24);
+            toolStripLabel2.Size = new Size(113, 22);
             toolStripLabel2.Text = "Шрифт для \\text{...}";
             // 
             // tscbSystemFontName
             // 
             tscbSystemFontName.DropDownStyle = ComboBoxStyle.DropDownList;
             tscbSystemFontName.Name = "tscbSystemFontName";
-            tscbSystemFontName.Size = new Size(140, 23);
+            tscbSystemFontName.Size = new Size(140, 25);
             tscbSystemFontName.SelectedIndexChanged += cboxSystemFontName_SelectionChangeCommitted;
             // 
             // toolStripSeparator1
@@ -223,7 +226,7 @@
             tsbCopyToClipboard.Image = (Image)resources.GetObject("tsbCopyToClipboard.Image");
             tsbCopyToClipboard.ImageTransparentColor = Color.Magenta;
             tsbCopyToClipboard.Name = "tsbCopyToClipboard";
-            tsbCopyToClipboard.Size = new Size(23, 20);
+            tsbCopyToClipboard.Size = new Size(23, 22);
             tsbCopyToClipboard.Text = "&Копировать картинку в буфер обмена";
             tsbCopyToClipboard.Click += tsbCopyToClipboard_Click;
             // 
@@ -234,17 +237,17 @@
             tsbSave.Image = (Image)resources.GetObject("tsbSave.Image");
             tsbSave.ImageTransparentColor = Color.Magenta;
             tsbSave.Name = "tsbSave";
-            tsbSave.Size = new Size(23, 20);
+            tsbSave.Size = new Size(23, 22);
             tsbSave.Text = "&Сохранить картинку в файл на диске...";
             tsbSave.Click += tsbSave_Click;
             // 
             // toolStrip2
             // 
             toolStrip2.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator2, tsbShowHideNotes });
+            toolStrip2.Items.AddRange(new ToolStripItem[] { tsbClearFormula, tsbLoadFormula, tsbSaveFormula, toolStripSeparator2, tsbShowHideNotes, tsbEN, tsbRU });
             toolStrip2.Location = new Point(0, 19);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new Size(384, 25);
+            toolStrip2.Size = new Size(496, 25);
             toolStrip2.TabIndex = 5;
             toolStrip2.Text = "toolStrip2";
             // 
@@ -286,7 +289,10 @@
             // 
             // tsbShowHideNotes
             // 
+            tsbShowHideNotes.Alignment = ToolStripItemAlignment.Right;
+            tsbShowHideNotes.Checked = true;
             tsbShowHideNotes.CheckOnClick = true;
+            tsbShowHideNotes.CheckState = CheckState.Checked;
             tsbShowHideNotes.DisplayStyle = ToolStripItemDisplayStyle.Image;
             tsbShowHideNotes.Image = Properties.Resources.Обратить_диаграмму;
             tsbShowHideNotes.ImageTransparentColor = Color.White;
@@ -295,6 +301,28 @@
             tsbShowHideNotes.Text = "Показать / спрятать панель примеров";
             tsbShowHideNotes.Click += tsbShowHideNotes_Click;
             // 
+            // tsbEN
+            // 
+            tsbEN.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbEN.Image = (Image)resources.GetObject("tsbEN.Image");
+            tsbEN.ImageTransparentColor = Color.Magenta;
+            tsbEN.Name = "tsbEN";
+            tsbEN.Size = new Size(26, 22);
+            tsbEN.Text = "EN";
+            tsbEN.ToolTipText = "Переключение на латиницу";
+            tsbEN.Click += tsbEN_Click;
+            // 
+            // tsbRU
+            // 
+            tsbRU.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbRU.Image = (Image)resources.GetObject("tsbRU.Image");
+            tsbRU.ImageTransparentColor = Color.Magenta;
+            tsbRU.Name = "tsbRU";
+            tsbRU.Size = new Size(26, 22);
+            tsbRU.Text = "RU";
+            tsbRU.ToolTipText = "Переключение на кирилицу";
+            tsbRU.Click += tsbRU_Click;
+            // 
             // flpUserFunctions
             // 
             flpUserFunctions.AutoSize = true;
@@ -302,7 +330,7 @@
             flpUserFunctions.Dock = DockStyle.Fill;
             flpUserFunctions.Location = new Point(3, 153);
             flpUserFunctions.Name = "flpUserFunctions";
-            flpUserFunctions.Size = new Size(378, 31);
+            flpUserFunctions.Size = new Size(490, 31);
             flpUserFunctions.TabIndex = 6;
             toolTip1.SetToolTip(flpUserFunctions, "увеличить масштаб");
             // 
@@ -355,7 +383,7 @@
             // 
             splitContainer1.Panel2.Controls.Add(tlpNotes);
             splitContainer1.Size = new Size(965, 576);
-            splitContainer1.SplitterDistance = 384;
+            splitContainer1.SplitterDistance = 496;
             splitContainer1.TabIndex = 1;
             // 
             // tlpNotes
@@ -370,7 +398,7 @@
             tlpNotes.Name = "tlpNotes";
             tlpNotes.RowCount = 1;
             tlpNotes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpNotes.Size = new Size(577, 576);
+            tlpNotes.Size = new Size(465, 576);
             tlpNotes.TabIndex = 7;
             // 
             // MainForm
@@ -433,5 +461,7 @@
         private ToolStripButton tsbMoreFontSize;
         private ToolStripButton tsbLessFontSize;
         private Label labFunctions;
+        private ToolStripButton tsbEN;
+        private ToolStripButton tsbRU;
     }
 }
